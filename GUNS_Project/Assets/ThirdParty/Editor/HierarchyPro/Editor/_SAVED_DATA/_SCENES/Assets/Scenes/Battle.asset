@@ -137,7 +137,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1683119144-0
       namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (4)"
-      siblingsPathBackup: "5\xBE1\xBE1"
+      siblingsPathBackup: "5\xBE1\xBE4"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -151,7 +151,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-467606863-0
       namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (5)"
-      siblingsPathBackup: "5\xBE1\xBE3"
+      siblingsPathBackup: "5\xBE1\xBE5"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -165,7 +165,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1592398330-0
       namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (6)"
-      siblingsPathBackup: "5\xBE1\xBE5"
+      siblingsPathBackup: "5\xBE1\xBE6"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -185,6 +185,104 @@ MonoBehaviour:
       highLighterData: []
       iconData:
       - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -1126969347
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-455142230932736542
+      namesPathBackup: EnemySpawnPoint
+      siblingsPathBackup: 10
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot7_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -373606973
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-3436385456749429618-455142230932736542
+      namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (1)"
+      siblingsPathBackup: "10\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1490095151
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-5418540801690536417-455142230932736542
+      namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (2)"
+      siblingsPathBackup: "10\xBE2"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -1869671352
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-376753690675316923-455142230932736542
+      namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (3)"
+      siblingsPathBackup: "10\xBE3"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1109706771
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2455230328077366668-455142230932736542
+      namesPathBackup: "EnemySpawnPoint\xBESpawnPoint"
+      siblingsPathBackup: "10\xBE0"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -1547854672
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-1402627251
+      namesPathBackup: EnemySpawnPoint (1)
+      siblingsPathBackup: 11
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot7_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 828292496
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-613912792
+      namesPathBackup: EnemySpawnPoint (2)
+      siblingsPathBackup: 12
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot7_pix16_gizmo
         icon_path: 
         has_icon_color: 0
         icon_color: {r: 0, g: 0, b: 0, a: 0}

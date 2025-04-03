@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private NavMeshAgent _navMeshAgent;
 
-    // Update is called once per frame
-    void Update()
+    public void MoveTo(Vector3 position)
     {
-        
+        _navMeshAgent.SetDestination(position);
     }
 }

@@ -11,9 +11,11 @@ public class PlayerRouter : IRouter
     
     public void Init()
     {
-        PlayerView playerView = Resources.Load<PlayerView>("Prefabs/Player");
-
-        _view  = Window.CreatePlayer(playerView);
+        PlayerView prefab = Resources.Load<PlayerView>("Prefabs/Player");
+        
+        _view  = Window.CreatePlayer(prefab);
+        
+        PlayerController.Instance.Player = _view.transform;
         _movement = new ToCursorMovement(4, _view.transform);
         
         UpdateController.Instance.Add(OnUpdate);
