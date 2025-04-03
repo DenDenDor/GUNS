@@ -1,7 +1,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class PlayerWindow : AbstractWindowUi
+public class PlayerWindow : EntityWindow
 {
     [SerializeField] private Transform _spawnPoint;
     
@@ -12,6 +12,10 @@ public class PlayerWindow : AbstractWindowUi
 
     public PlayerView CreatePlayer(PlayerView view)
     {
-        return Instantiate(view, _spawnPoint.position, quaternion.identity);
+        PlayerView created = Instantiate(view, _spawnPoint.position, quaternion.identity);
+
+        Add(created);
+
+        return created;
     }
 }

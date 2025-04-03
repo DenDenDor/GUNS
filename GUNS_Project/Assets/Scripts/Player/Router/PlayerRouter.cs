@@ -15,7 +15,6 @@ public class PlayerRouter : IRouter
         
         _view  = Window.CreatePlayer(prefab);
         
-        PlayerController.Instance.Player = _view.transform;
         _movement = new ToCursorMovement(4, _view.transform);
         
         UpdateController.Instance.Add(OnUpdate);

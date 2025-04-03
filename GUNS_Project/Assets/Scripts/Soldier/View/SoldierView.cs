@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SoldierView : MonoBehaviour
+public class SoldierView : AbstractEntity
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
 

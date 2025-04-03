@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class SoldierWindow : AbstractWindowUi
+public class SoldierWindow : EntityWindow
 {
     [SerializeField] private List<Transform> _spawnsPoints;
     [SerializeField] private List<Transform> _moveToPoints;
@@ -28,6 +28,10 @@ public class SoldierWindow : AbstractWindowUi
 
     public SoldierView CreateSolider(SoldierView soldierView)
     {
-        return Instantiate(soldierView, _spawnsPoints.GetRandomRepeatElement().position, quaternion.identity);
-    }
+        SoldierView created = Instantiate(soldierView, _spawnsPoints.GetRandomRepeatElement().position, quaternion.identity);
+
+        Add(created);
+        
+        return created;
+    } 
 }

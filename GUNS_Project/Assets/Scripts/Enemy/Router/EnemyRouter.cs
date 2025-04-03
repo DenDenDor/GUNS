@@ -34,18 +34,40 @@ public class EnemyRouter : IRouter
             EnemyView view = enemy.Key;
             EnemyModel model = enemy.Value;
 
-            float distance = Vector3.Distance(view.transform.position, PlayerController.Instance.Player.position);
+            var allies = EntityController.Instance.AllyEntities;
             
-            if (distance < 5)
+            if (allies.Count == 0) 
             {
-                model.Movement = new ToPointMovement(PlayerController.Instance.Player);
+                model.Movement = new ToPointMovement(model.StartPoint);
+                view.MoveTo(model.Movement.GetPosition());
+                continue;
+            }
+
+            AbstractEntity nearestAlly = null;
+            float minDistance = 5;
+
+            foreach (var ally in allies)
+            {
+                if (ally == null) continue;
+                
+                float distance = Vector3.Distance(view.transform.position, ally.transform.position);
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestAlly = ally;
+                }
+            }
+
+            if (nearestAlly != null)
+            {
+                model.Movement = new ToPointMovement(nearestAlly.transform);
+                view.MoveTo(model.Movement.GetPosition());
             }
             else
             {
                 model.Movement = new ToPointMovement(model.StartPoint);
+                view.MoveTo(model.Movement.GetPosition());
             }
-            
-            view.MoveTo(model.Movement.GetPosition());
         }
     }
 

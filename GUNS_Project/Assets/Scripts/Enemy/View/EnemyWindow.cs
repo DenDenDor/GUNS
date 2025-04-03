@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class EnemyWindow : AbstractWindowUi
+public class EnemyWindow : EntityWindow
 {
     [SerializeField] private EnemyWave _enemyWave;
 
@@ -17,6 +17,10 @@ public class EnemyWindow : AbstractWindowUi
     
     public EnemyView CreateEnemy(EnemyView view, Transform point)
     {
-        return Instantiate(view, point.position, Quaternion.identity);
+        EnemyView enemy = Instantiate(view, point.position, Quaternion.identity);
+
+        Add(enemy);
+        
+        return enemy;
     }
 }

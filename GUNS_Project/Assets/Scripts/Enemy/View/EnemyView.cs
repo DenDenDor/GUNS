@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyView : MonoBehaviour
+public class EnemyView : AbstractEntity
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
