@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7d2db98314fc904fa81236a0a67b3cf, type: 3}
+  m_Name: Battle
+  m_EditorClassIdentifier: 
+  types:
+  - data: []
+  - data: []
+  - data: []
+  - data: []
+  - data: []
+  - data: []
+  - data:
+    - saverType: 6
+      id_in_external_heap: 805555949
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-289195299-0
+      namesPathBackup: "SoldierWindow\xBEPoint"
+      siblingsPathBackup: "5\xBE0"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot15_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1724132487
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2050081004-0
+      namesPathBackup: "SoldierWindow\xBEPoint (1)"
+      siblingsPathBackup: "5\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot15_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 787723162
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1356794985-0
+      namesPathBackup: "SoldierWindow\xBEPoint (2)"
+      siblingsPathBackup: "5\xBE2"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot15_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 547749258
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-256196842-0
+      namesPathBackup: "SoldierWindow\xBEPoint (3)"
+      siblingsPathBackup: "5\xBE3"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot15_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+  BookMarks_InternalGlobal: []
+  HierExpands_InternalGlobal: []
