@@ -6,9 +6,7 @@ public class PlayerRouter : IRouter
     private PlayerWindow Window => UiController.Instance.GetWindow<PlayerWindow>();
     
     private PlayerView _view;
-
-    private Coroutine _coroutine;
-
+    
     private IMovement _movement;
     
     public void Init()
@@ -17,22 +15,16 @@ public class PlayerRouter : IRouter
 
         _view  = Window.CreatePlayer(playerView);
         _movement = new ToCursorMovement(4, _view.transform);
-
-        _coroutine = Window.StartCoroutine(Update());
+        
+        UpdateController.Instance.Add(OnUpdate);
     }
 
-    private IEnumerator Update()
+    private void OnUpdate()
     {
-        while (true)
-        {
-            _view.MoveTo(_movement.GetPosition());
-
-            yield return null;
-        }
+        _view.MoveTo(_movement.GetPosition());
     }
 
     public void Exit()
     {
-        Window.StopCoroutine(_coroutine);
     }
 }

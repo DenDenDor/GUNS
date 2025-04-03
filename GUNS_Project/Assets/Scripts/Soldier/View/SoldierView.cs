@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class SoldierView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private NavMeshAgent _navMeshAgent;
 
-    // Update is called once per frame
-    void Update()
+    public void MoveTo(Vector3 getPosition)
     {
-        
+        _navMeshAgent.SetDestination(getPosition);
     }
 }

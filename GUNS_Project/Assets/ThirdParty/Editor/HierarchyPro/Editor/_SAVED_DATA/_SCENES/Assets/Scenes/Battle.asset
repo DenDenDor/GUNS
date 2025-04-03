@@ -24,8 +24,8 @@ MonoBehaviour:
       id_in_external_heap: 805555949
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-289195299-0
-      namesPathBackup: "SoldierWindow\xBEPoint"
-      siblingsPathBackup: "5\xBE0"
+      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint"
+      siblingsPathBackup: "5\xBE0\xBE0"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -38,8 +38,8 @@ MonoBehaviour:
       id_in_external_heap: 1724132487
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2050081004-0
-      namesPathBackup: "SoldierWindow\xBEPoint (1)"
-      siblingsPathBackup: "5\xBE1"
+      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (1)"
+      siblingsPathBackup: "5\xBE0\xBE1"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -52,8 +52,8 @@ MonoBehaviour:
       id_in_external_heap: 787723162
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1356794985-0
-      namesPathBackup: "SoldierWindow\xBEPoint (2)"
-      siblingsPathBackup: "5\xBE2"
+      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (2)"
+      siblingsPathBackup: "5\xBE0\xBE2"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -66,13 +66,125 @@ MonoBehaviour:
       id_in_external_heap: 547749258
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-256196842-0
-      namesPathBackup: "SoldierWindow\xBEPoint (3)"
-      siblingsPathBackup: "5\xBE3"
+      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (3)"
+      siblingsPathBackup: "5\xBE0\xBE3"
       boolValue: 0
       stringValue: 
       highLighterData: []
       iconData:
       - icon_guid: Library/sv_icon_dot15_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -1152861448
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1178089230-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint"
+      siblingsPathBackup: "5\xBE1\xBE0"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1131218391
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1541951978-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (1)"
+      siblingsPathBackup: "5\xBE1\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -512006145
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1627872836-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (2)"
+      siblingsPathBackup: "5\xBE1\xBE2"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1094237412
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1336483041-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (3)"
+      siblingsPathBackup: "5\xBE1\xBE3"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1336712185
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1683119144-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (4)"
+      siblingsPathBackup: "5\xBE1\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 80807325
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-467606863-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (5)"
+      siblingsPathBackup: "5\xBE1\xBE3"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 170333834
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1592398330-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (6)"
+      siblingsPathBackup: "5\xBE1\xBE5"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1243852784
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1347923488-0
+      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (7)"
+      siblingsPathBackup: "5\xBE1\xBE7"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot14_pix16_gizmo
         icon_path: 
         has_icon_color: 0
         icon_color: {r: 0, g: 0, b: 0, a: 0}
