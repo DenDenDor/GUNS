@@ -29,46 +29,63 @@ public class EnemyRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var enemy in _enemies)
-        {
-            EnemyView view = enemy.Key;
-            EnemyModel model = enemy.Value;
-
+            if (_enemies.Count == 0) return;
+        
             var allies = EntityController.Instance.AllyEntities;
-            
-            if (allies.Count == 0) 
+            bool hasAllies = allies.Count > 0;
+        
+            foreach (var enemyPair in EntityController.Instance.Enemies)
             {
-                model.Movement = new ToPointMovement(model.StartPoint);
-                view.MoveTo(model.Movement.GetPosition());
-                continue;
-            }
-
-            AbstractEntity nearestAlly = null;
-            float minDistance = 5;
-
-            foreach (var ally in allies)
-            {
-                if (ally == null) continue;
-                
-                float distance = Vector3.Distance(view.transform.position, ally.transform.position);
-                if (distance < minDistance)
+                EnemyView view = enemyPair;
+                EnemyModel model = _enemies[enemyPair];
+                Vector3 currentPosition = view.transform.position;
+        
+                if (!hasAllies)
                 {
-                    minDistance = distance;
-                    nearestAlly = ally;
+                    model.Movement = new ToPointMovement(model.StartPoint);
+                    view.MoveTo(model.Movement.GetPosition());
+                    continue;
                 }
-            }
+        
+                AbstractEntity nearestAlly = null;
+                float minDistanceSqr = 25f;
+        
+                foreach (var ally in allies)
+                {
+                    if (ally == null) continue;
+                    
+                    float distanceSqr = (currentPosition - ally.transform.position).sqrMagnitude;
+                    if (distanceSqr < minDistanceSqr)
+                    {
+                        minDistanceSqr = distanceSqr;
+                        nearestAlly = ally;
+                    }
+                }
+        
+                if (nearestAlly != null)
+                {
+                    model.Movement = new ToPointMovement(nearestAlly.transform);
 
-            if (nearestAlly != null)
-            {
-                model.Movement = new ToPointMovement(nearestAlly.transform);
-                view.MoveTo(model.Movement.GetPosition());
+                    if (minDistanceSqr < 4 && (model.Attack == null || model.Attack.IsCooldown))
+                    {
+                        model.Attack = new MiddleAttack(5, nearestAlly);
+                        model.Attack.Attack();
+                    }
+                    
+                    view.MoveTo(model.Movement.GetPosition());
+                }
+                else
+                {
+                    float distanceSqr = (currentPosition - model.StartPoint.position).sqrMagnitude;
+
+                    if (distanceSqr > 3)
+                    {
+                        model.Movement = new ToPointMovement(model.StartPoint);
+                        view.MoveTo(model.Movement.GetPosition());
+                    }
+                }
+                
             }
-            else
-            {
-                model.Movement = new ToPointMovement(model.StartPoint);
-                view.MoveTo(model.Movement.GetPosition());
-            }
-        }
     }
 
     public void Exit()

@@ -58,9 +58,9 @@ public class SoldierRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var soldier in _soldiers)
+        foreach (var soldier in EntityController.Instance.Soldiers)
         {
-            soldier.Key.MoveTo(soldier.Value.GetPosition());
+            soldier.MoveTo(_soldiers[soldier].GetPosition());
         }
     }
 
