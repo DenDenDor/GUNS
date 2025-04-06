@@ -46,11 +46,16 @@ public class SoldierRouter : IRouter
             if (freePointIndex == -1) 
                 yield break;
 
-            SoldierView soldier = Window.CreateSolider(_prefab);
+            SoldierModel model = new SoldierModel();
+
+            SoldierView soldier = Window.CreateSolider(_prefab, model);
+
+            IMovement movement = new ToPointMovement(Window.MoveToPoints[freePointIndex]);
         
             _pointsBySoldiers.Add(soldier, Window.MoveToPoints[freePointIndex]);
-            IMovement movement = new ToPointMovement(Window.MoveToPoints[freePointIndex]);
             _soldiers.Add(soldier, movement);
+
+            model.Movement = movement;
         
             yield return new WaitForSeconds(0.5f);
         }
@@ -58,10 +63,51 @@ public class SoldierRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var soldier in EntityController.Instance.Soldiers)
+        if (Input.GetKey(KeyCode.E))
         {
-            soldier.MoveTo(_soldiers[soldier].GetPosition());
+            var enemies = EntityController.Instance.Enemies;
+
+            foreach (var view in EntityController.Instance.Soldiers)
+            {
+                Vector3 currentPosition = view.transform.position;
+                
+                AbstractEntity nearestAlly = null;
+                float minDistanceSqr = 1000;
+
+                foreach (var enemy in enemies)
+                {
+                    if (enemy == null) continue;
+
+                    float distanceSqr = (currentPosition - enemy.transform.position).sqrMagnitude;
+                    if (distanceSqr < minDistanceSqr)
+                    {
+                        minDistanceSqr = distanceSqr;
+                        nearestAlly = enemy;
+                    }
+                }
+
+                if (nearestAlly != null)
+                {
+                    IMovement movement = new ToPointMovement(nearestAlly.transform);
+                    
+                    UpdateMovement(view, movement);
+                }
+
+            }
+
         }
+        else
+        {
+            foreach (var soldier in EntityController.Instance.Soldiers)
+            {
+                UpdateMovement(soldier, _soldiers[soldier]);
+            }
+        }
+    }
+    
+    private void UpdateMovement(AbstractEntity entity, IMovement movement)
+    {
+        MovementController.Instance.UpdateMovement(entity, movement);
     }
 
     public void Exit()

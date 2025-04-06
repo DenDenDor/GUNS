@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -10,11 +11,13 @@ public class PlayerWindow : EntityWindow
         
     }
 
-    public PlayerView CreatePlayer(PlayerView view)
+    public PlayerView CreatePlayer(PlayerView view, Action<PlayerView> playerView, PlayerModel model)
     {
         PlayerView created = Instantiate(view, _spawnPoint.position, quaternion.identity);
 
-        Add(created);
+        playerView(created);
+        
+        Add(created, model);
 
         return created;
     }

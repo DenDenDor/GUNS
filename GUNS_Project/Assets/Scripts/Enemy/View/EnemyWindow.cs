@@ -15,11 +15,11 @@ public class EnemyWindow : EntityWindow
         
     }
     
-    public EnemyView CreateEnemy(EnemyView view, Transform point)
+    public EnemyView CreateEnemy(EnemyView view, EntityModel model, Transform point)
     {
         EnemyView enemy = Instantiate(view, point.position, Quaternion.identity);
 
-        Add(enemy);
+        Add(enemy, model);
         
         return enemy;
     }

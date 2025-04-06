@@ -5,8 +5,8 @@ public class EnemyView : AbstractEntity
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
 
-    public void MoveTo(Vector3 position)
+    public override void MoveTo(Vector3 getPosition)
     {
-        _navMeshAgent.SetDestination(position);
+        _navMeshAgent.SetDestination(getPosition);
     }
 }

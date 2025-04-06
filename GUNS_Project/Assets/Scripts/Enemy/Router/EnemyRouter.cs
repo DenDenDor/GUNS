@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyRouter : IRouter
 {
-    private Dictionary<EnemyView, EnemyModel> _enemies = new();
-    
     private EnemyView _prefab;
 
     private EnemyWindow Window => UiController.Instance.GetWindow<EnemyWindow>();
@@ -16,12 +14,10 @@ public class EnemyRouter : IRouter
 
         foreach (var point in Window.Points)
         {
-           EnemyView enemy = Window.CreateEnemy(_prefab, point);
-           
-           EnemyModel model = new EnemyModel();
-           model.StartPoint = point;
-           
-           _enemies.Add(enemy, model);
+            EnemyModel model = new EnemyModel();
+            model.StartPoint = point;
+            
+            EnemyView enemy = Window.CreateEnemy(_prefab, model, point);
         }
         
         UpdateController.Instance.Add(OnUpdate);
@@ -29,21 +25,20 @@ public class EnemyRouter : IRouter
 
     private void OnUpdate()
     {
-            if (_enemies.Count == 0) return;
+            // if (EntityController.Instance.Enemies.Count == 0) return;
         
             var allies = EntityController.Instance.AllyEntities;
             bool hasAllies = allies.Count > 0;
-        
-            foreach (var enemyPair in EntityController.Instance.Enemies)
+            
+            foreach (var view in EntityController.Instance.Enemies)
             {
-                EnemyView view = enemyPair;
-                EnemyModel model = _enemies[enemyPair];
+                EntityModel model = EntityController.Instance.FullEntities[view];
                 Vector3 currentPosition = view.transform.position;
         
-                if (!hasAllies)
+                if (hasAllies == false)
                 {
-                    model.Movement = new ToPointMovement(model.StartPoint);
-                    view.MoveTo(model.Movement.GetPosition());
+                    IMovement movement = new ToPointMovement(model.StartPoint);
+                    EntityController.Instance.FullEntities[view].Movement = movement;
                     continue;
                 }
         
@@ -55,24 +50,28 @@ public class EnemyRouter : IRouter
                     if (ally == null) continue;
                     
                     float distanceSqr = (currentPosition - ally.transform.position).sqrMagnitude;
+                    
                     if (distanceSqr < minDistanceSqr)
                     {
                         minDistanceSqr = distanceSqr;
                         nearestAlly = ally;
                     }
                 }
+                
+                Debug.Log("MIN DISTANCE IS " + minDistanceSqr);
         
                 if (nearestAlly != null)
                 {
-                    model.Movement = new ToPointMovement(nearestAlly.transform);
+                    Debug.Log("NEAREST ALLY IS " + nearestAlly.name);
+                    // if (minDistanceSqr < 4 && (model.Attack == null || model.Attack.IsCooldown))
+                    // {
+                    //     model.Attack = new MiddleAttack(5, nearestAlly);
+                    //     model.Attack.Attack();
+                    // }
 
-                    if (minDistanceSqr < 4 && (model.Attack == null || model.Attack.IsCooldown))
-                    {
-                        model.Attack = new MiddleAttack(5, nearestAlly);
-                        model.Attack.Attack();
-                    }
+                    //MovementController.Instance.UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
                     
-                    view.MoveTo(model.Movement.GetPosition());
+                    UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
                 }
                 else
                 {
@@ -80,12 +79,17 @@ public class EnemyRouter : IRouter
 
                     if (distanceSqr > 3)
                     {
-                        model.Movement = new ToPointMovement(model.StartPoint);
-                        view.MoveTo(model.Movement.GetPosition());
+                        //MovementController.Instance.UpdateMovement(view, new ToPointMovement(model.StartPoint));
+
+                        UpdateMovement(view, new ToPointMovement(model.StartPoint));
                     }
                 }
-                
             }
+    }
+
+    private void UpdateMovement(AbstractEntity entity, IMovement movement)
+    {
+        MovementController.Instance.UpdateMovement(entity, movement);
     }
 
     public void Exit()
