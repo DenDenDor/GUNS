@@ -7,9 +7,9 @@ public abstract class EntityWindow : AbstractWindowUi
         
     }
 
-    protected AbstractEntity Add(AbstractEntity entity)
+    protected AbstractEntity Add(AbstractEntity entity, EntityModel model)
     {
-        EntityController.Instance.AddEntity(entity);
+        EntityController.Instance.AddEntity(entity, model);
 
         return entity;
     }

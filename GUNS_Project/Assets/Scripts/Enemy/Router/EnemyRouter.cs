@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyRouter : IRouter
 {
-    private Dictionary<EnemyView, EnemyModel> _enemies = new();
-    
     private EnemyView _prefab;
 
     private EnemyWindow Window => UiController.Instance.GetWindow<EnemyWindow>();
@@ -16,12 +14,10 @@ public class EnemyRouter : IRouter
 
         foreach (var point in Window.Points)
         {
-           EnemyView enemy = Window.CreateEnemy(_prefab, point);
-           
-           EnemyModel model = new EnemyModel();
-           model.StartPoint = point;
-           
-           _enemies.Add(enemy, model);
+            EnemyModel model = new EnemyModel();
+            model.StartPoint = point;
+            
+            EnemyView enemy = Window.CreateEnemy(_prefab, model, point);
         }
         
         UpdateController.Instance.Add(OnUpdate);
@@ -29,47 +25,62 @@ public class EnemyRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var enemy in _enemies)
-        {
-            EnemyView view = enemy.Key;
-            EnemyModel model = enemy.Value;
-
+            // if (EntityController.Instance.Enemies.Count == 0) return;
+        
             var allies = EntityController.Instance.AllyEntities;
+            bool hasAllies = allies.Count > 0;
             
-            if (allies.Count == 0) 
+            foreach (var view in EntityController.Instance.Enemies)
             {
-                model.Movement = new ToPointMovement(model.StartPoint);
-                view.MoveTo(model.Movement.GetPosition());
-                continue;
-            }
-
-            AbstractEntity nearestAlly = null;
-            float minDistance = 5;
-
-            foreach (var ally in allies)
-            {
-                if (ally == null) continue;
-                
-                float distance = Vector3.Distance(view.transform.position, ally.transform.position);
-                if (distance < minDistance)
+                EntityModel model = EntityController.Instance.FullEntities[view];
+                Vector3 currentPosition = view.transform.position;
+        
+                if (hasAllies == false)
                 {
-                    minDistance = distance;
-                    nearestAlly = ally;
+                    IMovement movement = new ToPointMovement(model.StartPoint);
+                    EntityController.Instance.FullEntities[view].Movement = movement;
+                    continue;
+                }
+        
+                AbstractEntity nearestAlly = null;
+                float minDistanceSqr = 25f;
+        
+                foreach (var ally in allies)
+                {
+                    if (ally == null) continue;
+                    
+                    float distanceSqr = (currentPosition - ally.transform.position).sqrMagnitude;
+                    
+                    if (distanceSqr < minDistanceSqr)
+                    {
+                        minDistanceSqr = distanceSqr;
+                        nearestAlly = ally;
+                    }
+                }
+                
+                if (nearestAlly != null)
+                {
+                    if (minDistanceSqr < 4)
+                    {
+                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(5, nearestAlly));
+                    }
+                    
+                    UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
+                }
+                else
+                {
+                    float distanceSqr = (currentPosition - model.StartPoint.position).sqrMagnitude;
+
+                    if (distanceSqr > 3)
+                    {
+                        UpdateMovement(view, new ToPointMovement(model.StartPoint));
+                    }
                 }
             }
-
-            if (nearestAlly != null)
-            {
-                model.Movement = new ToPointMovement(nearestAlly.transform);
-                view.MoveTo(model.Movement.GetPosition());
-            }
-            else
-            {
-                model.Movement = new ToPointMovement(model.StartPoint);
-                view.MoveTo(model.Movement.GetPosition());
-            }
-        }
     }
+
+    private void UpdateMovement(AbstractEntity entity, IMovement movement) => 
+        MovementController.Instance.UpdateMovement(entity, movement);
 
     public void Exit()
     {

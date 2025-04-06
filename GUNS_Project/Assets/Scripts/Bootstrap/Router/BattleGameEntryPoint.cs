@@ -6,8 +6,11 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
     protected override List<IRouter> Routers => new List<IRouter>()
     {
         new UpdateRouter(),
+        new AttackRouter(),
+        new HealthRouter(),
         new PlayerRouter(),
+        new MovementRouter(),
         new EnemyRouter(),
-        new SoldierRouter()
+        new SoldierRouter(),
     };
 }

@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class EnemyModel
+public class EnemyModel : EntityModel
 {
-    public Transform StartPoint;
-    public IMovement Movement;
+    
 }

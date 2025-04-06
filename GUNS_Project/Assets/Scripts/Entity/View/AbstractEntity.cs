@@ -1,16 +1,8 @@
 using UnityEngine;
 
-public class AbstractEntity : MonoBehaviour
+public abstract class AbstractEntity : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int Health;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void MoveTo(Vector3 getPosition);
 }

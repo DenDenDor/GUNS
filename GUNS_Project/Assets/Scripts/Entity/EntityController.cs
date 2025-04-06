@@ -5,8 +5,8 @@ using System.Linq;
 
 public class EntityController : MonoBehaviour
 {
-    private List<AbstractEntity> _entities = new();
-    
+    private Dictionary<AbstractEntity, EntityModel> _entities = new();
+
     private static EntityController _instance;
 
     public static EntityController Instance
@@ -27,7 +27,9 @@ public class EntityController : MonoBehaviour
         }
     }
 
-    public List<AbstractEntity> Entities => _entities;
+
+    public List<AbstractEntity> Entities => _entities.Keys.ToList();
+    public Dictionary<AbstractEntity, EntityModel> FullEntities => _entities;
 
     public List<AbstractEntity> AllyEntities
     {
@@ -42,11 +44,14 @@ public class EntityController : MonoBehaviour
         }
     }
 
+
     public List<EnemyView> Enemies => Get<EnemyView>();
 
     public List<SoldierView> Soldiers => Get<SoldierView>();
 
     public PlayerView Player => Get<PlayerView>().FirstOrDefault();
+
+    public event Action<AbstractEntity> Added;
 
     private void Awake()
     {
@@ -59,9 +64,10 @@ public class EntityController : MonoBehaviour
         _instance = this;
     }
 
-    public void AddEntity(AbstractEntity entity)
+    public void AddEntity(AbstractEntity entity, EntityModel model)
     {
-        _entities.Add(entity);
+        _entities.Add(entity, model);
+        Added?.Invoke(entity);
     }
 
     public void RemoveEntity(AbstractEntity entity)
@@ -71,6 +77,7 @@ public class EntityController : MonoBehaviour
 
     private List<T> Get<T>() where T : AbstractEntity
     {
-        return _entities.Where(x => x is T).OfType<T>().ToList();
+        return _entities.Where(x => x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
     }
+    
 }

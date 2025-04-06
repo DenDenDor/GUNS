@@ -26,11 +26,11 @@ public class SoldierWindow : EntityWindow
     }
 
 
-    public SoldierView CreateSolider(SoldierView soldierView)
+    public SoldierView CreateSolider(SoldierView soldierView, SoldierModel model)
     {
         SoldierView created = Instantiate(soldierView, _spawnsPoints.GetRandomRepeatElement().position, quaternion.identity);
 
-        Add(created);
+        Add(created, model);
         
         return created;
     } 
