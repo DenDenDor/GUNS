@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackRouter : IRouter
@@ -6,7 +7,7 @@ public class AttackRouter : IRouter
     {
         EntityController.Instance.Added += OnAdd;
 
-        //UpdateController.Instance.Add(OnUpdate);
+        UpdateController.Instance.Add(OnUpdate);
     }
 
     private void OnAdd(AbstractEntity obj)
@@ -16,19 +17,21 @@ public class AttackRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var entity in EntityController.Instance.Entities)
+        List<AbstractEntity> entities = AttackController.Instance.Entities;
+
+        if (entities.Count == 0)
         {
-            Vector3 currentPosition = entity.transform.position;
+            return;
+        }
+        
+        foreach (var view in entities)
+        {
+            EntityModel model = EntityController.Instance.FullEntities[view];
 
-            AbstractEntity nearestAlly = null;
-            float minDistanceSqr = 25f; // 5 squared for distance comparison
-
-            if (entity is EnemyView)
+            if (model.Attack != null && model.Attack.IsCooldown)
             {
-            }
-            else if (entity is SoldierView)
-            {
-                
+                model.Attack.Attack();
+                AttackController.Instance.Attack(view);
             }
         }
     }

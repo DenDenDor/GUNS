@@ -58,18 +58,12 @@ public class EnemyRouter : IRouter
                     }
                 }
                 
-                Debug.Log("MIN DISTANCE IS " + minDistanceSqr);
-        
                 if (nearestAlly != null)
                 {
-                    Debug.Log("NEAREST ALLY IS " + nearestAlly.name);
-                    // if (minDistanceSqr < 4 && (model.Attack == null || model.Attack.IsCooldown))
-                    // {
-                    //     model.Attack = new MiddleAttack(5, nearestAlly);
-                    //     model.Attack.Attack();
-                    // }
-
-                    //MovementController.Instance.UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
+                    if (minDistanceSqr < 4)
+                    {
+                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(5, nearestAlly));
+                    }
                     
                     UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
                 }
@@ -79,18 +73,14 @@ public class EnemyRouter : IRouter
 
                     if (distanceSqr > 3)
                     {
-                        //MovementController.Instance.UpdateMovement(view, new ToPointMovement(model.StartPoint));
-
                         UpdateMovement(view, new ToPointMovement(model.StartPoint));
                     }
                 }
             }
     }
 
-    private void UpdateMovement(AbstractEntity entity, IMovement movement)
-    {
+    private void UpdateMovement(AbstractEntity entity, IMovement movement) => 
         MovementController.Instance.UpdateMovement(entity, movement);
-    }
 
     public void Exit()
     {

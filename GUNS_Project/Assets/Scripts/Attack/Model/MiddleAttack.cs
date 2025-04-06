@@ -25,13 +25,7 @@ public class MiddleAttack : IAttack
 
         Debug.Log(_damage + " HEALTH " + _toAttack.name);
         
-        CoroutineController.Instance.RunCoroutine(Cooldown());
     }
 
-    private IEnumerator Cooldown()
-    {
-        yield return new WaitForSeconds(1);
-
-        IsCooldown = true;
-    }
+  
 }

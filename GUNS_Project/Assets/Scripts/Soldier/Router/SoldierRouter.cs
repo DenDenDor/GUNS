@@ -90,6 +90,11 @@ public class SoldierRouter : IRouter
                 {
                     IMovement movement = new ToPointMovement(nearestAlly.transform);
                     
+                    if (minDistanceSqr < 3)
+                    {
+                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(2, nearestAlly));
+                    }
+                    
                     UpdateMovement(view, movement);
                 }
 

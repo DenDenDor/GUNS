@@ -14,15 +14,8 @@ public class MovementRouter : IRouter
             AbstractEntity view = item.Key;
             EntityModel model = item.Value;
 
-            if (model.Movement != null)
-            {
+            if (model.Movement != null) 
                 view.MoveTo(model.Movement.GetPosition());
-            }
-
-            if (model is PlayerModel)
-            {
-                Debug.Log("POP " + model.Movement);
-            }
         }
     }
 
