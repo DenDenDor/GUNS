@@ -28,7 +28,7 @@ public class PressurePlateController : MonoBehaviour
         }
     }
 
-    public event Action<Transform> Created;
+    public event Action<Transform, PressurePlateType> Created;
     
     private void Awake()
     {
@@ -41,9 +41,9 @@ public class PressurePlateController : MonoBehaviour
         _instance = this;
     }
 
-    public void AddPressurePlate(Transform point)
+    public void AddPressurePlate(Transform point, PressurePlateType type)
     {
-        Created?.Invoke(point);
+        Created?.Invoke(point, type);
     }
 
     public void Register(Transform point, AbstractPressurePlateView plate)

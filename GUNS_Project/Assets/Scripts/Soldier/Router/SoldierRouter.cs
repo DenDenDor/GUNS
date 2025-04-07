@@ -22,7 +22,7 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
-        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton);
+        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
