@@ -6,6 +6,9 @@ public class SoldierWindow : EntityWindow
 {
     [SerializeField] private List<Transform> _spawnsPoints;
     [SerializeField] private List<Transform> _moveToPoints;
+    [SerializeField] private Transform _soldierAttackButton;
+
+    public Transform SoldierAttackButton => _soldierAttackButton;
 
     public List<Transform> MoveToPoints
     {
@@ -22,7 +25,6 @@ public class SoldierWindow : EntityWindow
 
     public override void Init()
     {
-        
     }
 
 

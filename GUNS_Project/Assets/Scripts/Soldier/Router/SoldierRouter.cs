@@ -10,6 +10,9 @@ public class SoldierRouter : IRouter
     private SoldierView _prefab;
     
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
+
+    private AbstractPressurePlateView Plate =>
+        PressurePlateController.Instance.PressurePlateViewsByPoints[Window.SoldierAttackButton];
     
     public void Init()
     {
@@ -18,6 +21,53 @@ public class SoldierRouter : IRouter
         UpdateController.Instance.StartCoroutine(Wait());
         
         UpdateController.Instance.Add(OnUpdate);
+        
+        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton);
+        
+        Plate.UpdateBar(0);
+
+        Plate.Entered += OnEntered;
+        Plate.Exited += OnExited;
+    }
+
+    private Coroutine _coroutine;
+    private bool _isMoving;
+
+    private void OnExited()
+    {
+        if (_isMoving == false)
+        {
+            CoroutineController.Instance.StopCoroutine(_coroutine);
+        
+            Plate.UpdateBar(0);
+        }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        float fillness = 0;
+        float time = 0;
+        
+        while (time < 1)
+        {
+            time += Time.deltaTime;
+            
+            Plate.UpdateBar(time);
+
+            yield return null;
+        }
+        
+        _isMoving = true;
+
+        Debug.Log("FILLNESS!");
+    }
+
+    private void OnEntered()
+    {
+        if (_isMoving == false)
+        {
+            _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown());
+        }
     }
 
     private IEnumerator Wait()
@@ -63,7 +113,7 @@ public class SoldierRouter : IRouter
 
     private void OnUpdate()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (_isMoving)
         {
             var enemies = EntityController.Instance.Enemies;
 
@@ -117,5 +167,6 @@ public class SoldierRouter : IRouter
 
     public void Exit()
     {
+        Plate.Entered -= OnEntered;
     }
 }
