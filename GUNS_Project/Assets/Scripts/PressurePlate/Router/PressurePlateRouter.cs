@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class PressurePlateRouter : IRouter
 {
@@ -7,11 +9,25 @@ public class PressurePlateRouter : IRouter
         PressurePlateController.Instance.Created += OnCreated;
     }
 
-    private void OnCreated(Transform transform)
+    private void OnCreated(Transform transform, PressurePlateType type)
     {
-        FillingUpPressurePlateView prefab = Resources.Load<FillingUpPressurePlateView>("Prefabs/FillingUpPressurePlateView");
+        AbstractPressurePlateView prefab = null;
 
-        FillingUpPressurePlateView plateView = Object.Instantiate(prefab, transform);
+        switch (type)
+        {
+            case PressurePlateType.FillingUp:
+                prefab = Resources.Load<FillingUpPressurePlateView>("Prefabs/FillingUpPressurePlateView");
+                break;
+            case PressurePlateType.Gold:
+                prefab = Resources.Load<GoldPressurePlateView>("Prefabs/GoldPressurePlateView");
+                break;
+            case PressurePlateType.Silver:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+        
+        AbstractPressurePlateView plateView = Object.Instantiate(prefab, transform);
         
         PressurePlateController.Instance.Register(transform, plateView);
     }

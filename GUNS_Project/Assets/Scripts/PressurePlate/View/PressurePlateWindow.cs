@@ -11,5 +11,7 @@ public class PressurePlateWindow : AbstractWindowUi
 
 public enum PressurePlateType
 {
-    FillingUp
+    FillingUp,
+    Gold,
+    Silver
 }

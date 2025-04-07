@@ -27,6 +27,8 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    public int GoldCount => _pickUps.Count;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -44,6 +46,11 @@ public class InventoryController : MonoBehaviour
         
         currencyPickUp.transform.SetParent(EntityController.Instance.Player.CurrencyPoint);
 
+        UpdatePosition();
+    }
+
+    private void UpdatePosition()
+    {
         _pickUps = _pickUps.OrderBy(x => x is GoldPickUp).ToList();
 
         float height = 0;
@@ -53,6 +60,19 @@ public class InventoryController : MonoBehaviour
             item.transform.localPosition = new Vector3(0, height, 0);
 
             height += 0.3f;
+        }
+    }
+
+    public void TakeGold()
+    {
+        AbstractCurrencyPickUp pickUp = _pickUps.FirstOrDefault(x => x is GoldPickUp);
+
+        if (pickUp != null)
+        {
+            _pickUps.Remove(pickUp);
+            UpdatePosition();
+            
+            Destroy(pickUp.gameObject);
         }
     }
 }
