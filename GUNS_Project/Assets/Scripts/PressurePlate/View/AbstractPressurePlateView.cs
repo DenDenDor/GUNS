@@ -6,7 +6,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
 {
     [SerializeField] private Image _bar;
 
-    public event Action Entered;
+    public event Action<AbstractPressurePlateView> Entered;
     public event Action Exited;
     
     public void UpdateBar(float fillness)
@@ -18,7 +18,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     {
         if (other.GetComponent<PlayerTriggerView>())
         {
-            Entered?.Invoke();
+            Entered?.Invoke(this);
         }
     }
 

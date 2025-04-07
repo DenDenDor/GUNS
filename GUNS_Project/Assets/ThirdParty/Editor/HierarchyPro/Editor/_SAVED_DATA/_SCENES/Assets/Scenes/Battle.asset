@@ -24,8 +24,8 @@ MonoBehaviour:
       id_in_external_heap: 805555949
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-289195299-0
-      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint"
-      siblingsPathBackup: "5\xBE0\xBE0"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBESpawnCollection\xBEPoint"
+      siblingsPathBackup: "4\xBE1\xBE0\xBE0"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -38,8 +38,9 @@ MonoBehaviour:
       id_in_external_heap: 1724132487
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2050081004-0
-      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (1)"
-      siblingsPathBackup: "5\xBE0\xBE1"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBESpawnCollection\xBEPoint
+        (1)"
+      siblingsPathBackup: "4\xBE1\xBE0\xBE1"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -52,8 +53,9 @@ MonoBehaviour:
       id_in_external_heap: 787723162
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1356794985-0
-      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (2)"
-      siblingsPathBackup: "5\xBE0\xBE2"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBESpawnCollection\xBEPoint
+        (2)"
+      siblingsPathBackup: "4\xBE1\xBE0\xBE2"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -66,8 +68,9 @@ MonoBehaviour:
       id_in_external_heap: 547749258
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-256196842-0
-      namesPathBackup: "SoldierWindow\xBESpawnCollection\xBEPoint (3)"
-      siblingsPathBackup: "5\xBE0\xBE3"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBESpawnCollection\xBEPoint
+        (3)"
+      siblingsPathBackup: "4\xBE1\xBE0\xBE3"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -80,8 +83,8 @@ MonoBehaviour:
       id_in_external_heap: -1152861448
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1178089230-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint"
-      siblingsPathBackup: "5\xBE1\xBE0"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE0"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -94,8 +97,9 @@ MonoBehaviour:
       id_in_external_heap: 1131218391
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1541951978-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (1)"
-      siblingsPathBackup: "5\xBE1\xBE1"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (1)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE1"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -108,8 +112,9 @@ MonoBehaviour:
       id_in_external_heap: -512006145
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1627872836-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (2)"
-      siblingsPathBackup: "5\xBE1\xBE2"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (2)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE2"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -122,8 +127,9 @@ MonoBehaviour:
       id_in_external_heap: 1094237412
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1336483041-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (3)"
-      siblingsPathBackup: "5\xBE1\xBE3"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (3)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE3"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -136,8 +142,9 @@ MonoBehaviour:
       id_in_external_heap: 1336712185
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1683119144-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (4)"
-      siblingsPathBackup: "5\xBE1\xBE4"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (4)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE4"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -150,8 +157,9 @@ MonoBehaviour:
       id_in_external_heap: 80807325
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-467606863-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (5)"
-      siblingsPathBackup: "5\xBE1\xBE5"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (5)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE5"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -164,8 +172,9 @@ MonoBehaviour:
       id_in_external_heap: 170333834
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1592398330-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (6)"
-      siblingsPathBackup: "5\xBE1\xBE6"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (6)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE6"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -178,8 +187,9 @@ MonoBehaviour:
       id_in_external_heap: 1243852784
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-1347923488-0
-      namesPathBackup: "SoldierWindow\xBEMoveTo\xBEPoint (7)"
-      siblingsPathBackup: "5\xBE1\xBE7"
+      namesPathBackup: "=======WINDOW=======\xBESoldierWindow\xBEMoveTo\xBEPoint
+        (7)"
+      siblingsPathBackup: "4\xBE1\xBE1\xBE7"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -193,7 +203,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-455142230932736542
       namesPathBackup: EnemySpawnPoint
-      siblingsPathBackup: 10
+      siblingsPathBackup: 7
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -207,7 +217,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-3436385456749429618-455142230932736542
       namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (1)"
-      siblingsPathBackup: "10\xBE1"
+      siblingsPathBackup: "7\xBE1"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -221,7 +231,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-5418540801690536417-455142230932736542
       namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (2)"
-      siblingsPathBackup: "10\xBE2"
+      siblingsPathBackup: "7\xBE2"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -235,7 +245,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-376753690675316923-455142230932736542
       namesPathBackup: "EnemySpawnPoint\xBESpawnPoint (3)"
-      siblingsPathBackup: "10\xBE3"
+      siblingsPathBackup: "7\xBE3"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -249,7 +259,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2455230328077366668-455142230932736542
       namesPathBackup: "EnemySpawnPoint\xBESpawnPoint"
-      siblingsPathBackup: "10\xBE0"
+      siblingsPathBackup: "7\xBE0"
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -263,7 +273,7 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-1402627251
       namesPathBackup: EnemySpawnPoint (1)
-      siblingsPathBackup: 11
+      siblingsPathBackup: 8
       boolValue: 0
       stringValue: 
       highLighterData: []
@@ -277,12 +287,68 @@ MonoBehaviour:
       indentifierVersion: GlobalObjectId_V1
       identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-613912792
       namesPathBackup: EnemySpawnPoint (2)
-      siblingsPathBackup: 12
+      siblingsPathBackup: 9
       boolValue: 0
       stringValue: 
       highLighterData: []
       iconData:
       - icon_guid: Library/sv_icon_dot7_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -77437256
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2455230328077366668-1402627251
+      namesPathBackup: "EnemySpawnPoint (1)\xBESpawnPoint"
+      siblingsPathBackup: "8\xBE0"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -638851690
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-3436385456749429618-1402627251
+      namesPathBackup: "EnemySpawnPoint (1)\xBESpawnPoint (1)"
+      siblingsPathBackup: "8\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -200010822
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-5418540801690536417-1402627251
+      namesPathBackup: "EnemySpawnPoint (1)\xBESpawnPoint (2)"
+      siblingsPathBackup: "8\xBE2"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 221235687
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-376753690675316923-1402627251
+      namesPathBackup: "EnemySpawnPoint (1)\xBESpawnPoint (3)"
+      siblingsPathBackup: "8\xBE3"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
         icon_path: 
         has_icon_color: 0
         icon_color: {r: 0, g: 0, b: 0, a: 0}

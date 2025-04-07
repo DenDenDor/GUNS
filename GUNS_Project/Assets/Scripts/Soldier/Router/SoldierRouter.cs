@@ -62,7 +62,7 @@ public class SoldierRouter : IRouter
         Debug.Log("FILLNESS!");
     }
 
-    private void OnEntered()
+    private void OnEntered(AbstractPressurePlateView view)
     {
         if (_isMoving == false)
         {

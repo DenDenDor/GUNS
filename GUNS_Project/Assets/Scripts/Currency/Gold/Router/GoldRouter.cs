@@ -21,6 +21,9 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
 
     private Coroutine _coroutine;
 
+    private Dictionary<AbstractPressurePlateView, int> _pressurePlatesByAmount = new();
+    private Dictionary<AbstractPressurePlateView, int> _startMaxPrice = new();
+
     public override void Init()
     {
         for (int i = 0; i < 7; i++)
@@ -39,9 +42,16 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
 
         foreach (var plate in Plates)
         {
-            plate.UpdateBar(0);
             plate.Entered += OnEntered;
             plate.Exited += OnExited;
+
+            int randomNumber = (int) Random.Range(4, 10);
+
+            _pressurePlatesByAmount.Add(plate, randomNumber);
+            _startMaxPrice.Add(plate, randomNumber);
+            
+            plate.UpdateBar(0);
+            plate.UpdatePrice(randomNumber);
         }
     }
 
@@ -50,12 +60,13 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
         CoroutineController.Instance.StopCoroutine(_coroutine);
     }
 
-    private void OnEntered()
+    private void OnEntered(AbstractPressurePlateView view)
     {
-        _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown());
+        _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown(view));
+        
     }
 
-    private IEnumerator Cooldown()
+    private IEnumerator Cooldown(AbstractPressurePlateView view)
     {
         float time = 0;
 
@@ -68,9 +79,15 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
 
         Debug.LogError("GOLD COUNT " + InventoryController.Instance.GoldCount);
 
-        while (InventoryController.Instance.GoldCount > 0)
+        while (InventoryController.Instance.GoldCount > 0 && _pressurePlatesByAmount[view] > 0)
         {
             InventoryController.Instance.TakeGold();
+            _pressurePlatesByAmount[view]--;
+
+            view.UpdateBar(1 - (float) _pressurePlatesByAmount[view] / _startMaxPrice[view]);
+            
+            Plates.FirstOrDefault(x=>x == view).UpdatePrice(_pressurePlatesByAmount[view]);
+
             yield return new WaitForSeconds(0.2f);
         }
     }
