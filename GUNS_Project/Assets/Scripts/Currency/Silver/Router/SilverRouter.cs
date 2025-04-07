@@ -1,18 +1,14 @@
 using UnityEngine;
 
-public class SilverRouter : IRouter
+public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow>
 {
-    private CurrencyController Currency => CurrencyController.Instance;
+    protected override string PathToPrefab => "Prefabs/Silver";
 
-    private SilverWindow Window => UiController.Instance.GetWindow<SilverWindow>();
-    
-    public void Init()
+    public override void Init()
     {
-        SilverPickUp prefab = Resources.Load<SilverPickUp>("Prefabs/Silver");
-        
         for (int i = 0; i < 6; i++)
         {
-            Window.Create(prefab, Window.StartPoint);
+            Window.Create(Prefab, Window.StartPoint);
         }
         
         Currency.CreatedSilver += OnCreatedSilver;
@@ -21,22 +17,15 @@ public class SilverRouter : IRouter
         {
             OnCreatedSilver(silver);
         }
-        
     }
 
+    public override void Exit()
+    {
+    }
+    
+    
     private void OnCreatedSilver(SilverPickUp obj)
     {
         obj.PickedUp += OnPickedUp;
-    }
-
-    private void OnPickedUp(AbstractCurrencyPickUp obj)
-    {
-        InventoryController.Instance.AddPickUp(obj);
-        obj.PickedUp -= OnPickedUp;
-    }
-
-    public void Exit()
-    {
-        
     }
 }

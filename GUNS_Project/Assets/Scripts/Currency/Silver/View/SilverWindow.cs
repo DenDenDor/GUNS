@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SilverWindow : AbstractWindowUi
+public class SilverWindow : AbstractCurrencyWindow
 {
     [SerializeField] private Transform _startPoint;
 

@@ -13,7 +13,7 @@ public class CurrencyController : MonoBehaviour
 
     public List<SilverPickUp> Silvers => Get<SilverPickUp>();
     
-    public List<SilverPickUp> Golds => Get<SilverPickUp>();
+    public List<GoldPickUp> Golds => Get<GoldPickUp>();
     
     private static CurrencyController _instance;
 
