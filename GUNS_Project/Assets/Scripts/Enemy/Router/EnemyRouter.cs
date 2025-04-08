@@ -60,9 +60,9 @@ public class EnemyRouter : IRouter
                 
                 if (nearestAlly != null)
                 {
-                    if (minDistanceSqr < 4)
+                    if (minDistanceSqr < 20)
                     {
-                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(5, nearestAlly));
+                        AttackController.Instance.UpdateAttack(view, new ShootAttack(5, view, nearestAlly));
                     }
                     
                     UpdateMovement(view, new ToPointMovement(nearestAlly.transform));

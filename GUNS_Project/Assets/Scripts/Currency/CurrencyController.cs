@@ -11,6 +11,10 @@ public class CurrencyController : MonoBehaviour
     
     public event Action<GoldPickUp> CreatedGold;
 
+    public event Action<Vector3> InitSilver;
+
+    public event Action<Vector3> InitGold;
+
     public List<SilverPickUp> Silvers => Get<SilverPickUp>();
     
     public List<GoldPickUp> Golds => Get<GoldPickUp>();
@@ -49,6 +53,16 @@ public class CurrencyController : MonoBehaviour
         }
         
         _instance = this;
+    }
+
+    public void CreateSilver(Vector3 position)
+    {
+        InitSilver?.Invoke(position);
+    }    
+    
+    public void CreateGold(Vector3 position)
+    {
+        InitGold?.Invoke(position);
     }
 
     public void AddPickUp(AbstractCurrencyPickUp pickUp)

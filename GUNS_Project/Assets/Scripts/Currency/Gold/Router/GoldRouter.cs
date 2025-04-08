@@ -26,20 +26,19 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
 
     public override void Init()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 20; i++)
         {
-            Window.Create(Prefab, UiController.Instance.GetWindow<SilverWindow>().StartPoint);
+            CreateTo(UiController.Instance.GetWindow<SilverWindow>().StartPoint.position);
         }    
         
         Currency.CreatedGold += OnCreatedGold;
+        Currency.InitGold += CreateTo;
 
         foreach (var silver in Currency.Golds)
         {
             OnCreatedGold(silver);
         }
         
-        PressurePlateController.Instance.AddPressurePlate(UiController.Instance.GetWindow<SilverWindow>().StartPoint, PressurePlateType.Gold);
-
         foreach (var plate in Plates)
         {
             plate.Entered += OnEntered;
@@ -54,7 +53,12 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
             plate.UpdatePrice(randomNumber);
         }
     }
-
+    
+    private void CreateTo(Vector3 position)
+    {
+        Window.Create(Prefab, position);
+    }
+    
     private void OnExited()
     {
         CoroutineController.Instance.StopCoroutine(_coroutine);
@@ -76,9 +80,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
             
             yield return null;
         }
-
-        Debug.LogError("GOLD COUNT " + InventoryController.Instance.GoldCount);
-
+        
         while (InventoryController.Instance.GoldCount > 0 && _pressurePlatesByAmount[view] > 0)
         {
             InventoryController.Instance.TakeGold();
