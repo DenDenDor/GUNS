@@ -74,9 +74,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
             
             yield return null;
         }
-
-        Debug.LogError("GOLD COUNT " + InventoryController.Instance.GoldCount);
-
+        
         while (InventoryController.Instance.GoldCount > 0 && _pressurePlatesByAmount[view] > 0)
         {
             InventoryController.Instance.TakeGold();

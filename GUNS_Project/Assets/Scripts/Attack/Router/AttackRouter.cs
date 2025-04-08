@@ -5,14 +5,26 @@ public class AttackRouter : IRouter
 {
     public void Init()
     {
-        EntityController.Instance.Added += OnAdd;
-
         UpdateController.Instance.Add(OnUpdate);
+
+        BulletController.Instance.Added += OnAdd;
     }
 
-    private void OnAdd(AbstractEntity obj)
+    private void OnAdd(BulletView view)
     {
+        view.Triggered += OnTriggered;
+    }
+
+    private void OnTriggered(BulletView bullet, AbstractEntity entity)
+    {
+        BulletModel model = BulletController.Instance.Bullets[bullet];
         
+        if (model.Entity.GetType() == entity.GetType())
+        {
+            model.Attack = new MiddleAttack(5, entity);
+            model.Attack.Attack();
+            Object.Destroy(bullet.gameObject);
+        }
     }
 
     private void OnUpdate()
@@ -38,6 +50,6 @@ public class AttackRouter : IRouter
 
     public void Exit()
     {
-        EntityController.Instance.Added -= OnAdd;
+        BulletController.Instance.Added -= OnAdd;
     }
 }

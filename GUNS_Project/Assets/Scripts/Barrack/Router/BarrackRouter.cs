@@ -27,7 +27,6 @@ public class BarrackRouter : IRouter
 
     private void OnTimeReset(BuildingModel model)
     {
-        Debug.LogError("ON TIME RESET!");
         AbstractBuildingView view = BuildingController.Instance.Barracks.FirstOrDefault(x=>x.Value == model).Key;
         
         BarrackController.Instance.Create(view.transform);
