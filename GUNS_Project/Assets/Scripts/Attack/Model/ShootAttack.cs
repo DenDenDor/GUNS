@@ -1,16 +1,17 @@
-using System.Collections;
 using UnityEngine;
 
-public class MiddleAttack : IAttack
+public class ShootAttack : IAttack
 {
     private float _waitTime = 5;
     private float _damage;
     private AbstractEntity _toAttack;
+    private AbstractEntity _thisEntity;
 
-    public MiddleAttack(float damage, AbstractEntity toAttack)
+    public ShootAttack(float damage, AbstractEntity thisEntity, AbstractEntity toAttack)
     {
         _damage = damage;
         _toAttack = toAttack;
+        _thisEntity = thisEntity;
     }
 
     public bool IsCooldown { get; private set; } = true;
@@ -19,8 +20,6 @@ public class MiddleAttack : IAttack
     {
         IsCooldown = false;
 
-        HealthModel health = HealthController.Instance.GetByEntity(_toAttack);
-
-        health.TakeDamage(_damage);
+        BulletController.Instance.Create(_thisEntity, _toAttack);
     }
 }

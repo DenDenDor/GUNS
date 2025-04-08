@@ -24,6 +24,22 @@ public class MovementRouter : IRouter
                 }
             }
         }
+
+        foreach (var item in BulletController.Instance.Bullets)
+        {
+            IMovement movement = item.Value.Movement;
+
+            
+            if (movement != null)
+            {
+                Vector3 pos = movement.GetPosition();
+
+                if (pos != Vector3.zero)
+                {
+                    item.Key.MoveTo(pos);
+                }
+            }
+        }
     }
 
     public void Exit()
