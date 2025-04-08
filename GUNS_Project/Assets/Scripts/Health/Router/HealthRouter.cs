@@ -12,7 +12,14 @@ public class HealthRouter : IRouter
 
     private void OnAdd(AbstractEntity obj)
     {
-        HealthModel health = new HealthModel(Random.Range(0, 100));
+        int value = Random.Range(0, 100);
+
+        if (obj is SoldierView)
+        {
+            value = 10;
+        }
+        
+        HealthModel health = new HealthModel(value);
        
         health.Death += OnDeathTaken;
         health.TakenDamage += OnTakenDamage;
