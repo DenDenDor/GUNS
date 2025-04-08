@@ -38,8 +38,6 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
             OnCreatedGold(silver);
         }
         
-        PressurePlateController.Instance.AddPressurePlate(UiController.Instance.GetWindow<SilverWindow>().StartPoint, PressurePlateType.Gold);
-
         foreach (var plate in Plates)
         {
             plate.Entered += OnEntered;
