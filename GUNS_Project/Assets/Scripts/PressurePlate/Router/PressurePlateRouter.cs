@@ -22,6 +22,7 @@ public class PressurePlateRouter : IRouter
                 prefab = Resources.Load<GoldPressurePlateView>("Prefabs/GoldPressurePlateView");
                 break;
             case PressurePlateType.Silver:
+                prefab = Resources.Load<SilverPressurePlateView>("Prefabs/SilverPressurePlateView");
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);

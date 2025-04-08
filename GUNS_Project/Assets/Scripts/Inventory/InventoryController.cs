@@ -27,7 +27,8 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public int GoldCount => _pickUps.Count;
+    public int GoldCount => Count<GoldPickUp>();
+    public int SilverCount => Count<SilverPickUp>();
 
     private void Awake()
     {
@@ -65,7 +66,17 @@ public class InventoryController : MonoBehaviour
 
     public void TakeGold()
     {
-        AbstractCurrencyPickUp pickUp = _pickUps.FirstOrDefault(x => x is GoldPickUp);
+        TakeCurrency<GoldPickUp>();
+    }  
+    
+    public void TakeSilver()
+    {
+        TakeCurrency<SilverPickUp>();
+    }
+
+    private void TakeCurrency<T>() where T : AbstractCurrencyPickUp
+    {
+        AbstractCurrencyPickUp pickUp = _pickUps.FirstOrDefault(x => x is T);
 
         if (pickUp != null)
         {
@@ -74,5 +85,10 @@ public class InventoryController : MonoBehaviour
             
             Destroy(pickUp.gameObject);
         }
+    }
+
+    private int Count<T>() where T : AbstractCurrencyPickUp
+    {
+       return _pickUps.Count(x=>x is T);
     }
 }
