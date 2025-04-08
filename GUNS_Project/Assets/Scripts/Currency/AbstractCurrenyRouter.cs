@@ -7,8 +7,6 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
 {
     private Coroutine _coroutine;
 
-    private readonly Dictionary<AbstractPressurePlateView, int> _pressurePlatesByAmount = new();
-    private readonly Dictionary<AbstractPressurePlateView, int> _startMaxPrice = new();
 
     private List<W> Plates
     {
@@ -47,14 +45,11 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         {
             plate.Entered += OnEntered;
             plate.Exited += OnExited;
-
-            int randomNumber = (int) Random.Range(4, 10);
-
-            _pressurePlatesByAmount.Add(plate, randomNumber);
-            _startMaxPrice.Add(plate, randomNumber);
             
+            PressurePlateController.Instance.GetPriceBy(plate, out int current, out int max);
+            
+            plate.UpdatePrice(current);
             plate.UpdateBar(0);
-            plate.UpdatePrice(randomNumber);
         }
     }
     
@@ -81,14 +76,18 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
             yield return null;
         }
         
-        while (IsAbleToBuy && _pressurePlatesByAmount[view] > 0)
+        PressurePlateController.Instance.GetPriceBy(view, out int current, out int max);
+        
+        while (IsAbleToBuy && current > 0)
         {
             Buy();
-            _pressurePlatesByAmount[view]--;
+            current--;
 
-            view.UpdateBar(1 - (float) _pressurePlatesByAmount[view] / _startMaxPrice[view]);
+            PressurePlateController.Instance.UpdateCurrentPrice(view, current);
+
+            view.UpdateBar(1 - (float) current / max);
             
-            Plates.FirstOrDefault(x=>x == view)?.UpdatePrice(_pressurePlatesByAmount[view]);
+            Plates.FirstOrDefault(x=>x == view)?.UpdatePrice(current);
 
             yield return new WaitForSeconds(0.2f);
         }

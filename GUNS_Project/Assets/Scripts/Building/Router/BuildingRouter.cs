@@ -10,6 +10,8 @@ public class BuildingRouter : IRouter
     {
         foreach (var item in Window.Models)
         {
+            int price = 5;
+            
             Transform point = item.Point;
             PressurePlateType type;
 
@@ -17,6 +19,7 @@ public class BuildingRouter : IRouter
             {
                 case BuildingType.NextLevel:
                     type = PressurePlateType.Gold;
+                    price = 10;
                     break;
                 default:
                     type = PressurePlateType.Silver;
@@ -24,6 +27,7 @@ public class BuildingRouter : IRouter
             }
             
             PressurePlateController.Instance.AddPressurePlate(point, type);
+            PressurePlateController.Instance.UpdateAllPrice(point, price);
         }
         
         UpdateController.Instance.Add(OnUpdate);
