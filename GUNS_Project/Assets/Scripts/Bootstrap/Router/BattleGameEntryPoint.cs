@@ -9,6 +9,8 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new AttackRouter(),
         new HealthRouter(),
         new PressurePlateRouter(),
+        new BuildingRouter(),
+        new BarrackRouter(),
         new SilverRouter(),
         new GoldRouter(),
         new PlayerRouter(),

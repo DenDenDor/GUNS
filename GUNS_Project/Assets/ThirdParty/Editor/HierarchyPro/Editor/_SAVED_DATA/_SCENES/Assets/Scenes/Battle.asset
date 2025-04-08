@@ -352,5 +352,33 @@ MonoBehaviour:
         icon_path: 
         has_icon_color: 0
         icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -1574067216
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-2095093223-0
+      namesPathBackup: "=======WINDOW=======\xBEBuildingWindow\xBEPoint"
+      siblingsPathBackup: "4\xBE8\xBE0"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: -540263446
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-684740745-0
+      namesPathBackup: "=======WINDOW=======\xBEBuildingWindow\xBEPoint (1)"
+      siblingsPathBackup: "4\xBE8\xBE1"
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot5_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
   BookMarks_InternalGlobal: []
   HierExpands_InternalGlobal: []
