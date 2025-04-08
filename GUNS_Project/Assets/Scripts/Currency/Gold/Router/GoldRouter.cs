@@ -28,10 +28,11 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
     {
         for (int i = 0; i < 20; i++)
         {
-            Window.Create(Prefab, UiController.Instance.GetWindow<SilverWindow>().StartPoint);
+            CreateTo(UiController.Instance.GetWindow<SilverWindow>().StartPoint.position);
         }    
         
         Currency.CreatedGold += OnCreatedGold;
+        Currency.InitGold += CreateTo;
 
         foreach (var silver in Currency.Golds)
         {
@@ -52,7 +53,12 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
             plate.UpdatePrice(randomNumber);
         }
     }
-
+    
+    private void CreateTo(Vector3 position)
+    {
+        Window.Create(Prefab, position);
+    }
+    
     private void OnExited()
     {
         CoroutineController.Instance.StopCoroutine(_coroutine);

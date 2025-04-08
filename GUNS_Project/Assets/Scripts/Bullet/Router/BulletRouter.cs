@@ -12,18 +12,8 @@ public class BulletRouter : IRouter
         _prefab = Resources.Load<BulletView>("Prefabs/Bullet");
         
         BulletController.Instance.Created += OnCreated;
-        
-        UpdateController.Instance.Add(OnUpdate);
     }
-
-    private void OnUpdate()
-    {
-        // foreach (var bullet in Window.BulletViews)
-        // {
-        //     bullet.MoveTo(bullet);
-        // }
-    }
-
+    
     private void OnCreated(AbstractEntity thisEntity, AbstractEntity toAttackEntity)
     {
         BulletView view = Window.Create(_prefab, thisEntity.transform);

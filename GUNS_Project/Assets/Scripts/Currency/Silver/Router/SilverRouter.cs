@@ -8,15 +8,21 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow>
     {
         for (int i = 0; i < 6; i++)
         {
-            Window.Create(Prefab, Window.StartPoint);
+            CreateTo(Window.StartPoint.position);
         }
         
         Currency.CreatedSilver += OnCreatedSilver;
+        Currency.InitSilver += CreateTo;
 
         foreach (var silver in Currency.Silvers)
         {
             OnCreatedSilver(silver);
         }
+    }
+
+    private void CreateTo(Vector3 position)
+    {
+        Window.Create(Prefab, position);
     }
 
     public override void Exit()
