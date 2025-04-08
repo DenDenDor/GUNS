@@ -8,11 +8,22 @@ public class BuildingRouter : IRouter
     
     public void Init()
     {
-        foreach (var point in Window.Models.Select(x=>x.Point))
+        foreach (var item in Window.Models)
         {
-            PressurePlateController.Instance.AddPressurePlate(point, PressurePlateType.Gold);
+            Transform point = item.Point;
+            PressurePlateType type;
+
+            switch (item.Type)
+            {
+                case BuildingType.NextLevel:
+                    type = PressurePlateType.Gold;
+                    break;
+                default:
+                    type = PressurePlateType.Silver;
+                    break;
+            }
             
-            //PressurePlateController.Instance.PressurePlateViewsByPoints[point].Entered
+            PressurePlateController.Instance.AddPressurePlate(point, type);
         }
         
         UpdateController.Instance.Add(OnUpdate);
@@ -35,5 +46,7 @@ public class BuildingRouter : IRouter
 public enum BuildingType
 {
     Barrack,
-    NextLevel
+    NextLevel,
+    Armor,
+    Tank
 }
