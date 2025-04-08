@@ -26,7 +26,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
 
     public override void Init()
     {
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 20; i++)
         {
             Window.Create(Prefab, UiController.Instance.GetWindow<SilverWindow>().StartPoint);
         }    

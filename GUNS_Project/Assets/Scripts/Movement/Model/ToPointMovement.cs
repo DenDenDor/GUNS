@@ -11,6 +11,13 @@ public class ToPointMovement : IMovement
 
     public Vector3 GetPosition()
     {
-        return _point.position;
+        if (_point != null)
+        {
+            return _point.position;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 }

@@ -380,5 +380,19 @@ MonoBehaviour:
         icon_path: 
         has_icon_color: 0
         icon_color: {r: 0, g: 0, b: 0, a: 0}
+    - saverType: 6
+      id_in_external_heap: 1617751177
+      indentifierVersion: GlobalObjectId_V1
+      identifierTypetargetObjectIdtargetPrefabId: -2-ef7645682db0b9f48b1274ee73498185-6915502403351915543-867426699
+      namesPathBackup: EnemySpawnPoint (3)
+      siblingsPathBackup: 10
+      boolValue: 0
+      stringValue: 
+      highLighterData: []
+      iconData:
+      - icon_guid: Library/sv_icon_dot7_pix16_gizmo
+        icon_path: 
+        has_icon_color: 0
+        icon_color: {r: 0, g: 0, b: 0, a: 0}
   BookMarks_InternalGlobal: []
   HierExpands_InternalGlobal: []

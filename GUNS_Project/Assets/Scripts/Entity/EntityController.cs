@@ -52,6 +52,7 @@ public class EntityController : MonoBehaviour
     public PlayerView Player => Get<PlayerView>().FirstOrDefault();
 
     public event Action<AbstractEntity> Added;
+    public event Action Removed;
 
     private void Awake()
     {
@@ -73,6 +74,7 @@ public class EntityController : MonoBehaviour
     public void RemoveEntity(AbstractEntity entity)
     {
         _entities.Remove(entity);
+        Removed?.Invoke();
     }
 
     private List<T> Get<T>() where T : AbstractEntity

@@ -5,28 +5,24 @@ using UnityEngine;
 public class SoldierRouter : IRouter
 {
     private readonly Dictionary<SoldierView, IMovement> _soldiers = new();
-    private readonly Dictionary<SoldierView, Transform> _pointsBySoldiers = new();
-    private List<bool> occupiedPoints         = new List<bool>();
-    int _freePointIndex;
+    private Coroutine _coroutine;
+    private bool _isMoving;
+    private int _freePointIndex;
 
     private SoldierView _prefab;
-    
+
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
+
 
     private AbstractPressurePlateView Plate =>
         PressurePlateController.Instance.PressurePlateViewsByPoints[Window.SoldierAttackButton];
-    
+
     public void Init()
     {
         _prefab = Resources.Load<SoldierView>("Prefabs/Soldier");
         
-        
         BarrackController.Instance.Created += OnCreated;
-        
-       for (int i = 0; i < Window.MoveToPoints.Count; i++)
-       {
-           occupiedPoints.Add(false);
-       }
+        BattleController.Instance.Restarted += OnRestarted;
         
         UpdateController.Instance.Add(OnUpdate);
         
@@ -38,9 +34,16 @@ public class SoldierRouter : IRouter
         Plate.Exited += OnExited;
     }
 
+    private void OnRestarted()
+    {
+        _isMoving = false;
+        _freePointIndex = 0;
+        Plate.UpdateBar(0);
+    }
+
     private void OnCreated(Transform point)
     {
-        if (_freePointIndex >= Window.MoveToPoints.Count)
+        if (_freePointIndex >= Window.MoveToPoints.Count || _isMoving)
         {
             return;
         }
@@ -51,7 +54,6 @@ public class SoldierRouter : IRouter
 
         IMovement movement = new ToPointMovement(Window.MoveToPoints[_freePointIndex]);
 
-        _pointsBySoldiers.Add(soldier, Window.MoveToPoints[_freePointIndex]);
         _soldiers.Add(soldier, movement);
 
         model.Movement = movement;
@@ -59,9 +61,6 @@ public class SoldierRouter : IRouter
         _freePointIndex++;
 
     }
-
-    private Coroutine _coroutine;
-    private bool _isMoving;
 
     private void OnExited()
     {
