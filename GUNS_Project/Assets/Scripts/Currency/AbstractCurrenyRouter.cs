@@ -45,14 +45,20 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         {
             plate.Entered += OnEntered;
             plate.Exited += OnExited;
+            plate.Reseted += () => OnReset(plate);
             
-            PressurePlateController.Instance.GetPriceBy(plate, out int current, out int max);
-            
-            plate.UpdatePrice(current);
-            plate.UpdateBar(0);
+            OnReset(plate);
         }
     }
-    
+
+    private void OnReset(W plate)
+    {
+        PressurePlateController.Instance.GetPriceBy(plate, out int current, out int max);
+            
+        plate.UpdatePrice(current);
+        plate.UpdateBar(0);
+    }
+
     private void OnExited()
     {
         CoroutineController.Instance.StopCoroutine(_coroutine);

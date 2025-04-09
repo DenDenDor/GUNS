@@ -22,7 +22,7 @@ public class BuildingRouter : IRouter
                     price = 10;
                     break;
                 default:
-                    type = PressurePlateType.Silver;
+                    type = PressurePlateType.Gold;
                     break;
             }
             

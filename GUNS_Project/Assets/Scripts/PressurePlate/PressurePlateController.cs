@@ -62,7 +62,6 @@ public class PressurePlateController : MonoBehaviour
         
         _pressurePlatesByAmount.Add(plate, price);
         _startMaxPrice.Add(plate, price);
-
     }
 
     public void Register(Transform point, AbstractPressurePlateView plate)
@@ -75,8 +74,12 @@ public class PressurePlateController : MonoBehaviour
         _pressurePlatesByAmount[view] = current;
     }
 
-    public void ResetRegister()
+    public void ResetRegister(AbstractPressurePlateView view, int max)
     {
+        _pressurePlatesByAmount[view] = max;
+        _startMaxPrice[view] = max;
         
+        view.Reset();
+
     }
 }

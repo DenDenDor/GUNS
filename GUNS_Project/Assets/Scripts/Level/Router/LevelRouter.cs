@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -17,7 +18,14 @@ public class LevelRouter : IRouter
     
     private void OnFilledIn(AbstractPressurePlateView obj)
     {
-        PressurePlateController.Instance.ResetRegister();
+        CoroutineController.Instance.RunCoroutine(Cooldown(obj));
+    }
+
+    private IEnumerator Cooldown(AbstractPressurePlateView obj)
+    {
+        yield return new WaitForSeconds(1);
+        
+        PressurePlateController.Instance.ResetRegister(obj, 5);
     }
 
     public void Exit()
