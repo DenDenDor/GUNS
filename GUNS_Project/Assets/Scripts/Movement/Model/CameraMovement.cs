@@ -7,14 +7,14 @@ public class CameraMovement : IMovement
     private readonly Func<Vector3> _getOffset;
     
     private readonly Transform _transform;
-    private readonly Transform _target;
+    private readonly Func<Transform> _getTarget;
 
     private readonly Func<float> _getSmoothTime;
 
-    public CameraMovement(Transform transform, Transform target, Func<float> getMaxSpeed, Func<Vector3> getOffset, Func<float> getGetSmoothTime)
+    public CameraMovement(Transform transform, Func<Transform> getTarget, Func<float> getMaxSpeed, Func<Vector3> getOffset, Func<float> getGetSmoothTime)
     {
         _transform = transform;
-        _target = target;
+        _getTarget = getTarget;
         _getMaxSpeed = getMaxSpeed;
         _getOffset = getOffset;
         _getSmoothTime = getGetSmoothTime;
@@ -24,18 +24,24 @@ public class CameraMovement : IMovement
 
     public Vector3 GetPosition()
     {
-        if (_target == null)
+        if (_getTarget() == null)
         {
+            Debug.Log("NO TARGET! " + _transform.position);
             return _transform.position;
         }
-        
-        Vector3 targetPosition = _target.TransformPoint(_getOffset());
-        return Vector3.SmoothDamp(
+    
+        Vector3 targetPosition = _getTarget().TransformPoint(_getOffset());
+
+        Vector3 result = Vector3.SmoothDamp(
             _transform.position, 
             targetPosition, 
             ref _velocity, 
             _getSmoothTime(),
             _getMaxSpeed()
         );
+        
+        Debug.Log($"Target: {_getTarget().position}, Offset: {_getOffset()}, TargetPos: {targetPosition}, Current: {_transform.position}, Result: {result}");
+
+        return result;
     }
 }

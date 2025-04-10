@@ -6,7 +6,7 @@ public class CameraRouter : IRouter
     {
         CameraWindow cameraWindow = UiController.Instance.GetWindow<CameraWindow>();
         
-        CameraController.Instance.Init(cameraWindow, new CameraMovement(cameraWindow.Camera.transform, EntityController.Instance.Player.transform, 
+        CameraController.Instance.Init(cameraWindow, new CameraMovement(cameraWindow.CurrentCamera.transform, () => EntityController.Instance.Player.transform, 
             () => cameraWindow.Speed, 
             () => cameraWindow.Offset,
             () => cameraWindow.SmoothTime));

@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraWindow : AbstractWindowUi, IMoveTo
@@ -7,7 +8,19 @@ public class CameraWindow : AbstractWindowUi, IMoveTo
     [SerializeField] private Vector3 _offset;
     [SerializeField] private float _smoothTime = 0.3f;
 
-    public Transform Camera => _camera.transform;
+    public Transform CurrentCamera
+    {
+        get 
+        {
+            if (_camera == null)
+            {
+                _camera = Camera.main;
+            }
+            
+            return  _camera.transform;
+            
+        }
+    }
 
     public float Speed => _speed;
 
@@ -24,6 +37,7 @@ public class CameraWindow : AbstractWindowUi, IMoveTo
 
     public void MoveTo(Vector3 getPosition)
     {
-        Camera.position = getPosition;
+        Debug.Log(getPosition + " TO MOVE!");
+        CurrentCamera.position = getPosition;
     }
 }
