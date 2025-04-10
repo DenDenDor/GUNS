@@ -14,7 +14,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
     {
         for (int i = 0; i < 6; i++)
         {
-            CreateTo(Window.StartPoint.position);
+            CreateTo(WaveController.Instance.GenerateWaveInfo().ResourcePoint.position);
         }
         
         Currency.CreatedSilver += OnCreatedSilver;

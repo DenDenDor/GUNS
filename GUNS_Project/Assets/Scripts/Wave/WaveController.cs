@@ -3,6 +3,8 @@ using System;
 
 public class WaveController : MonoBehaviour
 {
+    private AbstractWaveInfo _abstractWaveInfo;
+    
     private static WaveController _instance;
 
     public static WaveController Instance
@@ -22,6 +24,8 @@ public class WaveController : MonoBehaviour
             return _instance;
         }
     }
+    
+    public AbstractWaveInfo GenerateWaveInfo() => _abstractWaveInfo;
 
     private void Awake()
     {
@@ -32,5 +36,10 @@ public class WaveController : MonoBehaviour
         }
         
         _instance = this;
+    }
+
+    public void UpdateWave(AbstractWaveInfo waveInfo)
+    {
+        _abstractWaveInfo = waveInfo;
     }
 }

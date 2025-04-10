@@ -3,5 +3,5 @@ using UnityEngine;
 
 public class FirstWaveInfo : AbstractWaveInfo
 {
-   [SerializeField] private List<UnblockingBuildingPoint> _points;
+   
 }

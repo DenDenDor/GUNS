@@ -8,7 +8,7 @@ public class BuildingRouter : IRouter
     
     public void Init()
     {
-        foreach (var item in Window.Models)
+        foreach (var item in WaveController.Instance.GenerateWaveInfo().BuildingPoints.Select(x=>x.Current))
         {
             int price = 5;
             

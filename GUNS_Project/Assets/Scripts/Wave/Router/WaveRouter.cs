@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class WaveRouter : IRouter
@@ -6,7 +7,7 @@ public class WaveRouter : IRouter
 
     public void Init()
     {
-        
+        WaveController.Instance.UpdateWave(Window.Waves.FirstOrDefault());
     }
 
     public void Exit()

@@ -2149,7 +2149,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681ef4f603cf0e14cb3f7983a9d32539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points: []
+  _points:
+  - _current:
+      _point: {fileID: 2095093224}
+      _type: 0
+    _blockedPoints:
+    - _current:
+        _point: {fileID: 684740746}
+        _type: 0
+      _blockedPoints: []
+  - _current:
+      _point: {fileID: 1152414512}
+      _type: 1
+    _blockedPoints: []
+  _resourcePoint: {fileID: 786716601}
+  _enemyWave:
+    _enemySpawnPoints:
+    - {fileID: 2085397887}
+    - {fileID: 1402627252}
+    - {fileID: 613912793}
+    - {fileID: 1214932159}
+  _allyPoint:
+    _attackButton: {fileID: 2146499099}
+    _moveToPoints:
+    - {fileID: 1178089231}
+    - {fileID: 1541951979}
+    - {fileID: 1627872837}
+    - {fileID: 1336483042}
+    - {fileID: 1683119145}
+    - {fileID: 467606864}
+    - {fileID: 1592398331}
+    - {fileID: 1347923489}
 --- !u!1 &1592398330
 GameObject:
   m_ObjectHideFlags: 0

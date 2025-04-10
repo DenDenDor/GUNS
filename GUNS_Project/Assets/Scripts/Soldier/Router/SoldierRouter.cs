@@ -15,7 +15,7 @@ public class SoldierRouter : IRouter
 
 
     private AbstractPressurePlateView Plate =>
-        PressurePlateController.Instance.PressurePlateViewsByPoints[Window.SoldierAttackButton];
+        PressurePlateController.Instance.PressurePlateViewsByPoints[WaveController.Instance.GenerateWaveInfo().AllyPoint.AttackButton];
 
     public void Init()
     {
@@ -26,7 +26,7 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
-        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton, PressurePlateType.FillingUp);
+        PressurePlateController.Instance.AddPressurePlate(WaveController.Instance.GenerateWaveInfo().AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
@@ -43,7 +43,9 @@ public class SoldierRouter : IRouter
 
     private void OnCreated(Transform point)
     {
-        if (_freePointIndex >= Window.MoveToPoints.Count || _isMoving)
+        List<Transform> points = WaveController.Instance.GenerateWaveInfo().AllyPoint.MoveToPoints;
+        
+        if (_freePointIndex >= points.Count || _isMoving)
         {
             return;
         }
@@ -52,7 +54,7 @@ public class SoldierRouter : IRouter
 
         SoldierView soldier = Window.CreateSolider(_prefab, point, model);
 
-        IMovement movement = new ToPointMovement(Window.MoveToPoints[_freePointIndex]);
+        IMovement movement = new ToPointMovement(points[_freePointIndex]);
 
         _soldiers.Add(soldier, movement);
 

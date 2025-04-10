@@ -9,7 +9,7 @@ public class BarrackRouter : IRouter
     {
         _prefab = Resources.Load<BarrackView>("Prefabs/Barrack");
 
-        foreach (var model in UiController.Instance.GetWindow<BuildingWindow>().Models.Where(x=>x.Type == BuildingType.Barrack))
+        foreach (var model in WaveController.Instance.GenerateWaveInfo().BuildingPoints.Select(x=>x.Current).Where(x=>x.Type == BuildingType.Barrack))
         {
             PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
         }

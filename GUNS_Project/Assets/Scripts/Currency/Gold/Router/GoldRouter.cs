@@ -17,7 +17,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     {
         for (int i = 0; i < 20; i++)
         {
-            CreateTo(UiController.Instance.GetWindow<SilverWindow>().StartPoint.position);
+            CreateTo(WaveController.Instance.GenerateWaveInfo().ResourcePoint.position);
         }    
         
         Currency.CreatedGold += OnCreatedGold;
