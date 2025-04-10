@@ -96,5 +96,7 @@ MonoBehaviour:
     Text: Coat layer smoothness
     LinkText: 
     Url: 
+  AdditionalProperties: []
+  AdditionalScripts: []
   LoadedLayout: 0
-  RPType: 0
+  RPType: 3
