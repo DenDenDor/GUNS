@@ -4,12 +4,13 @@ using UnityEngine;
 public class BarrackRouter : IRouter
 {
     private BarrackView _prefab;
-    
+    private BuildingController Building => BuildingController.Instance;
+
     public void Init()
     {
         _prefab = Resources.Load<BarrackView>("Prefabs/Barrack");
 
-        foreach (var model in UiController.Instance.GetWindow<BuildingWindow>().Models.Where(x=>x.Type == BuildingType.Barrack))
+        foreach (var model in Building.BuildingPoints.Where(x=>x.Type == BuildingType.Barrack))
         {
             PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
         }
@@ -19,7 +20,7 @@ public class BarrackRouter : IRouter
 
     private void OnUpdate()
     {
-        foreach (var item in BuildingController.Instance.Barracks)
+        foreach (var item in Building.Barracks)
         {
             item.Value.OnTimeReset = OnTimeReset;
         }
@@ -27,8 +28,7 @@ public class BarrackRouter : IRouter
 
     private void OnTimeReset(BuildingModel model)
     {
-        Debug.LogError("ON TIME RESET!");
-        AbstractBuildingView view = BuildingController.Instance.Barracks.FirstOrDefault(x=>x.Value == model).Key;
+        AbstractBuildingView view = Building.Barracks.FirstOrDefault(x=>x.Value == model).Key;
         
         BarrackController.Instance.Create(view.transform);
     }
@@ -37,7 +37,7 @@ public class BarrackRouter : IRouter
     {
         BarrackView barrack = Object.Instantiate(_prefab, obj.transform.position, Quaternion.identity);
         
-        BuildingController.Instance.AddBuilding(barrack, new BuildingModel());
+        Building.AddBuilding(barrack, new BuildingModel());
     }
 
     public void Exit()

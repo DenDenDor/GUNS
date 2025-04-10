@@ -8,7 +8,10 @@ public class BuildingController : MonoBehaviour
     private Dictionary<AbstractBuildingView, BuildingModel> _buildings = new();
 
     public Dictionary<AbstractBuildingView, BuildingModel> Buildings => _buildings;
-    
+
+    public IEnumerable<BuildingPoint> BuildingPoints =>
+        WaveController.Instance.GenerateWaveInfo().BuildingPoints.Select(x => x.Current);
+
     public Dictionary<BarrackView, BuildingModel> Barracks
     {
         get

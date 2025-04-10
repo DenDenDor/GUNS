@@ -22,10 +22,5 @@ public class MiddleAttack : IAttack
         HealthModel health = HealthController.Instance.GetByEntity(_toAttack);
 
         health.TakeDamage(_damage);
-
-        Debug.Log(_damage + " HEALTH " + _toAttack.name);
-        
     }
-
-  
 }

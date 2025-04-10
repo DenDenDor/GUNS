@@ -9,6 +9,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     public event Action<AbstractPressurePlateView> Entered;
     public event Action<AbstractPressurePlateView> FilledIn;
     public event Action Exited;
+    public event Action Reseted;
     
     public void UpdateBar(float fillness)
     {
@@ -23,6 +24,11 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     public void FillIn()
     {
         FilledIn?.Invoke(this);
+    }
+
+    public void Reset()
+    {
+        Reseted?.Invoke();
     }
     
     private void OnTriggerEnter(Collider other)

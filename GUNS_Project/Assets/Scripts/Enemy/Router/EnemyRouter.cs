@@ -11,8 +11,10 @@ public class EnemyRouter : IRouter
     public void Init()
     {
         _prefab = Resources.Load<EnemyView>("Prefabs/Enemy");
+        
+        IEnumerable<Transform> points = WaveController.Instance.GenerateWaveInfo().EnemyWave.EnemySpawnPoints.SelectMany(x => x.Points);
 
-        foreach (var point in Window.Points)
+        foreach (var point in points)
         {
             EnemyModel model = new EnemyModel();
             model.StartPoint = point;
@@ -60,12 +62,15 @@ public class EnemyRouter : IRouter
                 
                 if (nearestAlly != null)
                 {
-                    if (minDistanceSqr < 4)
+                    if (minDistanceSqr < 16)
                     {
-                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(5, nearestAlly));
+                        AttackController.Instance.UpdateAttack(view, new ShootAttack(5, view, nearestAlly));
+                        UpdateMovement(view, new ToPointMovement(view.transform));
                     }
-                    
-                    UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
+                    else
+                    {
+                        UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
+                    }
                 }
                 else
                 {

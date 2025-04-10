@@ -8,14 +8,14 @@ public class SoldierRouter : IRouter
     private Coroutine _coroutine;
     private bool _isMoving;
     private int _freePointIndex;
-
     private SoldierView _prefab;
 
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
 
+    private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
 
     private AbstractPressurePlateView Plate =>
-        PressurePlateController.Instance.PressurePlateViewsByPoints[Window.SoldierAttackButton];
+        PressurePlateController.Instance.PressurePlateViewsByPoints[AllyPoint.AttackButton];
 
     public void Init()
     {
@@ -26,12 +26,19 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
-        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton, PressurePlateType.FillingUp);
+        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
+        
+        WaveController.Instance.Updated += OnClear;
+    }
+
+    private void OnClear()
+    {
+        
     }
 
     private void OnRestarted()
@@ -43,7 +50,9 @@ public class SoldierRouter : IRouter
 
     private void OnCreated(Transform point)
     {
-        if (_freePointIndex >= Window.MoveToPoints.Count || _isMoving)
+        List<Transform> points = AllyPoint.MoveToPoints;
+        
+        if (_freePointIndex >= points.Count || _isMoving)
         {
             return;
         }
@@ -52,7 +61,7 @@ public class SoldierRouter : IRouter
 
         SoldierView soldier = Window.CreateSolider(_prefab, point, model);
 
-        IMovement movement = new ToPointMovement(Window.MoveToPoints[_freePointIndex]);
+        IMovement movement = new ToPointMovement(points[_freePointIndex]);
 
         _soldiers.Add(soldier, movement);
 
@@ -87,8 +96,6 @@ public class SoldierRouter : IRouter
         }
         
         _isMoving = true;
-
-        Debug.Log("FILLNESS!");
     }
 
     private void OnEntered(AbstractPressurePlateView view)

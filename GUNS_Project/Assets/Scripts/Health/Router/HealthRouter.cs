@@ -8,6 +8,13 @@ public class HealthRouter : IRouter
     public void Init()
     {
         EntityController.Instance.Added += OnAdd;
+        
+        WaveController.Instance.Updated += OnClear;
+    }
+
+    private void OnClear()
+    {
+        EntityController.Instance.ClearAll();
     }
 
     private void OnAdd(AbstractEntity obj)
@@ -16,7 +23,7 @@ public class HealthRouter : IRouter
 
         if (obj is SoldierView)
         {
-            value = 10;
+            value = 50;
         }
         
         HealthModel health = new HealthModel(value);
@@ -38,6 +45,18 @@ public class HealthRouter : IRouter
         {
             Object.Destroy(entity.gameObject);
             EntityController.Instance.RemoveEntity(entity);
+        }
+
+        Vector3 position = entity.transform.position;
+
+        switch (entity)
+        {
+            case EnemyView:
+                CurrencyController.Instance.CreateGold(position);
+                break;
+            case SoldierView:
+                CurrencyController.Instance.CreateSilver(position);
+                break;
         }
         
         health.Death -= OnDeathTaken;

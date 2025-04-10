@@ -3,92 +3,42 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow>
+public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPressurePlateView>
 {
     protected override string PathToPrefab => "Prefabs/Gold";
+    protected override bool IsAbleToBuy => Inventory.GoldCount > 0;
+    
+    private InventoryController Inventory => InventoryController.Instance;
 
-    private List<GoldPressurePlateView> Plates
+    protected override void Buy()
     {
-        get
-        {
-            List<GoldPressurePlateView> goldPressurePlateViews = PressurePlateController.Instance
-                .PressurePlateViewsByPoints.Where(x => x.Value is GoldPressurePlateView).Select(x=>x.Value)
-                .OfType<GoldPressurePlateView>().ToList();
-            
-            return goldPressurePlateViews;
-        }
+        Inventory.TakeGold();
     }
-
-    private Coroutine _coroutine;
-
-    private Dictionary<AbstractPressurePlateView, int> _pressurePlatesByAmount = new();
-    private Dictionary<AbstractPressurePlateView, int> _startMaxPrice = new();
-
+    
     public override void Init()
     {
         for (int i = 0; i < 20; i++)
         {
-            Window.Create(Prefab, UiController.Instance.GetWindow<SilverWindow>().StartPoint);
+            CreateTo(Inventory.ResourcePoint.position);
         }    
         
         Currency.CreatedGold += OnCreatedGold;
+        Currency.InitGold += CreateTo;
 
         foreach (var silver in Currency.Golds)
         {
             OnCreatedGold(silver);
         }
         
-        foreach (var plate in Plates)
-        {
-            plate.Entered += OnEntered;
-            plate.Exited += OnExited;
-
-            int randomNumber = (int) Random.Range(4, 10);
-
-            _pressurePlatesByAmount.Add(plate, randomNumber);
-            _startMaxPrice.Add(plate, randomNumber);
-            
-            plate.UpdateBar(0);
-            plate.UpdatePrice(randomNumber);
-        }
+        SubscribePlates();
     }
-
-    private void OnExited()
+    
+    private void CreateTo(Vector3 position)
     {
-        CoroutineController.Instance.StopCoroutine(_coroutine);
+        Window.Create(Prefab, position);
     }
-
-    private void OnEntered(AbstractPressurePlateView view)
-    {
-        _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown(view));
-        
-    }
-
-    private IEnumerator Cooldown(AbstractPressurePlateView view)
-    {
-        float time = 0;
-
-        while (time < 0.4f)
-        {
-            time += Time.deltaTime;
-            
-            yield return null;
-        }
-
-        Debug.LogError("GOLD COUNT " + InventoryController.Instance.GoldCount);
-
-        while (InventoryController.Instance.GoldCount > 0 && _pressurePlatesByAmount[view] > 0)
-        {
-            InventoryController.Instance.TakeGold();
-            _pressurePlatesByAmount[view]--;
-
-            view.UpdateBar(1 - (float) _pressurePlatesByAmount[view] / _startMaxPrice[view]);
-            
-            Plates.FirstOrDefault(x=>x == view).UpdatePrice(_pressurePlatesByAmount[view]);
-
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
+    
+  
 
     private void OnCreatedGold(GoldPickUp obj)
     {

@@ -12,9 +12,9 @@ public class SilverWindow : AbstractCurrencyWindow
         
     }
 
-    public void Create(SilverPickUp prefab, Transform point)
+    public void Create(SilverPickUp prefab, Vector3 position)
     {
-        SilverPickUp pickUp = Instantiate(prefab, point);
+        SilverPickUp pickUp = Instantiate(prefab, position, Quaternion.identity);
 
         pickUp.transform.localPosition += new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5));
 
