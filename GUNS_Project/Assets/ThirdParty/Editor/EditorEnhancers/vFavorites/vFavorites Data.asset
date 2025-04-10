@@ -36,7 +36,7 @@ MonoBehaviour:
         globalObjectIdString: GlobalObjectId_V1-1-335f55412e800104a8dbeaaf4b0cd7a3-102900000-0
       _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: 335f55412e800104a8dbeaaf4b0cd7a3, type: 3}
+      _obj: {fileID: 0}
       isSceneGameObject: 0
       isFolder: 0
       isAsset: 1
