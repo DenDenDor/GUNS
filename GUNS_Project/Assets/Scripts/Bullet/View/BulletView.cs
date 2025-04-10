@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class BulletView : MonoBehaviour
+public class BulletView : MonoBehaviour, IMoveTo
 {
     public event Action<BulletView, AbstractEntity> Triggered;
     
