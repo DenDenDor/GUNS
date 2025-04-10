@@ -39,6 +39,7 @@ public class CurrencyController : MonoBehaviour
         }
     }
 
+
     private List<T> Get<T>() where T : AbstractCurrencyPickUp
     {
         return _pickUps.Where(x => x is T).OfType<T>().ToList();

@@ -6,11 +6,13 @@ public class LevelRouter : IRouter
 {
     private NextLevelBuildingView _prefab;
 
+    private BuildingController Building => BuildingController.Instance;
+
     public void Init()
     {
        // _prefab = Resources.Load<NextLevelBuildingView>("Prefabs/NextLevel");
 
-        foreach (var model in WaveController.Instance.GenerateWaveInfo().BuildingPoints.Select(x=>x.Current).Where(x=>x.Type == BuildingType.NextLevel))
+        foreach (var model in Building.BuildingPoints.Where(x=>x.Type == BuildingType.NextLevel))
         {
             PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
         }

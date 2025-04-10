@@ -8,14 +8,14 @@ public class SoldierRouter : IRouter
     private Coroutine _coroutine;
     private bool _isMoving;
     private int _freePointIndex;
-
     private SoldierView _prefab;
 
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
 
+    private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
 
     private AbstractPressurePlateView Plate =>
-        PressurePlateController.Instance.PressurePlateViewsByPoints[WaveController.Instance.GenerateWaveInfo().AllyPoint.AttackButton];
+        PressurePlateController.Instance.PressurePlateViewsByPoints[AllyPoint.AttackButton];
 
     public void Init()
     {
@@ -26,12 +26,19 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
-        PressurePlateController.Instance.AddPressurePlate(WaveController.Instance.GenerateWaveInfo().AllyPoint.AttackButton, PressurePlateType.FillingUp);
+        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
+        
+        WaveController.Instance.Updated += OnClear;
+    }
+
+    private void OnClear()
+    {
+        
     }
 
     private void OnRestarted()
@@ -43,7 +50,7 @@ public class SoldierRouter : IRouter
 
     private void OnCreated(Transform point)
     {
-        List<Transform> points = WaveController.Instance.GenerateWaveInfo().AllyPoint.MoveToPoints;
+        List<Transform> points = AllyPoint.MoveToPoints;
         
         if (_freePointIndex >= points.Count || _isMoving)
         {

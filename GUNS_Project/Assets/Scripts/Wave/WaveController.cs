@@ -3,6 +3,8 @@ using System;
 
 public class WaveController : MonoBehaviour
 {
+    public event Action Updated;
+    
     private AbstractWaveInfo _abstractWaveInfo;
     
     private static WaveController _instance;
@@ -41,5 +43,14 @@ public class WaveController : MonoBehaviour
     public void UpdateWave(AbstractWaveInfo waveInfo)
     {
         _abstractWaveInfo = waveInfo;
+        Updated?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            UpdateWave(null);
+        }
     }
 }

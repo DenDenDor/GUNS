@@ -478,6 +478,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1577618042}
+  - {fileID: 2032874040}
   m_Father: {fileID: 933831845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &186645645
@@ -2149,6 +2150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681ef4f603cf0e14cb3f7983a9d32539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resourcePoint: {fileID: 786716601}
   _points:
   - _current:
       _point: {fileID: 2095093224}
@@ -2162,7 +2164,6 @@ MonoBehaviour:
       _point: {fileID: 1152414512}
       _type: 1
     _blockedPoints: []
-  _resourcePoint: {fileID: 786716601}
   _enemyWave:
     _enemySpawnPoints:
     - {fileID: 2085397887}
@@ -2683,6 +2684,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae5cdf54209ecdd419444bdcbb5ba5ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2032874039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2032874040}
+  - component: {fileID: 2032874041}
+  m_Layer: 0
+  m_Name: SecondWaveInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2032874040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032874039}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 186645644}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2032874041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032874039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 681ef4f603cf0e14cb3f7983a9d32539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _resourcePoint: {fileID: 786716601}
+  _points:
+  - _current:
+      _point: {fileID: 2095093224}
+      _type: 0
+    _blockedPoints:
+    - _current:
+        _point: {fileID: 684740746}
+        _type: 0
+      _blockedPoints: []
+  - _current:
+      _point: {fileID: 1152414512}
+      _type: 1
+    _blockedPoints: []
+  _enemyWave:
+    _enemySpawnPoints:
+    - {fileID: 2085397887}
+    - {fileID: 1402627252}
+    - {fileID: 613912793}
+  _allyPoint:
+    _attackButton: {fileID: 2146499099}
+    _moveToPoints:
+    - {fileID: 1178089231}
+    - {fileID: 1541951979}
+    - {fileID: 1627872837}
+    - {fileID: 1336483042}
+    - {fileID: 1683119145}
+    - {fileID: 467606864}
+    - {fileID: 1592398331}
+    - {fileID: 1347923489}
 --- !u!1 &2050081004
 GameObject:
   m_ObjectHideFlags: 0

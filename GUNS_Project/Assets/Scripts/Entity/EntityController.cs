@@ -81,5 +81,23 @@ public class EntityController : MonoBehaviour
     {
         return _entities.Where(x => x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
     }
-    
+
+    public void ClearAll()
+    {
+        // for (int i = 0; i < Entities.Count; i++)
+        // {
+        //     AbstractEntity entity = Entities[i];
+        //     
+        //     if (entity is not PlayerView)
+        //     {
+        //         Destroy(entity.gameObject);
+        //     }   
+        // }
+        //
+        // _entities = _entities.Where(x => x.Key != null);
+        
+        _entities.DestroyAllMonoBehaviours();
+        
+        _entities.Clear();
+    }
 }

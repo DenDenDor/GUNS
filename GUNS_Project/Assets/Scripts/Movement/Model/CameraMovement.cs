@@ -24,6 +24,11 @@ public class CameraMovement : IMovement
 
     public Vector3 GetPosition()
     {
+        if (_target == null)
+        {
+            return _transform.position;
+        }
+        
         Vector3 targetPosition = _target.TransformPoint(_getOffset());
         return Vector3.SmoothDamp(
             _transform.position, 

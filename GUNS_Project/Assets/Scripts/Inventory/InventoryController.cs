@@ -30,6 +30,8 @@ public class InventoryController : MonoBehaviour
     public int GoldCount => Count<GoldPickUp>();
     public int SilverCount => Count<SilverPickUp>();
 
+    public Transform ResourcePoint => WaveController.Instance.GenerateWaveInfo().ResourcePoint;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)

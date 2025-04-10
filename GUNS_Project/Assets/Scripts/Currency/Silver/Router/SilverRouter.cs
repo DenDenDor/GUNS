@@ -4,17 +4,20 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
 {
     protected override string PathToPrefab => "Prefabs/Silver";
 
-    protected override bool IsAbleToBuy => InventoryController.Instance.SilverCount > 0;
-    
+    protected override bool IsAbleToBuy => Inventory.SilverCount > 0;
+
+    private InventoryController Inventory => InventoryController.Instance;
+
     protected override void Buy()
     {
-        InventoryController.Instance.TakeSilver();
+        Inventory.TakeSilver();
     }
+
     public override void Init()
     {
         for (int i = 0; i < 6; i++)
         {
-            CreateTo(WaveController.Instance.GenerateWaveInfo().ResourcePoint.position);
+            CreateTo(Inventory.ResourcePoint.position);
         }
         
         Currency.CreatedSilver += OnCreatedSilver;
