@@ -6,18 +6,20 @@ using UnityEngine;
 public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPressurePlateView>
 {
     protected override string PathToPrefab => "Prefabs/Gold";
-    protected override bool IsAbleToBuy => InventoryController.Instance.GoldCount > 0;
+    protected override bool IsAbleToBuy => Inventory.GoldCount > 0;
     
+    private InventoryController Inventory => InventoryController.Instance;
+
     protected override void Buy()
     {
-        InventoryController.Instance.TakeGold();
+        Inventory.TakeGold();
     }
     
     public override void Init()
     {
         for (int i = 0; i < 20; i++)
         {
-            CreateTo(UiController.Instance.GetWindow<SilverWindow>().StartPoint.position);
+            CreateTo(Inventory.ResourcePoint.position);
         }    
         
         Currency.CreatedGold += OnCreatedGold;

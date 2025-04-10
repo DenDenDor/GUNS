@@ -4,6 +4,7 @@ using UnityEngine;
 public class BulletRouter : IRouter
 {
     private BulletWindow Window => UiController.Instance.GetWindow<BulletWindow>();
+    private BulletController BulletController => BulletController.Instance;
 
     private BulletView _prefab;
 
@@ -11,9 +12,16 @@ public class BulletRouter : IRouter
     {
         _prefab = Resources.Load<BulletView>("Prefabs/Bullet");
         
-        BulletController.Instance.Created += OnCreated;
+        BulletController.Created += OnCreated;
+
+        WaveController.Instance.Updated += OnClear;
     }
-    
+
+    private void OnClear()
+    {
+        BulletController.ClearAll();
+    }
+
     private void OnCreated(AbstractEntity thisEntity, AbstractEntity toAttackEntity)
     {
         BulletView view = Window.Create(_prefab, thisEntity.transform);
@@ -24,8 +32,7 @@ public class BulletRouter : IRouter
         model.Movement = movement;
         model.Entity = toAttackEntity;
 
-        BulletController.Instance.Add(view, model);
-
+        BulletController.Add(view, model);
     }
 
     public void Exit()

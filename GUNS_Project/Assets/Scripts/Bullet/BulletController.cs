@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class BulletController : MonoBehaviour
 {
@@ -53,5 +54,12 @@ public class BulletController : MonoBehaviour
         _bullets.Add(view, model);
         
         Added?.Invoke(view);
+    }
+
+    public void ClearAll()
+    {
+        _bullets.DestroyAllMonoBehaviours();
+        
+        _bullets.Clear();
     }
 }

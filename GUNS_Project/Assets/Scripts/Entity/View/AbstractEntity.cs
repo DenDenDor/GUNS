@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AbstractEntity : MonoBehaviour
+public abstract class AbstractEntity : MonoBehaviour, IMoveTo
 {
     public int Health;
 

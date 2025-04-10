@@ -8,6 +8,13 @@ public class HealthRouter : IRouter
     public void Init()
     {
         EntityController.Instance.Added += OnAdd;
+        
+        WaveController.Instance.Updated += OnClear;
+    }
+
+    private void OnClear()
+    {
+        EntityController.Instance.ClearAll();
     }
 
     private void OnAdd(AbstractEntity obj)

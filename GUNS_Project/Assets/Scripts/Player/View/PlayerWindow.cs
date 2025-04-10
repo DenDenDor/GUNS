@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerWindow : EntityWindow
 {
     [SerializeField] private Transform _spawnPoint;
-    
+    [SerializeField] private float _speed;
+    public float Speed => _speed;
+
     public override void Init()
     {
         

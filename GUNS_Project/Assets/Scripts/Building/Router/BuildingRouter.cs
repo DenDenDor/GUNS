@@ -4,11 +4,12 @@ using UnityEngine;
 public class BuildingRouter : IRouter
 {
     private BuildingWindow Window => UiController.Instance.GetWindow<BuildingWindow>();
+    private BuildingController Building => BuildingController.Instance;
 
     
     public void Init()
     {
-        foreach (var item in Window.Models)
+        foreach (var item in Building.BuildingPoints)
         {
             int price = 5;
             

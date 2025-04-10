@@ -18,7 +18,7 @@ public class PlayerRouter : IRouter
         
         _view  = Window.CreatePlayer(prefab, (player) =>
         {
-            model.Movement = new ToCursorMovement(4, player.transform);
+            model.Movement = new ToCursorMovement(() => Window.Speed, player.transform);
         }, 
             model);
     }
