@@ -71,15 +71,11 @@ public class AttackController : MonoBehaviour
         CoroutineController.Instance.RunCoroutine(Cooldown(entity));
     }
     
-    //private bool IsInCooldown(AbstractEntity entity) => _entitiesInCooldown.ContainsKey(entity) && _entitiesInCooldown[entity];
-    
     private IEnumerator Cooldown(AbstractEntity entity)
     {
         yield return new WaitForSeconds(1);
 
         _entitiesInCooldown[entity] = AttackState.Empty;
-        
-        Debug.Log("EMPTY " + _entitiesInCooldown[entity]);
     }
     
 }

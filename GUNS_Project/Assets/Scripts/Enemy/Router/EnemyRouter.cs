@@ -64,7 +64,7 @@ public class EnemyRouter : IRouter
                 {
                     if (minDistanceSqr < 16)
                     {
-                        AttackController.Instance.UpdateAttack(view, new ShootAttack(5, view, nearestAlly));
+                        AttackController.Instance.UpdateAttack(view, new ShootAttack(() => Window.Damage, () => Window.BulletSpeed, view, nearestAlly));
                         UpdateMovement(view, new ToPointMovement(view.transform));
                     }
                     else

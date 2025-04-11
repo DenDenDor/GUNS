@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ToMoveTowardsMovement : IMovement
@@ -5,9 +6,9 @@ public class ToMoveTowardsMovement : IMovement
     private readonly Transform _transform;
     private Vector3 _direction;
     
-    private readonly float _speed = 5f;
+    private readonly Func<float> _speed;
 
-    public ToMoveTowardsMovement(float speed, Transform transform, Transform target)
+    public ToMoveTowardsMovement(Func<float> speed, Transform transform, Transform target)
     {
         _speed = speed;
         _transform = transform;
@@ -22,6 +23,6 @@ public class ToMoveTowardsMovement : IMovement
             return Vector3.zero;
         }
         
-        return _transform.position + _direction.normalized * _speed * Time.deltaTime;
+        return _transform.position + _direction.normalized * _speed() * Time.deltaTime;
     }
 }

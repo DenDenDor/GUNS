@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class EnemyWindow : EntityWindow
 {
-    [SerializeField] private EnemyWave _enemyWave;
+    [SerializeField] private float _bulletSpeed = 3;
 
-    public EnemyWave EnemyWave => _enemyWave;
+    public float BulletSpeed => _bulletSpeed;
 
-    public IEnumerable<Transform> Points => EnemyWave.EnemySpawnPoints.SelectMany(x => x.Points);
-    
     public override void Init()
     {
         

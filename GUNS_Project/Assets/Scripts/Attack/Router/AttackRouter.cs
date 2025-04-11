@@ -21,7 +21,7 @@ public class AttackRouter : IRouter
         
         if (model.Entity.GetType() == entity.GetType())
         {
-            model.Attack = new MiddleAttack(5, entity);
+            model.Attack = new MiddleAttack(model.Damage, entity);
             model.Attack.Attack();
             Object.Destroy(bullet.gameObject);
         }

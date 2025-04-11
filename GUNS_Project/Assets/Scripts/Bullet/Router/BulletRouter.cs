@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class BulletRouter : IRouter
         BulletController.ClearAll();
     }
 
-    private void OnCreated(AbstractEntity thisEntity, AbstractEntity toAttackEntity)
+    private void OnCreated(AbstractEntity thisEntity, AbstractEntity toAttackEntity, Func<float> damage, Func<float> speed)
     {
         if (thisEntity == null || toAttackEntity == null)
         {
@@ -30,12 +31,13 @@ public class BulletRouter : IRouter
         }
         
         BulletView view = Window.Create(_prefab, thisEntity.transform);
-        IMovement movement = new ToMoveTowardsMovement(6, view.transform, toAttackEntity.transform);
+        IMovement movement = new ToMoveTowardsMovement(speed, view.transform, toAttackEntity.transform);
 
         BulletModel model = new BulletModel();
 
         model.Movement = movement;
         model.Entity = toAttackEntity;
+        model.Damage = damage;
 
         BulletController.Add(view, model);
     }

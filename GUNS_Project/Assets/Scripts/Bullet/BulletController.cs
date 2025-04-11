@@ -42,11 +42,11 @@ public class BulletController : MonoBehaviour
         _instance = this;
     }
 
-    public event Action<AbstractEntity, AbstractEntity> Created;
+    public event Action<AbstractEntity, AbstractEntity, Func<float>, Func<float>> Created;
 
-    public void Create(AbstractEntity thisEntity, AbstractEntity toAttack)
+    public void Create(AbstractEntity thisEntity, AbstractEntity toAttack, Func<float> damage, Func<float> speed)
     {
-        Created?.Invoke(thisEntity, toAttack);
+        Created?.Invoke(thisEntity, toAttack, damage, speed);
     }
 
     public void Add(BulletView view, BulletModel model)

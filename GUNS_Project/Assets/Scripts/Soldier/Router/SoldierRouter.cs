@@ -137,7 +137,7 @@ public class SoldierRouter : IRouter
                     
                     if (minDistanceSqr < 3)
                     {
-                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(2, nearestAlly));
+                        AttackController.Instance.UpdateAttack(view, new MiddleAttack(() => Window.Damage, nearestAlly));
                     }
                     
                     UpdateMovement(view, movement);
