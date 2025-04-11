@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, SilverPressurePlateView>
@@ -29,6 +31,8 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
         }
         
         SubscribePlates();
+        
+        BuildingController.Instance.GeneratedPoints += OnGeneratedPoints; 
     }
 
     private void CreateTo(Vector3 position)

@@ -9,4 +9,9 @@ public class SoldierView : AbstractEntity
     {
         _navMeshAgent.SetDestination(getPosition);
     }
+    
+    public void Rotate(Quaternion toRotate)
+    {
+        _child.transform.rotation = toRotate;
+    }
 }

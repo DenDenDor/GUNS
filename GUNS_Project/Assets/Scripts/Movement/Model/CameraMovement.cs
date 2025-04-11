@@ -40,8 +40,6 @@ public class CameraMovement : IMovement
             _getMaxSpeed()
         );
         
-        Debug.Log($"Target: {_getTarget().position}, Offset: {_getOffset()}, TargetPos: {targetPosition}, Current: {_transform.position}, Result: {result}");
-
         return result;
     }
 }

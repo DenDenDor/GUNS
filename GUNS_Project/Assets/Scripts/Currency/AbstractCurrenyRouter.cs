@@ -43,11 +43,28 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
     {
         foreach (var plate in Plates)
         {
-            plate.Entered += OnEntered;
-            plate.Exited += OnExited;
-            plate.Reseted += () => OnReset(plate);
+            UpdatePlate(plate);
+        }
+    }
+
+    public void UpdatePlate(W plate)
+    {
+        plate.Entered += OnEntered;
+        plate.Exited += OnExited;
+        plate.Reseted += () => OnReset(plate);
             
-            OnReset(plate);
+        OnReset(plate);
+    }
+    
+    protected void OnGeneratedPoints(IEnumerable<BuildingPoint> list)
+    {
+        foreach (var point in list)
+        {
+            if (PressurePlateController.Instance.PressurePlateViewsByPoints
+                    .FirstOrDefault(x => x.Key == point.Point).Value is W silver)
+            {
+                UpdatePlate(silver);
+            }        
         }
     }
 

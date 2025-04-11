@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -10,12 +11,19 @@ public class BarrackRouter : IRouter
     {
         _prefab = Resources.Load<BarrackView>("Prefabs/Barrack");
 
-        foreach (var model in Building.BuildingPoints.Where(x=>x.Type == BuildingType.Barrack))
+        OnSubscribePoins(Building.BuildingPoints);
+        
+        BuildingController.Instance.GeneratedPoints += OnSubscribePoins; 
+        
+        UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void OnSubscribePoins(IEnumerable<BuildingPoint> buildingPoints)
+    {
+        foreach (var model in buildingPoints.Where(x=>x.Type == BuildingType.Barrack))
         {
             PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
         }
-        
-        UpdateController.Instance.Add(OnUpdate);
     }
 
     private void OnUpdate()

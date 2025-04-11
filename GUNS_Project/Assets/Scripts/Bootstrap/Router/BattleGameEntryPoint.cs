@@ -14,14 +14,17 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new BattleRouter(),
         new LevelRouter(),
         new BarrackRouter(),
+        new WatchableNotificationRouter(),
         new SilverRouter(),
         new BulletRouter(),
         new GoldRouter(),
         new PlayerRouter(),
+        new RotateRouter(),
         new CameraRouter(),
         new InventoryRouter(),
         new MovementRouter(),
         new EnemyRouter(),
+        new ProgressBarRouter(),
         new SoldierRouter(),
     };
 }

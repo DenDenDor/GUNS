@@ -57,7 +57,6 @@ public class CameraWindow : AbstractWindowUi, IMoveTo
     }
     public void MoveTo(Vector3 getPosition)
     {
-        Debug.Log(getPosition + " TO MOVE!");
         CurrentCamera.position = getPosition;
     }
 }

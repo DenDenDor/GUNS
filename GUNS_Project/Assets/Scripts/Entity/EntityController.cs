@@ -46,6 +46,7 @@ public class EntityController : MonoBehaviour
 
 
     public List<EnemyView> Enemies => Get<EnemyView>();
+    public List<IRotatableView> RotatableViews => _entities.Keys.Where(x=>x is IRotatableView).OfType<IRotatableView>().ToList();
 
     public List<SoldierView> Soldiers => Get<SoldierView>();
 
@@ -79,7 +80,7 @@ public class EntityController : MonoBehaviour
 
     private List<T> Get<T>() where T : AbstractEntity
     {
-        return _entities.Where(x => x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
+        return _entities.Where(x => x.Key != null && x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
     }
 
     public void ClearAll()

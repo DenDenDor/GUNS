@@ -5,8 +5,9 @@ public class ToCursorMovement : IMovement
 {
     private readonly Transform _transform;
     private readonly Func<float> _getSpeed;
-    private bool _isMovingToCursor = false;
-    private Vector3 _currentTargetPosition;
+    private Vector3 _movementDirection;
+    private bool _isMoving = false;
+    private float _currentSpeed;
 
     public ToCursorMovement(Func<float> getSpeed, Transform transform)
     {
@@ -14,62 +15,55 @@ public class ToCursorMovement : IMovement
         _transform = transform;
     }
 
-    private bool CheckPlayerViewHit()
+    private Vector3 GetCursorWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        
-        if (Physics.Raycast(ray, out hit))
+        Plane plane = new Plane(Vector3.up, _transform.position);
+        float distance;
+        if (plane.Raycast(ray, out distance))
         {
-            Vector3 difference = hit.point - EntityController.Instance.Player.transform.position;
-
-            Debug.Log(hit.collider.name + " HIT WITH!  == " + difference.sqrMagnitude);
-            
-            if (difference.sqrMagnitude < 16)
-            {
-                return true;
-            }
+            return ray.GetPoint(distance);
         }
-        return false;
-    }
-
-    private Vector3 GetTargetPosition()
-    {
-        if (Input.GetMouseButton(0))
-        {
-            // Если только что нажали - проверяем попадание в PlayerView
-            if (Input.GetMouseButtonDown(0))
-            {
-                _isMovingToCursor = CheckPlayerViewHit();
-            }
-
-            if (_isMovingToCursor)
-            {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                Plane plane = new Plane(Vector3.up, _transform.position);
-                float distance;
-                if (plane.Raycast(ray, out distance))
-                {
-                    _currentTargetPosition = ray.GetPoint(distance);
-                    return _currentTargetPosition;
-                }
-            }
-        }
-        else
-        {
-            _isMovingToCursor = false;
-        }
-
         return _transform.position;
     }
 
     public Vector3 GetPosition()
     {
-        Vector3 targetPosition = GetTargetPosition();
-        
-        if (_isMovingToCursor)
+        if (Input.GetMouseButtonDown(0))
         {
-            return Vector3.MoveTowards(_transform.position, targetPosition, _getSpeed() * Time.deltaTime);
+            // Начало свайпа - запоминаем начальную позицию
+            _movementDirection = GetCursorWorldPosition() - _transform.position;
+            _movementDirection.y = 0; // Игнорируем вертикальную составляющую
+            
+            if (_movementDirection.magnitude > 0.1f) // Минимальный порог для начала движения
+            {
+                _movementDirection.Normalize();
+                _isMoving = true;
+                _currentSpeed = _getSpeed();
+            }
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            // Во время удержания кнопки - обновляем направление при движении мыши
+            Vector3 newDirection = GetCursorWorldPosition() - _transform.position;
+            newDirection.y = 0;
+            
+            if (newDirection.magnitude > 0.1f)
+            {
+                _movementDirection = newDirection.normalized;
+                _currentSpeed = _getSpeed();
+            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            // Конец движения при отпускании кнопки
+            _isMoving = false;
+        }
+
+        if (_isMoving)
+        {
+            // Двигаем объект в сохраненном направлении
+            return _transform.position + _movementDirection * _currentSpeed * Time.deltaTime;
         }
         
         return _transform.position;
