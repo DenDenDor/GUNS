@@ -24,6 +24,7 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new InventoryRouter(),
         new MovementRouter(),
         new EnemyRouter(),
+        new ProgressBarRouter(),
         new SoldierRouter(),
     };
 }
