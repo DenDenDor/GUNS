@@ -1774,6 +1774,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2ffbe669e4e8574fb2cb797e04fdaf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 50
+  _damage: 25
   _spawnPoint: {fileID: 1585628609}
   _speed: 6
   _rotationSpeed: 4
@@ -3692,12 +3694,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350c7c3b3d095954c93c4c7685bcf17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyWave:
-    _enemySpawnPoints:
-    - {fileID: 2085397887}
-    - {fileID: 1402627252}
-    - {fileID: 613912793}
-    - {fileID: 1214932159}
+  _health: 50
+  _damage: 25
+  _bulletSpeed: 7
 --- !u!4 &1271201780
 Transform:
   m_ObjectHideFlags: 0
@@ -4031,21 +4030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2158c00e89280fe4cbee9751c6778325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnsPoints:
-  - {fileID: 289195300}
-  - {fileID: 2050081005}
-  - {fileID: 1356794986}
-  - {fileID: 256196843}
-  _moveToPoints:
-  - {fileID: 1178089231}
-  - {fileID: 1541951979}
-  - {fileID: 1627872837}
-  - {fileID: 1336483042}
-  - {fileID: 1683119145}
-  - {fileID: 467606864}
-  - {fileID: 1592398331}
-  - {fileID: 1347923489}
-  _soldierAttackButton: {fileID: 2146499099}
+  _health: 150
+  _damage: 45
 --- !u!4 &1368802536
 Transform:
   m_ObjectHideFlags: 0
