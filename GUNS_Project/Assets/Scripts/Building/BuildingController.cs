@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Action = Unity.Android.Gradle.Manifest.Action;
 
 public class BuildingController : MonoBehaviour
 {
@@ -50,6 +51,8 @@ public class BuildingController : MonoBehaviour
         }
     }
 
+    public event Action<IEnumerable<BuildingPoint>> GeneratedPoints;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -64,5 +67,10 @@ public class BuildingController : MonoBehaviour
     public void AddBuilding(AbstractBuildingView view, BuildingModel model)
     {
         _buildings.Add(view, model);
+    }
+
+    public void GenerateNewBuilding(IEnumerable<BuildingPoint> points)
+    {
+        GeneratedPoints?.Invoke(points);
     }
 }
