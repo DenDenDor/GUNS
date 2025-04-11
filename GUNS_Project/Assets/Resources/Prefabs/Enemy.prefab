@@ -52,7 +52,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770064888735535446}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe0994d579625f4aa125880d9d110ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _child: {fileID: 4343359521979945948}
   Health: 0
   _navMeshAgent: {fileID: -8881791677974308677}
-  _child: {fileID: 4343359521979945948}
 --- !u!195 &-8881791677974308677
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -163,6 +163,10 @@ PrefabInstance:
     - target: {fileID: 727406971778551019, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: m_Name
       value: Characrter
+      objectReference: {fileID: 0}
+    - target: {fileID: 727406971778551019, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5546868297550835065, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: _editor_hideEyes
