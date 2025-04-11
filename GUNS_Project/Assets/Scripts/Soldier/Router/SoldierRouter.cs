@@ -26,19 +26,23 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
+        WaveController.Instance.StartedNewWave += OnStartNewWave;
+    }
+
+    private void SubscribePlate()
+    {
+        Debug.Log("INVOKE SOLDIER PLATE!!!");
         PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
-        
-        WaveController.Instance.Updated += OnClear;
     }
 
-    private void OnClear()
+    private void OnStartNewWave()
     {
-        
+        SubscribePlate();
     }
 
     private void OnRestarted()

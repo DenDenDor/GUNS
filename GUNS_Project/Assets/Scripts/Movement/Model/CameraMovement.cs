@@ -26,7 +26,6 @@ public class CameraMovement : IMovement
     {
         if (_getTarget() == null)
         {
-            Debug.Log("NO TARGET! " + _transform.position);
             return _transform.position;
         }
     

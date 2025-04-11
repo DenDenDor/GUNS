@@ -56,6 +56,16 @@ public class CurrencyController : MonoBehaviour
         _instance = this;
     }
 
+    public void ClearAll()
+    {
+        for (int i = 0; i < _pickUps.Count; i++)
+        {
+            Destroy(_pickUps[i].gameObject);
+        }
+        
+        _pickUps.Clear();
+    }
+
     public void CreateSilver(Vector3 position)
     {
         InitSilver?.Invoke(position);

@@ -15,7 +15,7 @@ public class BulletRouter : IRouter
         
         BulletController.Created += OnCreated;
 
-        WaveController.Instance.Updated += OnClear;
+        WaveController.Instance.Cleared += OnClear;
     }
 
     private void OnClear()

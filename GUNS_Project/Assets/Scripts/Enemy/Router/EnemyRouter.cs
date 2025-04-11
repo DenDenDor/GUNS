@@ -12,6 +12,15 @@ public class EnemyRouter : IRouter
     {
         _prefab = Resources.Load<EnemyView>("Prefabs/Enemy");
         
+        CreateEnemy();
+
+        WaveController.Instance.StartedNewWave += CreateEnemy;
+
+        UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void CreateEnemy()
+    {
         IEnumerable<Transform> points = WaveController.Instance.GenerateWaveInfo().EnemyWave.EnemySpawnPoints.SelectMany(x => x.Points);
 
         foreach (var point in points)
@@ -21,8 +30,6 @@ public class EnemyRouter : IRouter
             
             EnemyView enemy = Window.CreateEnemy(_prefab, model, point);
         }
-        
-        UpdateController.Instance.Add(OnUpdate);
     }
 
     private void OnUpdate()

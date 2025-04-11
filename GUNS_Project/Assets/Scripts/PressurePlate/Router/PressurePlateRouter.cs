@@ -8,6 +8,13 @@ public class PressurePlateRouter : IRouter
     public void Init()
     {
         PressurePlateController.Instance.Created += OnCreated;
+        
+        WaveController.Instance.Cleared += OnClear;
+    }
+
+    private void OnClear()
+    {
+        PressurePlateController.Instance.ClearAll();
     }
 
     private void OnCreated(Transform transform, PressurePlateType type)
