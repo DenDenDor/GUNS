@@ -73,4 +73,11 @@ public class BuildingController : MonoBehaviour
     {
         GeneratedPoints?.Invoke(points);
     }
+
+    public void ClearAll()
+    {
+        _buildings.DestroyAllMonoBehaviours();
+
+        _buildings.Clear();
+    }
 }

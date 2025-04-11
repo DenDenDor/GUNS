@@ -1239,6 +1239,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1039736675}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &701985941
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 701985942}
+  m_Layer: 0
+  m_Name: AttackButton (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &701985942
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 701985941}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.105087, y: 0.33, z: 11.068186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &716768260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,8 +2412,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2158c00e89280fe4cbee9751c6778325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 150
-  _damage: 45
+  _health: 750
+  _damage: 70
 --- !u!4 &1368802536
 Transform:
   m_ObjectHideFlags: 0
@@ -3653,7 +3684,7 @@ MonoBehaviour:
     - {fileID: 1402627252}
     - {fileID: 613912793}
   _allyPoint:
-    _attackButton: {fileID: 2146499099}
+    _attackButton: {fileID: 701985942}
     _moveToPoints:
     - {fileID: 1178089231}
     - {fileID: 1541951979}
@@ -3989,6 +4020,7 @@ SceneRoots:
   - {fileID: 613912792}
   - {fileID: 867426699}
   - {fileID: 2146499099}
+  - {fileID: 701985942}
   - {fileID: 786716601}
   - {fileID: 41241768}
   - {fileID: 1115540709}

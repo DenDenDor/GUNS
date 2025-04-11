@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Random = UnityEngine.Random;
 
 public class PressurePlateController : MonoBehaviour
@@ -66,7 +67,27 @@ public class PressurePlateController : MonoBehaviour
 
     public void Register(Transform point, AbstractPressurePlateView plate)
     {
+        Debug.Log(_pressurePlateViewsByPoints.Count + " HOW MANY ADD" + point);
+
+        if (_pressurePlateViewsByPoints.ContainsKey(point))
+        {
+            //            Debug.Log("ERROR IT HERE!!! " + point.name + "  PARENT IS " + point.GetComponentsInParent<Transform>().Skip(1).FirstOrDefault().name);
+        }
         _pressurePlateViewsByPoints.Add(point, plate);
+    }
+
+    public void ClearAll()
+    {
+        AbstractPressurePlateView[] plates = _pressurePlateViewsByPoints.Values.ToArray();
+        
+        for (int i = 0; i < plates.Length; i++)
+        {
+            Destroy(plates[i].gameObject);
+        }
+        
+        _pressurePlateViewsByPoints.Clear();
+        _startMaxPrice.Clear();
+        _pressurePlatesByAmount.Clear();
     }
     
     public void UpdateCurrentPrice(AbstractPressurePlateView view, int current)

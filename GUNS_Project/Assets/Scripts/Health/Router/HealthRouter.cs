@@ -9,7 +9,7 @@ public class HealthRouter : IRouter
     {
         EntityController.Instance.Added += OnAdd;
         
-        WaveController.Instance.Updated += OnClear;
+        WaveController.Instance.Cleared += OnClear;
     }
 
     private void OnClear()

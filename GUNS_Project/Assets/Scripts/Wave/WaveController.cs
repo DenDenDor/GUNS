@@ -1,9 +1,13 @@
 using UnityEngine;
 using System;
+using System.Collections;
+using System.Linq;
 
 public class WaveController : MonoBehaviour
 {
-    public event Action Updated;
+    public event Action Cleared;
+    
+    public event Action StartedNewWave;
     
     private AbstractWaveInfo _abstractWaveInfo;
     
@@ -43,14 +47,24 @@ public class WaveController : MonoBehaviour
     public void UpdateWave(AbstractWaveInfo waveInfo)
     {
         _abstractWaveInfo = waveInfo;
-        Updated?.Invoke();
+        Cleared?.Invoke();
+
+        StartCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+
+        Debug.Log("STARTED NEW WAVE");
+        StartedNewWave?.Invoke();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UpdateWave(null);
+            UpdateWave(UiController.Instance.GetWindow<WaveWindow>().Waves.LastOrDefault());
         }
     }
 }

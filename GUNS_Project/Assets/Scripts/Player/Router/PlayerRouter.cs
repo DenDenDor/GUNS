@@ -10,17 +10,29 @@ public class PlayerRouter : IRouter
     private IMovement _movement;
 
     private PlayerModel _model;
+    private PlayerView _prefab;
     
     public void Init()
     {
-        PlayerView prefab = Resources.Load<PlayerView>("Prefabs/Player");
+        _prefab = Resources.Load<PlayerView>("Prefabs/Player");
+        
+        CreatePlayer();
+        
+        WaveController.Instance.StartedNewWave += OnStartNewWave;
+    }
 
+    private void OnStartNewWave()
+    {
+        CreatePlayer();
+    }
+
+    private void CreatePlayer()
+    {
         _model = new PlayerModel();
 
-        
-        _view  = Window.CreatePlayer(prefab, GeneratePlayerModel, _model);
+        _view  = Window.CreatePlayer(_prefab, GeneratePlayerModel, _model);
     }
-    
+
     private void GeneratePlayerModel(PlayerView player)
     {
         _model.Movement = new ToCursorMovement(() => Window.Speed, player.transform);

@@ -85,7 +85,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770064888735535446}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -156,9 +156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8f6e4376f568764cba62d7b309ea6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _child: {fileID: 2690213699855039398}
   Health: 0
   _currencyPoint: {fileID: 1861621227048405062}
+  _child: {fileID: 2690213699855039398}
   _lookAtTransform: {fileID: 2025209458716689970}
 --- !u!1 &6971541612890429826
 GameObject:
@@ -355,10 +355,6 @@ PrefabInstance:
     - target: {fileID: 727406971778551019, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: m_Name
       value: Characrter
-      objectReference: {fileID: 0}
-    - target: {fileID: 727406971778551019, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5546868297550835065, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: _editor_hideEyes

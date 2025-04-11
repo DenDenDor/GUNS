@@ -128,6 +128,16 @@ public static class ListUtility
                 Object.Destroy(kvp.Key.gameObject);
             }
         }
-        
+    }   
+    
+    public static void DestroyAllTransforms<T, U>(this Dictionary<T, U> dictionary) where T : Transform
+    {
+        foreach (var kvp in dictionary)
+        {
+            if (kvp.Key != null)
+            {
+                Object.Destroy(kvp.Key.gameObject);
+            }
+        }
     }
 }

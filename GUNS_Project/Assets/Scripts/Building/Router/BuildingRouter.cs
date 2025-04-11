@@ -10,11 +10,23 @@ public class BuildingRouter : IRouter
     
     public void Init()
     {
-        GeneratePoints(Building.BuildingPoints);
+        CreateBuildings();
 
         Building.GeneratedPoints += GeneratePoints;
         
         UpdateController.Instance.Add(OnUpdate);
+
+        WaveController.Instance.Cleared += OnClear;
+    }
+
+    private void CreateBuildings()
+    {
+        GeneratePoints(Building.BuildingPoints);
+    }
+
+    private void OnClear()
+    {
+        BuildingController.Instance.ClearAll();
     }
 
     private void GeneratePoints(IEnumerable<BuildingPoint> points)
