@@ -41,4 +41,6 @@ public abstract class AbstractSDKAdapter : ScriptableObject
 
 public enum RewardType
 {
+  Gold,
+  Silver
 }
