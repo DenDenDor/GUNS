@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MovementRouter : IRouter
@@ -9,13 +10,35 @@ public class MovementRouter : IRouter
 
     private void OnUpdate()
     {
+        Dictionary<IMoveTo, IMovement> viewsByModels = new();
+
+        foreach (var item in BulletController.Instance.Bullets)
+        {
+            viewsByModels.Add(item.Key, item.Value.Movement);
+        }    
+        
         foreach (var item in EntityController.Instance.FullEntities)
         {
-            AbstractEntity view = item.Key;
-            EntityModel model = item.Value;
+            viewsByModels.Add(item.Key, item.Value.Movement);
+        }
+        
+        CameraController.Instance.Deconstructor(out IMoveTo cameraView, out IMovement cameraModel);
+        viewsByModels.Add(cameraView, cameraModel);
+        
+        foreach (var item in viewsByModels)
+        {
+            IMoveTo view = item.Key;
+            IMovement model = item.Value;
+            
+            if (model != null)
+            {
+                Vector3 pos = model.GetPosition();
 
-            if (model.Movement != null) 
-                view.MoveTo(model.Movement.GetPosition());
+                if (pos != Vector3.zero)
+                {
+                    view.MoveTo(pos);
+                }
+            }
         }
     }
 

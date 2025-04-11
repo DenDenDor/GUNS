@@ -1,10 +1,14 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class PressurePlateController : MonoBehaviour
 {
     private readonly Dictionary<Transform, AbstractPressurePlateView> _pressurePlateViewsByPoints = new();
+    
+    private readonly Dictionary<AbstractPressurePlateView, int> _pressurePlatesByAmount = new();
+    private readonly Dictionary<AbstractPressurePlateView, int> _startMaxPrice = new();
 
     public Dictionary<Transform, AbstractPressurePlateView> PressurePlateViewsByPoints => _pressurePlateViewsByPoints;
     
@@ -28,7 +32,7 @@ public class PressurePlateController : MonoBehaviour
         }
     }
 
-    public event Action<Transform> Created;
+    public event Action<Transform, PressurePlateType> Created;
     
     private void Awake()
     {
@@ -41,13 +45,41 @@ public class PressurePlateController : MonoBehaviour
         _instance = this;
     }
 
-    public void AddPressurePlate(Transform point)
+    public void GetPriceBy(AbstractPressurePlateView plate, out int current, out int max)
     {
-        Created?.Invoke(point);
+        current = _pressurePlatesByAmount[plate];
+        max = _startMaxPrice[plate];
+    }
+    
+    public void AddPressurePlate(Transform point, PressurePlateType type)
+    {
+        Created?.Invoke(point, type);
+    }
+
+    public void UpdateAllPrice(Transform point, int price)
+    {
+        AbstractPressurePlateView plate = _pressurePlateViewsByPoints[point];
+        
+        _pressurePlatesByAmount.Add(plate, price);
+        _startMaxPrice.Add(plate, price);
     }
 
     public void Register(Transform point, AbstractPressurePlateView plate)
     {
         _pressurePlateViewsByPoints.Add(point, plate);
+    }
+    
+    public void UpdateCurrentPrice(AbstractPressurePlateView view, int current)
+    {
+        _pressurePlatesByAmount[view] = current;
+    }
+
+    public void ResetRegister(AbstractPressurePlateView view, int max)
+    {
+        _pressurePlatesByAmount[view] = max;
+        _startMaxPrice[view] = max;
+        
+        view.Reset();
+
     }
 }

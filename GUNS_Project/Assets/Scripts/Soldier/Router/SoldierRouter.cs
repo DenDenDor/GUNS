@@ -5,33 +5,71 @@ using UnityEngine;
 public class SoldierRouter : IRouter
 {
     private readonly Dictionary<SoldierView, IMovement> _soldiers = new();
-    private readonly Dictionary<SoldierView, Transform> _pointsBySoldiers = new();
-    
+    private Coroutine _coroutine;
+    private bool _isMoving;
+    private int _freePointIndex;
     private SoldierView _prefab;
-    
+
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
 
+    private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
+
     private AbstractPressurePlateView Plate =>
-        PressurePlateController.Instance.PressurePlateViewsByPoints[Window.SoldierAttackButton];
-    
+        PressurePlateController.Instance.PressurePlateViewsByPoints[AllyPoint.AttackButton];
+
     public void Init()
     {
         _prefab = Resources.Load<SoldierView>("Prefabs/Soldier");
         
-        UpdateController.Instance.StartCoroutine(Wait());
+        BarrackController.Instance.Created += OnCreated;
+        BattleController.Instance.Restarted += OnRestarted;
         
         UpdateController.Instance.Add(OnUpdate);
         
-        PressurePlateController.Instance.AddPressurePlate(Window.SoldierAttackButton);
+        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
+        
+        WaveController.Instance.Updated += OnClear;
     }
 
-    private Coroutine _coroutine;
-    private bool _isMoving;
+    private void OnClear()
+    {
+        
+    }
+
+    private void OnRestarted()
+    {
+        _isMoving = false;
+        _freePointIndex = 0;
+        Plate.UpdateBar(0);
+    }
+
+    private void OnCreated(Transform point)
+    {
+        List<Transform> points = AllyPoint.MoveToPoints;
+        
+        if (_freePointIndex >= points.Count || _isMoving)
+        {
+            return;
+        }
+        
+        SoldierModel model = new SoldierModel();
+
+        SoldierView soldier = Window.CreateSolider(_prefab, point, model);
+
+        IMovement movement = new ToPointMovement(points[_freePointIndex]);
+
+        _soldiers.Add(soldier, movement);
+
+        model.Movement = movement;
+
+        _freePointIndex++;
+
+    }
 
     private void OnExited()
     {
@@ -58,56 +96,13 @@ public class SoldierRouter : IRouter
         }
         
         _isMoving = true;
-
-        Debug.Log("FILLNESS!");
     }
 
-    private void OnEntered()
+    private void OnEntered(AbstractPressurePlateView view)
     {
         if (_isMoving == false)
         {
             _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown());
-        }
-    }
-
-    private IEnumerator Wait()
-    {
-        List<bool> occupiedPoints = new List<bool>();
-        
-        for (int i = 0; i < Window.MoveToPoints.Count; i++)
-        {
-            occupiedPoints.Add(false);
-        }
-
-        for (int i = 0; i < 5; i++)
-        {
-            int freePointIndex = -1;
-            
-            for (int j = 0; j < occupiedPoints.Count; j++)
-            {
-                if (!occupiedPoints[j])
-                {
-                    freePointIndex = j;
-                    occupiedPoints[j] = true;
-                    break;
-                }
-            }
-
-            if (freePointIndex == -1) 
-                yield break;
-
-            SoldierModel model = new SoldierModel();
-
-            SoldierView soldier = Window.CreateSolider(_prefab, model);
-
-            IMovement movement = new ToPointMovement(Window.MoveToPoints[freePointIndex]);
-        
-            _pointsBySoldiers.Add(soldier, Window.MoveToPoints[freePointIndex]);
-            _soldiers.Add(soldier, movement);
-
-            model.Movement = movement;
-        
-            yield return new WaitForSeconds(0.5f);
         }
     }
 
@@ -146,6 +141,7 @@ public class SoldierRouter : IRouter
                     }
                     
                     UpdateMovement(view, movement);
+                    UpdateRotation(view, new LookAtModel(() => view.Child, nearestAlly.transform));
                 }
 
             }
@@ -155,15 +151,19 @@ public class SoldierRouter : IRouter
         {
             foreach (var soldier in EntityController.Instance.Soldiers)
             {
-                UpdateMovement(soldier, _soldiers[soldier]);
+                IMovement movement = _soldiers[soldier];
+                
+                UpdateMovement(soldier, movement);
             }
         }
     }
     
-    private void UpdateMovement(AbstractEntity entity, IMovement movement)
-    {
+    private void UpdateMovement(AbstractEntity entity, IMovement movement) => 
         MovementController.Instance.UpdateMovement(entity, movement);
-    }
+    
+    private void UpdateRotation(AbstractEntity entity, IRotation rotation) => 
+        EntityController.Instance.FullEntities[entity].Rotation = rotation;
+
 
     public void Exit()
     {

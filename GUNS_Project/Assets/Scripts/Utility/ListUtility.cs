@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public static class ListUtility
@@ -115,5 +117,17 @@ public static class ListUtility
         s_randomDictionary[collection] = index;
 
         return collection[index];
+    }
+    
+    public static void DestroyAllMonoBehaviours<T, U>(this Dictionary<T, U> dictionary) where T : MonoBehaviour
+    {
+        foreach (var kvp in dictionary)
+        {
+            if (kvp.Key != null)
+            {
+                Object.Destroy(kvp.Key.gameObject);
+            }
+        }
+        
     }
 }

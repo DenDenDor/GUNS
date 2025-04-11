@@ -1,4 +1,5 @@
 public enum SceneList
 {
-    SampleScene = 0,
+    Battle = 0,
+    SampleScene = 1,
 }

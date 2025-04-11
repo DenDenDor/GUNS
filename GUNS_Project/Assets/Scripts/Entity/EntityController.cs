@@ -46,12 +46,14 @@ public class EntityController : MonoBehaviour
 
 
     public List<EnemyView> Enemies => Get<EnemyView>();
+    public List<IRotatableView> RotatableViews => _entities.Keys.Where(x=>x is IRotatableView).OfType<IRotatableView>().ToList();
 
     public List<SoldierView> Soldiers => Get<SoldierView>();
 
     public PlayerView Player => Get<PlayerView>().FirstOrDefault();
 
     public event Action<AbstractEntity> Added;
+    public event Action Removed;
 
     private void Awake()
     {
@@ -73,11 +75,30 @@ public class EntityController : MonoBehaviour
     public void RemoveEntity(AbstractEntity entity)
     {
         _entities.Remove(entity);
+        Removed?.Invoke();
     }
 
     private List<T> Get<T>() where T : AbstractEntity
     {
-        return _entities.Where(x => x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
+        return _entities.Where(x => x.Key != null && x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
     }
-    
+
+    public void ClearAll()
+    {
+        // for (int i = 0; i < Entities.Count; i++)
+        // {
+        //     AbstractEntity entity = Entities[i];
+        //     
+        //     if (entity is not PlayerView)
+        //     {
+        //         Destroy(entity.gameObject);
+        //     }   
+        // }
+        //
+        // _entities = _entities.Where(x => x.Key != null);
+        
+        _entities.DestroyAllMonoBehaviours();
+        
+        _entities.Clear();
+    }
 }

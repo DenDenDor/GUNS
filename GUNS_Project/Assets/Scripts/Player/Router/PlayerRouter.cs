@@ -8,21 +8,25 @@ public class PlayerRouter : IRouter
     private PlayerView _view;
     
     private IMovement _movement;
+
+    private PlayerModel _model;
     
     public void Init()
     {
         PlayerView prefab = Resources.Load<PlayerView>("Prefabs/Player");
 
-        PlayerModel model = new PlayerModel();
+        _model = new PlayerModel();
+
         
-        
-        _view  = Window.CreatePlayer(prefab, (player) =>
-        {
-            model.Movement = new ToCursorMovement(4, player.transform);
-        }, 
-            model);
+        _view  = Window.CreatePlayer(prefab, GeneratePlayerModel, _model);
     }
     
+    private void GeneratePlayerModel(PlayerView player)
+    {
+        _model.Movement = new ToCursorMovement(() => Window.Speed, player.transform);
+        _model.Rotation = new RotateForwardModel(() => Window.RotationSpeed, () => player.Child);
+    }
+
     public void Exit()
     {
     }
