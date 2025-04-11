@@ -71,6 +71,8 @@ public class EnemyRouter : IRouter
                     {
                         UpdateMovement(view, new ToPointMovement(nearestAlly.transform));
                     }
+                    
+                    UpdateRotation(view, new LookAtModel(() => view.Child, () => nearestAlly.transform));
                 }
                 else
                 {
@@ -79,6 +81,11 @@ public class EnemyRouter : IRouter
                     if (distanceSqr > 3)
                     {
                         UpdateMovement(view, new ToPointMovement(model.StartPoint));
+                        UpdateRotation(view, new LookAtModel(() => view.Child, () => model.StartPoint));
+                    }
+                    else
+                    {
+                        UpdateRotation(view, new LookAtModel(() => view.Child, () => model.StartPoint));
                     }
                 }
             }
@@ -86,6 +93,8 @@ public class EnemyRouter : IRouter
 
     private void UpdateMovement(AbstractEntity entity, IMovement movement) => 
         MovementController.Instance.UpdateMovement(entity, movement);
+    private void UpdateRotation(AbstractEntity entity, IRotation rotation) => 
+        EntityController.Instance.FullEntities[entity].Rotation = rotation;
 
     public void Exit()
     {

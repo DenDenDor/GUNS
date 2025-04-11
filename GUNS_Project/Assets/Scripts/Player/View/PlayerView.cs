@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerView : AbstractEntity
+public class PlayerView : AbstractEntity, IRotatableView
 {
     [SerializeField] private Transform _currencyPoint;
     [SerializeField] private Transform _child;
@@ -17,7 +17,7 @@ public class PlayerView : AbstractEntity
         transform.position = getPosition;
     }
 
-    public void RotateTo(Quaternion toRotate)
+    public void Rotate(Quaternion toRotate)
     {
         _child.transform.rotation = toRotate;
     }
