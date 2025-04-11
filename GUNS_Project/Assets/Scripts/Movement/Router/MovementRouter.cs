@@ -24,9 +24,7 @@ public class MovementRouter : IRouter
         
         CameraController.Instance.Deconstructor(out IMoveTo cameraView, out IMovement cameraModel);
         viewsByModels.Add(cameraView, cameraModel);
-
-        Debug.Log(cameraView + "  pos " + cameraModel.GetPosition());
-
+        
         foreach (var item in viewsByModels)
         {
             IMoveTo view = item.Key;

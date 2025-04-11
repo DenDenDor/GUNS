@@ -5,9 +5,6 @@ using UnityEngine.AI;
 public class EnemyView : AbstractEntity, IRotatableView
 {
     [SerializeField] private NavMeshAgent _navMeshAgent;
-    [SerializeField] private Transform _child;
-
-    public Transform Child => _child;
 
     private void Awake()
     {

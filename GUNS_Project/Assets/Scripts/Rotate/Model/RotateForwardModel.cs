@@ -18,7 +18,7 @@ public class RotateForwardModel : IRotation
     {
         Vector3 direction = _previousPosition - _transform().position;
 
-        Quaternion currentRotation = quaternion.identity;
+        Quaternion currentRotation = _transform().rotation;
         
         if (direction.magnitude > 0.001f)
         {

@@ -24,6 +24,11 @@ public class BulletRouter : IRouter
 
     private void OnCreated(AbstractEntity thisEntity, AbstractEntity toAttackEntity)
     {
+        if (thisEntity == null || toAttackEntity == null)
+        {
+            return;
+        }
+        
         BulletView view = Window.Create(_prefab, thisEntity.transform);
         IMovement movement = new ToMoveTowardsMovement(6, view.transform, toAttackEntity.transform);
 

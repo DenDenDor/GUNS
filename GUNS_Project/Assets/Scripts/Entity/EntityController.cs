@@ -80,7 +80,7 @@ public class EntityController : MonoBehaviour
 
     private List<T> Get<T>() where T : AbstractEntity
     {
-        return _entities.Where(x => x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
+        return _entities.Where(x => x.Key != null && x.Key is T).Select(x=>x.Key).OfType<T>().ToList();
     }
 
     public void ClearAll()
