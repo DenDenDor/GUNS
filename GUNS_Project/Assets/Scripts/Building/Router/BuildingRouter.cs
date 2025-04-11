@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -9,7 +10,16 @@ public class BuildingRouter : IRouter
     
     public void Init()
     {
-        foreach (var item in Building.BuildingPoints)
+        GeneratePoints(Building.BuildingPoints);
+
+        Building.GeneratedPoints += GeneratePoints;
+        
+        UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void GeneratePoints(IEnumerable<BuildingPoint> points)
+    {
+        foreach (var item in points)
         {
             int price = 5;
             
@@ -30,8 +40,6 @@ public class BuildingRouter : IRouter
             PressurePlateController.Instance.AddPressurePlate(point, type);
             PressurePlateController.Instance.UpdateAllPrice(point, price);
         }
-        
-        UpdateController.Instance.Add(OnUpdate);
     }
 
     private void OnUpdate()

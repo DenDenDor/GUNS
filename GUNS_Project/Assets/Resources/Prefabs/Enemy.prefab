@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   _navMeshAgent: {fileID: -8881791677974308677}
+  _child: {fileID: 4343359521979945948}
 --- !u!195 &-8881791677974308677
 NavMeshAgent:
   m_ObjectHideFlags: 0

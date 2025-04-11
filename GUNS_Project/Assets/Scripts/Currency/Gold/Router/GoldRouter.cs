@@ -31,6 +31,8 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
         }
         
         SubscribePlates();
+        
+        BuildingController.Instance.GeneratedPoints += OnGeneratedPoints; 
     }
     
     private void CreateTo(Vector3 position)

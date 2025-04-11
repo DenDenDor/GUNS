@@ -141,6 +141,7 @@ public class SoldierRouter : IRouter
                     }
                     
                     UpdateMovement(view, movement);
+                    UpdateRotation(view, new LookAtModel(() => view.Child, nearestAlly.transform));
                 }
 
             }
@@ -150,15 +151,19 @@ public class SoldierRouter : IRouter
         {
             foreach (var soldier in EntityController.Instance.Soldiers)
             {
-                UpdateMovement(soldier, _soldiers[soldier]);
+                IMovement movement = _soldiers[soldier];
+                
+                UpdateMovement(soldier, movement);
             }
         }
     }
     
-    private void UpdateMovement(AbstractEntity entity, IMovement movement)
-    {
+    private void UpdateMovement(AbstractEntity entity, IMovement movement) => 
         MovementController.Instance.UpdateMovement(entity, movement);
-    }
+    
+    private void UpdateRotation(AbstractEntity entity, IRotation rotation) => 
+        EntityController.Instance.FullEntities[entity].Rotation = rotation;
+
 
     public void Exit()
     {
