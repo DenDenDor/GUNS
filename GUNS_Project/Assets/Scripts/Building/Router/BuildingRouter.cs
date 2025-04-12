@@ -48,6 +48,8 @@ public class BuildingRouter : IRouter
                     type = PressurePlateType.Gold;
                     break;
             }
+
+            Debug.Log("AddPressurePlate ! ! ! IN BUILDING");
             
             PressurePlateController.Instance.AddPressurePlate(point, type);
             PressurePlateController.Instance.UpdateAllPrice(point, price);
