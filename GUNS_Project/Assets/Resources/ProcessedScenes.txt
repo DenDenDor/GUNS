@@ -1,3 +1,2 @@
-Menu
-Game
 SampleScene
+Battle

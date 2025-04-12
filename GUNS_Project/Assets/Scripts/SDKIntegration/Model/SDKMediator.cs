@@ -28,6 +28,8 @@ public class SDKMediator : MonoBehaviour
         }
     }
 
+    public AbstractSDKAdapter SDKAdapter => _sdkAdapter;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -110,11 +112,24 @@ public class SDKMediator : MonoBehaviour
         SaveData defaultSaveData = GenerateSaveData();
         defaultSaveData.SoundValue = value;
         _sdkAdapter.Save(defaultSaveData);
-    }
+    }
+
     public void SaveCoins(int value)
     {
         SaveData defaultSaveData = GenerateSaveData();
         defaultSaveData.Coins = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void Watch(Action onWatch, RewardType rewardType)
+    {
+        _sdkAdapter.Watch(onWatch, rewardType);
+    }
+
+    public void SaveLevels(int value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.Levels = value;
         _sdkAdapter.Save(defaultSaveData);
     }
 
