@@ -71,6 +71,7 @@ public class BuildingController : MonoBehaviour
 
     public void GenerateNewBuilding(IEnumerable<BuildingPoint> points)
     {
+        Debug.Log("GeneratedPoints ! ! !");
         GeneratedPoints?.Invoke(points);
     }
 

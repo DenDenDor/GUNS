@@ -64,6 +64,8 @@ public class PressurePlateRouter : IRouter
             Debug.LogError("Could not find transform for the filled pressure plate");
             return;
         }
+
+        Debug.Log("PRESSURE PLATE!");
     
         foreach (var unblockingBuilding in abstractWaveInfo.BuildingPoints)
         {

@@ -6,6 +6,8 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
 {
     [SerializeField] private Image _bar;
 
+    private bool _isFilled;
+    
     public event Action<AbstractPressurePlateView> Entered;
     public event Action<AbstractPressurePlateView> FilledIn;
     public event Action Exited;
@@ -15,9 +17,10 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     {
         _bar.fillAmount = fillness;
 
-        if (fillness == 1)
+        if (fillness == 1 && _isFilled == false)
         {
             FilledIn?.Invoke(this);
+            _isFilled = true;
         }
     }
 
@@ -28,6 +31,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
 
     public void Reset()
     {
+        _isFilled = false;
         Reseted?.Invoke();
     }
     
