@@ -54,7 +54,7 @@ public class WaveController : MonoBehaviour
 
     private IEnumerator Wait()
     {
-        yield return new WaitForSeconds(1);
+        yield return null;
 
         Debug.Log("STARTED NEW WAVE");
         StartedNewWave?.Invoke();

@@ -16,8 +16,6 @@ public class PlayerRouter : IRouter
     {
         _prefab = Resources.Load<PlayerView>("Prefabs/Player");
         
-        CreatePlayer();
-        
         WaveController.Instance.StartedNewWave += OnStartNewWave;
     }
 
