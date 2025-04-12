@@ -27,4 +27,20 @@ public class UpgradedStatView : MonoBehaviour
         _adButton.onClick.AddListener(() => WatchedAd?.Invoke(this));
         _payButton.onClick.AddListener(() => Bought?.Invoke(this));
     }
+
+    public void UpdateSprite(Sprite getUpgradeSprite)
+    {
+        _icon.sprite = getUpgradeSprite;
+    } 
+    
+    public void UpdateProgressAmount(int previousLevel, int nextLevel)
+    {
+        _progressAmount.text = $"{previousLevel} / {nextLevel}";
+    }
+
+    public void UpdateProgressBar(float fillAmount)
+    {
+        Debug.Log(fillAmount + " FILL AMOUNT ! ! !");
+        _progressBar.fillAmount = fillAmount;
+    }
 }

@@ -39,7 +39,20 @@ public class UpgradeRouter : IRouter
         foreach (var item in _levelsByTypes)
         {
             UpgradedStatView view = Window.Create(_prefab, item.Key);
+            view.UpdateSprite(_data.GetUpgradeSprite(item.Key));
             view.Bought += OnBought;
+            
+            if (_data.TryGetNextLevel(item.Key, 0, out int previousLevel, out int nextLevel))
+            {
+                view.UpdateProgressAmount(0, nextLevel);
+
+                int correctNewLevel = 0 - previousLevel;
+                int correctNextLevel = nextLevel - previousLevel;
+
+                float fillAmount = (float) correctNewLevel / correctNextLevel;
+                view.UpdateProgressBar(fillAmount);
+            }
+
         }
     }
 
@@ -53,6 +66,10 @@ public class UpgradeRouter : IRouter
         UpgradeController.Instance.SetUpgradeLevel(type, newLevel);
 
         UpgradeStatModel currentStats = UpgradeController.Instance.Stat;
+
+        Debug.Log("AD " + currentLevel);
+        
+
         
         if (_data.TryGetValueForLevel(type, newLevel, out float value))
         {
@@ -67,6 +84,17 @@ public class UpgradeRouter : IRouter
                 case UpgradeType.Damage:
                     currentStats.Strength = value;
                     break;
+            }
+            
+            if (_data.TryGetNextLevel(type, newLevel, out int previousLevel, out int nextLevel))
+            {
+                view.UpdateProgressAmount(newLevel, nextLevel);
+
+                int correctNewLevel = newLevel - previousLevel;
+                int correctNextLevel = nextLevel - previousLevel;
+
+                float fillAmount = (float) correctNewLevel / correctNextLevel;
+                view.UpdateProgressBar(fillAmount);
             }
             
             UpgradeController.Instance.UpdateStat(currentStats);
