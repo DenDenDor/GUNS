@@ -30,7 +30,7 @@ Shader "AmplifyShaderPack/PostProcess FilmGrain"
 
 			#pragma vertex vert_img_custom 
 			#pragma fragment frag
-			#pragma target 3.0
+			#pragma target 2.0
 			#include "UnityCG.cginc"
 			#include "UnityShaderVariables.cginc"
 
@@ -150,7 +150,7 @@ Node;AmplifyShaderEditor.OneMinusNode;42;-211.5128,-212.9008;Inherit;False;1;0;F
 Node;AmplifyShaderEditor.SimpleAddOpNode;41;-178.1139,-50.5013;Inherit;False;2;2;0;FLOAT;0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;39;5.985176,-344.101;Inherit;False;2;2;0;COLOR;0,0,0,0;False;1;FLOAT;0;False;1;COLOR;0
 Node;AmplifyShaderEditor.ToggleSwitchNode;43;149.1871,-110.7008;Float;False;Property;_ActivateGrainEffect;Activate Grain Effect;1;0;Create;True;0;0;0;False;0;False;1;True;2;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;650.6996,-265.2;Float;False;True;-1;2;ASEMaterialInspector;0;9;AmplifyShaderPack/PostProcess FilmGrain;c71b220b631b6344493ea3cf87110c93;True;SubShader 0 Pass 0;0;0;;1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;7;False;;False;True;0;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;0;;0;0;Standard;0;0;1;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;650.6996,-265.2;Float;False;True;-1;2;ASEMaterialInspector;0;9;AmplifyShaderPack/PostProcess FilmGrain;c71b220b631b6344493ea3cf87110c93;True;SubShader 0 Pass 0;0;0;;1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;False;False;False;False;False;False;False;False;False;False;False;True;2;False;;True;7;False;;False;True;0;False;False;0;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;0;False;0;;0;0;Standard;0;0;1;True;False;;False;0
 Node;AmplifyShaderEditor.SamplerNode;2;-881.0005,-179.7007;Inherit;True;Property;_TextureSample0;Texture Sample 0;0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;1;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.TemplateShaderPropertyNode;1;-1031.302,-268.0006;Inherit;False;0;0;_MainTex;Shader;False;0;5;SAMPLER2D;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 WireConnection;7;0;4;2
@@ -190,4 +190,4 @@ WireConnection;43;1;41;0
 WireConnection;0;0;43;0
 WireConnection;2;0;1;0
 ASEEND*/
-//CHKSM=E60C8B5E6208BDFFBF85F065E29E7CC0BA11D96E
+//CHKSM=40784C298A8315967B7B2495DDE7C4E0A1D028AF
