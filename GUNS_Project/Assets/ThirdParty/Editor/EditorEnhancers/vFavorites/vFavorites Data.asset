@@ -15,33 +15,6 @@ MonoBehaviour:
   pages:
   - items:
     - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-99c9720ab356a0642a771bea13969a05-102900000-0
-      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: 99c9720ab356a0642a771bea13969a05, type: 3}
-      isSceneGameObject: 0
-      isFolder: 0
-      isAsset: 1
-      _id: 1041470145
-    - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-223b29224c715be499a7ee3f444c9714-102900000-0
-      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 102900000, guid: 223b29224c715be499a7ee3f444c9714, type: 3}
-      isSceneGameObject: 0
-      isFolder: 1
-      isAsset: 0
-      _id: 1056609142
-    - globalId:
-        globalObjectIdString: GlobalObjectId_V1-1-335f55412e800104a8dbeaaf4b0cd7a3-102900000-0
-      _typeString: UnityEditor.DefaultAsset, UnityEditor.CoreModule, Version=0.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-      _obj: {fileID: 0}
-      isSceneGameObject: 0
-      isFolder: 0
-      isAsset: 1
-      _id: 1055759766
-    - globalId:
         globalObjectIdString: GlobalObjectId_V1-1-a579f3e9912150e4fade15b5f875802c-102900000-0
       _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
@@ -50,6 +23,15 @@ MonoBehaviour:
       isFolder: 0
       isAsset: 1
       _id: 1054107106
+    - globalId:
+        globalObjectIdString: GlobalObjectId_V1-1-ef7645682db0b9f48b1274ee73498185-102900000-0
+      _typeString: UnityEditor.SceneAsset, UnityEditor.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      _obj: {fileID: 102900000, guid: ef7645682db0b9f48b1274ee73498185, type: 3}
+      isSceneGameObject: 0
+      isFolder: 0
+      isAsset: 1
+      _id: 1050064213
     name: Page 1
     _id: 1062844076
   - items: []
