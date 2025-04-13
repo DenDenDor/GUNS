@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 [CreateAssetMenu(fileName = "UpgradeStatSO", menuName = "Scriptable Objects/UpgradeStatSO")]
 public class UpgradeStatSO : ScriptableObject
@@ -13,6 +14,32 @@ public class UpgradeStatSO : ScriptableObject
     public Sprite GetUpgradeSprite(UpgradeType type)
     {
         return _iconsByUpgradesType[type];
+    }
+
+    public bool TryGetIndexForLevel(UpgradeType type, float value, out int index)
+    {
+        SerializedDictionary<int, float> dictionary = GetDictionaryByType(type);
+        index = -1;
+
+        if (dictionary == null || dictionary.ConvertToDictionary().Count == 0)
+        {
+            return false;
+        }
+
+        var sortedEntries = dictionary.ConvertToDictionary()
+            .OrderBy(x => x.Key)
+            .ToList();
+
+        for (int i = 0; i < sortedEntries.Count; i++)
+        {
+            if (Mathf.Approximately(sortedEntries[i].Value, value))
+            {
+                index = i;
+                return true;
+            }
+        }
+        
+        return false;
     }
     
     public bool TryGetValueForLevel(UpgradeType type, int level, out float value)
@@ -55,7 +82,7 @@ public class UpgradeStatSO : ScriptableObject
         };
     }
     
-    public bool TryGetNextLevel(UpgradeType type, float currentValue, out int previousLevel, out int nextLevel)
+    public bool TryGetLevel(UpgradeType type, float currentValue, out int previousLevel, out int nextLevel)
     {
         var dictionary = GetDictionaryByType(type);
         previousLevel = -1;
@@ -64,11 +91,9 @@ public class UpgradeStatSO : ScriptableObject
         if (dictionary == null || dictionary.ConvertToDictionary().Count == 0)
             return false;
 
-        // Получаем все уровни и сортируем их по возрастанию
         var sortedLevels = new List<int>(dictionary.Keys);
         sortedLevels.Sort();
 
-        // Находим предыдущий уровень (максимальный уровень, который ≤ currentValue)
         for (int i = 0; i < sortedLevels.Count; i++)
         {
             int level = sortedLevels[i];
@@ -78,15 +103,11 @@ public class UpgradeStatSO : ScriptableObject
             }
             else
             {
-                // Нашли первый уровень, который > currentValue - это наш nextLevel
                 nextLevel = level;
                 break;
             }
         }
-
-        // Если все уровни ≤ currentValue, nextLevel останется -1
-        // Если currentValue меньше всех уровней, previousLevel останется -1
-    
+        
         return previousLevel != -1 || nextLevel != -1;
     }
 }

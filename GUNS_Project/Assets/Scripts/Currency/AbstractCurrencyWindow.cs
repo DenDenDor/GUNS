@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class AbstractCurrencyWindow : AbstractWindowUi
+public abstract class AbstractCurrencyWindow : AbstractFactoryWindow
 {
    
 }

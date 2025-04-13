@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class EntityWindow : AbstractWindowUi
+public abstract class EntityWindow : AbstractFactoryWindow
 {
     [SerializeField] private float _health = 50;
     [SerializeField] private float _damage = 25;

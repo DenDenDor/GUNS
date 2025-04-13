@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgrateWindow : AbstractWindowUi
+public class UpgrateWindow : AbstractFactoryWindow
 {
     [SerializeField] private Transform _spawnPoint;
 
@@ -13,9 +13,9 @@ public class UpgrateWindow : AbstractWindowUi
     {
     }
 
-    public UpgradedStatView Create(UpgradedStatView prefab, UpgradeType type)
+    public UpgradedStatView CreateUi(UpgradedStatView prefab, UpgradeType type)
     {
-        UpgradedStatView view = Instantiate(prefab, _spawnPoint);
+        UpgradedStatView view = CreatePrefab(prefab, _spawnPoint, true);
 
         _viewsByModels.Add(view, type);
         
@@ -25,5 +25,12 @@ public class UpgrateWindow : AbstractWindowUi
     public void Open()
     {
         
+    }
+
+    public void ClearAll()
+    {
+        _viewsByModels.DestroyAllMonoBehaviours();
+        
+        _viewsByModels.Clear();
     }
 }

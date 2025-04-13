@@ -29,7 +29,13 @@ public class UpgradeRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
 
+        WaveController.Instance.Cleared += OnClear;
         WaveController.Instance.StartedNewWave += OpenWindow;
+    }
+
+    private void OnClear()
+    {
+        Window.ClearAll();
     }
 
     private void OpenWindow()
@@ -38,21 +44,11 @@ public class UpgradeRouter : IRouter
 
         foreach (var item in _levelsByTypes)
         {
-            UpgradedStatView view = Window.Create(_prefab, item.Key);
+            UpgradedStatView view = Window.CreateUi(_prefab, item.Key);
             view.UpdateSprite(_data.GetUpgradeSprite(item.Key));
             view.Bought += OnBought;
-            
-            if (_data.TryGetNextLevel(item.Key, 0, out int previousLevel, out int nextLevel))
-            {
-                view.UpdateProgressAmount(0, nextLevel);
 
-                int correctNewLevel = 0 - previousLevel;
-                int correctNextLevel = nextLevel - previousLevel;
-
-                float fillAmount = (float) correctNewLevel / correctNextLevel;
-                view.UpdateProgressBar(fillAmount);
-            }
-
+            UpdateView(view, item.Key, item.Value, UpgradeController.Instance.Stat.Health);
         }
     }
 
@@ -86,20 +82,35 @@ public class UpgradeRouter : IRouter
                     break;
             }
             
-            if (_data.TryGetNextLevel(type, newLevel, out int previousLevel, out int nextLevel))
-            {
-                view.UpdateProgressAmount(newLevel, nextLevel);
+            UpdateView(view, type, newLevel, value);
 
-                int correctNewLevel = newLevel - previousLevel;
-                int correctNextLevel = nextLevel - previousLevel;
-
-                float fillAmount = (float) correctNewLevel / correctNextLevel;
-                view.UpdateProgressBar(fillAmount);
-            }
-            
             UpgradeController.Instance.UpdateStat(currentStats);
         }
         
+    }
+
+    private void UpdateView(UpgradedStatView view, UpgradeType type, int newLevel, float value)
+    {
+        if (_data.TryGetLevel(type, newLevel, out int previousLevel, out int nextLevel))
+        {
+            view.UpdateProgressAmount(newLevel, nextLevel);
+
+            if (nextLevel == -1)
+            {
+                view.ShowMaxLevelPanel();
+            }
+
+            int correctNewLevel = newLevel - previousLevel;
+            int correctNextLevel = nextLevel - previousLevel;
+
+            float fillAmount = (float) correctNewLevel / correctNextLevel;
+            view.UpdateProgressBar(fillAmount);
+        }
+
+        if (_data.TryGetIndexForLevel(type, value, out int index))
+        {
+            view.UpdateLevel(index + 1);
+        }
     }
 
     private void OnUpdate()

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ProgressBarWindow : AbstractWindowUi
+public class ProgressBarWindow : AbstractFactoryWindow
 {
     [SerializeField] private Transform _point;
     
@@ -11,6 +11,6 @@ public class ProgressBarWindow : AbstractWindowUi
 
     public ProgressBarView Create(ProgressBarView prefab)
     {
-        return Instantiate(prefab, _point);
+        return CreatePrefab(prefab, _point, true);
     }
 }
