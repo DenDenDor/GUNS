@@ -9,7 +9,14 @@ public class WaveWindow : AbstractWindowUi
 
     public override void Init()
     {
-        _waves = gameObject.GetComponentsInChildren<AbstractWaveInfo>();
+        AbstractWaveInfo[] waveInfos = gameObject.GetComponentsInChildren<AbstractWaveInfo>();
+
+        for (int i = 0; i < waveInfos.Length; i++)
+        {
+            waveInfos[i].IdLevel = i;
+        }
+
+        _waves = waveInfos;
     }
 }
 
