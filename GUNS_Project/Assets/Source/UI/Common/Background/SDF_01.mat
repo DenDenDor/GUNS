@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CircleSquare
+  m_Name: SDF_01
   m_Shader: {fileID: 4800000, guid: 34b39ecbdc156ce4db02d974b939efcb, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
