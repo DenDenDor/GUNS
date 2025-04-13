@@ -16,4 +16,6 @@ public abstract class AbstractWaveInfo : MonoBehaviour
     
     public List<UnblockingBuildingPoint> BuildingPoints => _points;
 
+    public int IdLevel { get; set; }
+
 }

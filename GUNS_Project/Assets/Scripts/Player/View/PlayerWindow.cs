@@ -18,7 +18,7 @@ public class PlayerWindow : EntityWindow
 
     public PlayerView CreatePlayer(PlayerView view, Action<PlayerView> playerView, PlayerModel model)
     {
-        PlayerView created = Instantiate(view, _spawnPoint.position, quaternion.identity);
+        PlayerView created = CreatePrefab(view, _spawnPoint.position);
 
         playerView(created);
         

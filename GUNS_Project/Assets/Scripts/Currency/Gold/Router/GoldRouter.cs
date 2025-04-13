@@ -37,7 +37,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     
     private void CreateTo(Vector3 position)
     {
-        Window.Create(Prefab, position);
+        Window.CreateCurrency(Prefab, position);
     }
     
   

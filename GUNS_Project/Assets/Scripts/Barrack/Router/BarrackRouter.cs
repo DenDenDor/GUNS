@@ -43,7 +43,7 @@ public class BarrackRouter : IRouter
 
     private void OnFilledIn(AbstractPressurePlateView obj)
     {
-        BarrackView barrack = Object.Instantiate(_prefab, obj.transform.position, Quaternion.identity);
+        BarrackView barrack = UiController.Instance.GetWindow<BarrackWindow>().CreateBarrack(_prefab, obj.transform.position);
         
         Building.AddBuilding(barrack, new BuildingModel());
     }

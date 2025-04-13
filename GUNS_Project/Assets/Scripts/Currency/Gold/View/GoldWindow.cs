@@ -9,9 +9,9 @@ public class GoldWindow : AbstractCurrencyWindow
         
     }
     
-    public void Create(GoldPickUp prefab, Vector3 position)
+    public void CreateCurrency(GoldPickUp prefab, Vector3 position)
     {
-        GoldPickUp pickUp = Instantiate(prefab, position, Quaternion.identity);
+        GoldPickUp pickUp = CreatePrefab(prefab, position);
 
         pickUp.transform.localPosition += new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2));
 

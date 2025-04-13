@@ -13,9 +13,7 @@ public class CameraRouter : IRouter
             () => CameraWindow.Offset,
             () => CameraWindow.SmoothTime));
 
-
-        StartInitCamera();
-
+        
         WaveController.Instance.StartedNewWave += StartInitCamera;
         
         UpdateController.Instance.Add(OnUpdate);

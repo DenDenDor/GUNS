@@ -37,7 +37,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
 
     private void CreateTo(Vector3 position)
     {
-        Window.Create(Prefab, position);
+        Window.CreateCurrency(Prefab, position);
     }
 
     public override void Exit()

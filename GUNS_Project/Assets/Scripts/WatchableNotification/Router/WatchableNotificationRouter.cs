@@ -9,7 +9,7 @@ public class WatchableNotificationRouter : IRouter
         
     public void Init()
     {
-        _prefab = Resources.Load<WatchableNotificationView>("Prefabs/WatchableNotification");
+        _prefab = FactoryController.Instance.FindPrefab<WatchableNotificationView>(); // Resources.Load<WatchableNotificationView>("Prefabs/WatchableNotification");
 
         WatchableReward watchableReward = new WatchableReward(10, RewardType.Gold);
 
