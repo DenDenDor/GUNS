@@ -45,7 +45,7 @@ public class BuildingRouter : IRouter
                     Debug.Log("tjfhna  " + price);
                     break;
                 default:
-                    type = PressurePlateType.Gold;
+                    type = PressurePlateType.Silver;
                     break;
             }
             

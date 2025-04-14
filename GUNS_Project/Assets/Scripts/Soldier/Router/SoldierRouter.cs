@@ -16,7 +16,7 @@ public class SoldierRouter : IRouter
     {
         _prefab = Resources.Load<SoldierView>("Prefabs/Soldier");
         
-        BarrackController.Instance.Created += OnCreated;
+        BarrackController.Instance.CreatedSoldier += OnCreated;
         BattleController.Instance.Restarted += OnRestarted;
         
         UpdateController.Instance.Add(OnUpdate);

@@ -10,7 +10,7 @@ public class BarrackWindow : AbstractFactoryWindow
         
     }
 
-    public BarrackView CreateBarrack(BarrackView barrack, Vector3 transformPosition)
+    public AbstractBarrackView CreateBarrack(AbstractBarrackView barrack, Vector3 transformPosition)
     {
       return  CreatePrefab(barrack, transformPosition);
     }

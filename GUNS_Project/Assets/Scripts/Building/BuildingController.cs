@@ -13,15 +13,15 @@ public class BuildingController : MonoBehaviour
     public IEnumerable<BuildingPoint> BuildingPoints =>
         WaveController.Instance.GenerateWaveInfo().BuildingPoints.Select(x => x.Current);
 
-    public Dictionary<BarrackView, BuildingModel> Barracks
+    public Dictionary<AbstractBarrackView, BuildingModel> Barracks
     {
         get
         {
-            Dictionary<BarrackView, BuildingModel> dictionary = new();
+            Dictionary<AbstractBarrackView, BuildingModel> dictionary = new();
 
-            foreach (var item in _buildings.Where(x=>x.Key is BarrackView))
+            foreach (var item in _buildings.Where(x=>x.Key is AbstractBarrackView))
             {
-                if (item.Key is BarrackView view)
+                if (item.Key is AbstractBarrackView view)
                 {
                     dictionary.Add(view, item.Value);
                 }
