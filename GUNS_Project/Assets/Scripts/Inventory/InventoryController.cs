@@ -48,6 +48,11 @@ public class InventoryController : MonoBehaviour
         _instance = this;
     }
 
+    public void ClearAll()
+    {
+        _pickUps.Clear();
+    }
+
     public void AddPickUp(AbstractCurrencyPickUp currencyPickUp)
     {
         _pickUps.Add(currencyPickUp);

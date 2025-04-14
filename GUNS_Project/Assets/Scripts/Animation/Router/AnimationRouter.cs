@@ -42,6 +42,10 @@ public class AnimationRouter : IRouter
     private IEnumerator PlayStartShotAnimation(AbstractEntity obj, AnimationData data)
     {
         Debug.Log("START SHOOT!");
+        if (obj == null || obj.ArmWithGun == null)
+        {
+            yield break;
+        }
         Transform armWithGun = obj.ArmWithGun.transform;
     
         // Запоминаем исходные позицию и вращение
@@ -55,7 +59,10 @@ public class AnimationRouter : IRouter
     private IEnumerator PlayEndShotAnimation(AbstractEntity obj, AnimationData data)
     {
         Debug.Log("END SHOOT!");
-
+        if (obj == null || obj.ArmWithGun == null)
+        {
+            yield break;
+        }
         Transform armWithGun = obj.ArmWithGun.transform;
     
         // Запоминаем исходные позицию и вращение
@@ -68,6 +75,10 @@ public class AnimationRouter : IRouter
 
     private IEnumerator PlayShotAnimation(AbstractEntity obj, AnimationData data)
     {
+        if (obj == null || obj.ArmWithGun == null)
+        {
+            yield break;
+        }
         Debug.Log("SHOOTING!!!");
 
         Transform armWithGun = obj.ArmWithGun.transform;

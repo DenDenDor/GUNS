@@ -31,6 +31,10 @@ public class HealthRouter : IRouter
         {
             value = 50;
         }
+        else if(obj is PlayerView)
+        {
+            value = 100;
+        }
         
         HealthModel health = new HealthModel(value);
        

@@ -31,7 +31,6 @@ public class SoldierRouter : IRouter
 
     private void SubscribePlate()
     {
-        Debug.Log("INVOKE SOLDIER PLATE!!!");
         PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
         
         Plate.UpdateBar(0);

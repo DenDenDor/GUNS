@@ -1,16 +1,18 @@
+using System;
 using UnityEngine;
 
 public class FlagView : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private bool _isTriggered;
+    
+    public event Action Entered;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.GetComponent<PlayerTriggerView>() && _isTriggered == false)
+        {
+            Entered?.Invoke();
+            _isTriggered = true;
+        }
     }
 }

@@ -83,7 +83,7 @@ public class HealthController : MonoBehaviour
 
     private IEnumerator Cooldown()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(0.5f);
         
         _isShownToPlayer = false;
     }

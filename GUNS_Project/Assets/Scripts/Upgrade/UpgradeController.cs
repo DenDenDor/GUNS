@@ -49,7 +49,5 @@ public class UpgradeController : MonoBehaviour
     public void UpdateStat(UpgradeStatModel model)
     {
         _upgradeStat = model;
-
-        Debug.Log("SPEED " + model.Speed + " HEALTH " + model.Health + " POWER " + model.Strength);
     }
 }

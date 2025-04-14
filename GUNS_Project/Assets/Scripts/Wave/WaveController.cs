@@ -56,7 +56,6 @@ public class WaveController : MonoBehaviour
     {
         yield return null;
 
-        Debug.Log("STARTED NEW WAVE");
         StartedNewWave?.Invoke();
     }
 

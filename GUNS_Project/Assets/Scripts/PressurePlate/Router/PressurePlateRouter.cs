@@ -45,8 +45,6 @@ public class PressurePlateRouter : IRouter
 
     private void OnFilledIn(AbstractPressurePlateView obj)
     {
-        Debug.Log("Pressure plate filled in, unblocking corresponding buildings");
-    
         AbstractWaveInfo abstractWaveInfo = WaveController.Instance.GenerateWaveInfo();
     
         Transform plateTransform = null;
@@ -71,8 +69,6 @@ public class PressurePlateRouter : IRouter
         {
             if (unblockingBuilding.Current.Point == plateTransform)
             {
-                Debug.Log($"Found matching building point for pressure plate. Unblocking {unblockingBuilding.BlockedPoints.Count} points.");
-                
                 BuildingController.Instance.GenerateNewBuilding(unblockingBuilding.BlockedPoints.Select(x=>x.Current));
             
                 foreach (var blockedPoint in unblockingBuilding.BlockedPoints)

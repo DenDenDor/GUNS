@@ -7,8 +7,6 @@ public class InventoryRouter : IRouter
     public void Init()
     {
         InventoryView prefab = FactoryController.Instance.FindPrefab<InventoryView>();
-
-        Debug.Log(prefab + " FOUND SOMETGHIN!");
         
         _inventoryView = UiController.Instance.GetWindow<InventoryWindow>().CreateInventory(prefab);
         
@@ -27,6 +25,7 @@ public class InventoryRouter : IRouter
     private void OnCleared()
     {
         CurrencyController.Instance.ClearAll();
+        InventoryController.Instance.ClearAll();
     }
 
     public void Exit()

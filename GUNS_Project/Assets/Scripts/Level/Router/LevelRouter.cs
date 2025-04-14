@@ -16,14 +16,19 @@ public class LevelRouter : IRouter
     {
        // _prefab = Resources.Load<NextLevelBuildingView>("Prefabs/NextLevel");
        
+       WaveController.Instance.StartedNewWave += StartNewWave;
+
        _prefabUi = FactoryController.Instance.FindPrefab<RankUpView>();
-       
+    }
+
+    private void StartNewWave()
+    {
         foreach (var model in Building.BuildingPoints.Where(x=>x.Type == BuildingType.NextLevel))
         {
             PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
         }
     }
-    
+
     private void OnFilledIn(AbstractPressurePlateView obj)
     {
         _level++;

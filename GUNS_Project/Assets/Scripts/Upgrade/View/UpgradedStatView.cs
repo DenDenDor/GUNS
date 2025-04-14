@@ -41,7 +41,6 @@ public class UpgradedStatView : MonoBehaviour
 
     public void UpdateProgressBar(float fillAmount)
     {
-        Debug.Log(fillAmount + " FILL AMOUNT ! ! !");
         _progressBar.fillAmount = fillAmount;
     }
 
