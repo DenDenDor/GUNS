@@ -13,7 +13,7 @@ public class WaveWindow : AbstractFactoryWindow
 
         for (int i = 0; i < waveInfos.Length; i++)
         {
-            waveInfos[i].IdLevel = i;
+            waveInfos[i].IdLevel = i + 1;
         }
 
         _waves = waveInfos;

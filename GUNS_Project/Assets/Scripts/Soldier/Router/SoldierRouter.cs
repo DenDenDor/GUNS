@@ -115,6 +115,12 @@ public class SoldierRouter : IRouter
         {
             var enemies = EntityController.Instance.Enemies;
 
+            if (enemies.Count == 0)
+            {
+                _isMoving = false;
+                return;
+            }
+
             foreach (var view in EntityController.Instance.Soldiers)
             {
                 Vector3 currentPosition = view.transform.position;
