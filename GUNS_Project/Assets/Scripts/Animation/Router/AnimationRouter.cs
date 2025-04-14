@@ -18,7 +18,7 @@ public class AnimationRouter : IRouter
     {
         if (obj is PlayerView)
         {
-            Transform armWithGun = obj.ArmWithGun;
+            Transform armWithGun = obj.ArmWithGun.transform;
 
             if (_entitiesByDatas.ContainsKey(obj) == false)
             {
@@ -42,7 +42,7 @@ public class AnimationRouter : IRouter
     private IEnumerator PlayStartShotAnimation(AbstractEntity obj, AnimationData data)
     {
         Debug.Log("START SHOOT!");
-        Transform armWithGun = obj.ArmWithGun;
+        Transform armWithGun = obj.ArmWithGun.transform;
     
         // Запоминаем исходные позицию и вращение
 
@@ -56,7 +56,7 @@ public class AnimationRouter : IRouter
     {
         Debug.Log("END SHOOT!");
 
-        Transform armWithGun = obj.ArmWithGun;
+        Transform armWithGun = obj.ArmWithGun.transform;
     
         // Запоминаем исходные позицию и вращение
         
@@ -70,7 +70,7 @@ public class AnimationRouter : IRouter
     {
         Debug.Log("SHOOTING!!!");
 
-        Transform armWithGun = obj.ArmWithGun;
+        Transform armWithGun = obj.ArmWithGun.transform;
     
         // Запоминаем исходные позицию и вращение
     
