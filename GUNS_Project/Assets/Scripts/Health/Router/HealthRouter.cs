@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class HealthRouter : IRouter
 {
+    private EntityHead _prefab;
+
+    private HealthWindow Window => UiController.Instance.GetWindow<HealthWindow>();
     
     public void Init()
     {
+        _prefab = FactoryController.Instance.FindPrefab<EntityHead>();
+        
         EntityController.Instance.Added += OnAdd;
         
         WaveController.Instance.Cleared += OnClear;
@@ -15,6 +20,7 @@ public class HealthRouter : IRouter
     private void OnClear()
     {
         EntityController.Instance.ClearAll();
+        Window.ClearAll();
     }
 
     private void OnAdd(AbstractEntity obj)
@@ -43,6 +49,8 @@ public class HealthRouter : IRouter
         
         if (entity is not PlayerView)
         {
+            EntityHead entityHead = Window.CreateEntityHead(_prefab, entity.transform);
+            
             Object.Destroy(entity.gameObject);
             EntityController.Instance.RemoveEntity(entity);
         }
