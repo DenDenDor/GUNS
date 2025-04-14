@@ -5,6 +5,8 @@ using System.Linq;
 
 public class InventoryController : MonoBehaviour
 {
+    float _additionalHeight;
+
     private List<AbstractCurrencyPickUp> _pickUps = new();
     
     private static InventoryController _instance;
@@ -30,7 +32,10 @@ public class InventoryController : MonoBehaviour
     public int GoldCount => Count<GoldPickUp>();
     public int SilverCount => Count<SilverPickUp>();
 
+
     public Transform ResourcePoint => WaveController.Instance.GenerateWaveInfo().ResourcePoint;
+
+    public event Action UpdatedCount;
 
     private void Awake()
     {
@@ -43,11 +48,23 @@ public class InventoryController : MonoBehaviour
         _instance = this;
     }
 
+    public void ClearAll()
+    {
+        _pickUps.Clear();
+    }
+
     public void AddPickUp(AbstractCurrencyPickUp currencyPickUp)
     {
         _pickUps.Add(currencyPickUp);
-        
+
+        if (_additionalHeight == 0)
+        {
+            _additionalHeight = _pickUps.FirstOrDefault().GetComponentInChildren<MeshRenderer>().bounds.size.y;
+        }
+
         currencyPickUp.transform.SetParent(EntityController.Instance.Player.CurrencyPoint);
+        currencyPickUp.transform.localRotation = Quaternion.identity;
+        currencyPickUp.transform.localScale = Vector3.one;
 
         UpdatePosition();
     }
@@ -62,8 +79,10 @@ public class InventoryController : MonoBehaviour
         {
             item.transform.localPosition = new Vector3(0, height, 0);
 
-            height += 0.3f;
+            height += _additionalHeight;
         }
+        
+        UpdatedCount?.Invoke();
     }
 
     public void TakeGold()

@@ -12,8 +12,6 @@ public class EnemyRouter : IRouter
     {
         _prefab = Resources.Load<EnemyView>("Prefabs/Enemy");
         
-        CreateEnemy();
-
         WaveController.Instance.StartedNewWave += CreateEnemy;
 
         UpdateController.Instance.Add(OnUpdate);

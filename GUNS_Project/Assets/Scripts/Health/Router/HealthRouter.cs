@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class HealthRouter : IRouter
 {
+    private EntityHead _prefab;
+
+    private HealthWindow Window => UiController.Instance.GetWindow<HealthWindow>();
     
     public void Init()
     {
+        _prefab = FactoryController.Instance.FindPrefab<EntityHead>();
+        
         EntityController.Instance.Added += OnAdd;
         
         WaveController.Instance.Cleared += OnClear;
@@ -15,6 +20,7 @@ public class HealthRouter : IRouter
     private void OnClear()
     {
         EntityController.Instance.ClearAll();
+        Window.ClearAll();
     }
 
     private void OnAdd(AbstractEntity obj)
@@ -24,6 +30,10 @@ public class HealthRouter : IRouter
         if (obj is SoldierView)
         {
             value = 50;
+        }
+        else if(obj is PlayerView)
+        {
+            value = 100;
         }
         
         HealthModel health = new HealthModel(value);
@@ -43,8 +53,14 @@ public class HealthRouter : IRouter
         
         if (entity is not PlayerView)
         {
+            EntityHead entityHead = Window.CreateEntityHead(_prefab, entity.transform);
+            
             Object.Destroy(entity.gameObject);
             EntityController.Instance.RemoveEntity(entity);
+        }
+        else
+        {
+            HealthController.Instance.DeathPlayer();
         }
 
         Vector3 position = entity.transform.position;
@@ -64,6 +80,11 @@ public class HealthRouter : IRouter
 
     private void OnTakenDamage(HealthModel healthModel)
     {
+        if (HealthController.Instance.GetByHealth(healthModel) is PlayerView && healthModel.Health < 25)
+        {
+            HealthController.Instance.ShowLowPlayerHealth();
+        }
+        
         HealthController.Instance.GetByHealth(healthModel).Health =  (int) healthModel.Health;
     }
 

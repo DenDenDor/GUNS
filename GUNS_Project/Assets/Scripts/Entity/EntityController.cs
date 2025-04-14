@@ -101,4 +101,10 @@ public class EntityController : MonoBehaviour
         
         _entities.Clear();
     }
+
+
+    public void CreateEntityHead(EntityHead prefab, Transform entityTransform)
+    {
+        
+    }
 }

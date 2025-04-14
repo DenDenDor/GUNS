@@ -67,12 +67,6 @@ public class PressurePlateController : MonoBehaviour
 
     public void Register(Transform point, AbstractPressurePlateView plate)
     {
-        Debug.Log(_pressurePlateViewsByPoints.Count + " HOW MANY ADD" + point);
-
-        if (_pressurePlateViewsByPoints.ContainsKey(point))
-        {
-            //            Debug.Log("ERROR IT HERE!!! " + point.name + "  PARENT IS " + point.GetComponentsInParent<Transform>().Skip(1).FirstOrDefault().name);
-        }
         _pressurePlateViewsByPoints.Add(point, plate);
     }
 

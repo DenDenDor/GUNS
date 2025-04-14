@@ -15,7 +15,7 @@ public class EnemyWindow : EntityWindow
     
     public EnemyView CreateEnemy(EnemyView view, EntityModel model, Transform point)
     {
-        EnemyView enemy = Instantiate(view, point.position, Quaternion.identity);
+        EnemyView enemy = CreatePrefab(view, point.position);
 
         Add(enemy, model);
         

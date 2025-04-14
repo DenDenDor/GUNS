@@ -1,12 +1,44 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ProgressBarView : MonoBehaviour
 {
-    [SerializeField] private Slider _bar;
+    [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private float _maxLeft = 230.44f;
+    [SerializeField] private float _animationSpeed = 1f;
 
-    public void UpdateBar(float value)
+    private Coroutine _currentCoroutine;
+
+    public void UpdateBar(float targetX)
     {
-        _bar.value = value;
+        if (_currentCoroutine != null)
+            StopCoroutine(_currentCoroutine);
+
+        _currentCoroutine = StartCoroutine(AnimateBar(targetX));
+    }
+
+    public void UpdateLevel(int level)
+    {
+        _text.text = $"Level {level}";
+    }
+
+    private IEnumerator AnimateBar(float targetX)
+    {
+        targetX = Mathf.Clamp01(targetX);
+        float startLeft = _rectTransform.offsetMin.x;
+        float targetLeft = Mathf.Lerp(0f, _maxLeft, targetX);
+        float progress = 0f;
+
+        while (progress < 1f)
+        {
+            progress += Time.deltaTime * _animationSpeed;
+            float currentLeft = Mathf.Lerp(startLeft, targetLeft, progress);
+            _rectTransform.offsetMin = new Vector2(currentLeft, _rectTransform.offsetMin.y);
+            yield return null;
+        }
+
+        _rectTransform.offsetMin = new Vector2(targetLeft, _rectTransform.offsetMin.y);
     }
 }

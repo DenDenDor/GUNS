@@ -31,6 +31,8 @@ public class RotateForwardModel : IRotation
         }
         
         _previousPosition = _transform().position;
+        
+        currentRotation = Quaternion.Euler(_transform().eulerAngles.x,currentRotation.eulerAngles.y, currentRotation.eulerAngles.z);
 
         return currentRotation;
     }

@@ -3,7 +3,8 @@ using System;
 
 public class BarrackController : MonoBehaviour
 {
-    public event Action<Transform> Created;
+    public event Action<Transform> CreatedSoldier;
+    public event Action<Transform> CreatedTank;
     
     private static BarrackController _instance;
 
@@ -36,8 +37,16 @@ public class BarrackController : MonoBehaviour
         _instance = this;
     }
 
-    public void Create(Transform point)
+    public void Create(Transform point, BuildingType type)
     {
-        Created?.Invoke(point);
+        switch (type)
+        {
+            case BuildingType.Tank:
+                CreatedTank?.Invoke(point);
+                break;
+            case BuildingType.Barrack:
+                CreatedSoldier?.Invoke(point);
+                break;
+        }
     }
 }

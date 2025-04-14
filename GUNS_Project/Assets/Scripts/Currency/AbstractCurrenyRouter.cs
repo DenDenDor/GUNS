@@ -20,7 +20,6 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         }
     }
 
-    protected abstract string PathToPrefab { get; }
     protected abstract bool IsAbleToBuy { get; }
 
     protected abstract void Buy();
@@ -29,7 +28,7 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
 
     protected U Window => UiController.Instance.GetWindow<U>();
 
-    protected T Prefab => Resources.Load<T>(PathToPrefab);
+    protected T Prefab => FactoryController.Instance.FindPrefab<T>();
 
     public abstract void Init();
     

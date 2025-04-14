@@ -60,7 +60,10 @@ public class CurrencyController : MonoBehaviour
     {
         for (int i = 0; i < _pickUps.Count; i++)
         {
-            Destroy(_pickUps[i].gameObject);
+            if (_pickUps[i])
+            {
+                Destroy(_pickUps[i].gameObject);
+            }
         }
         
         _pickUps.Clear();

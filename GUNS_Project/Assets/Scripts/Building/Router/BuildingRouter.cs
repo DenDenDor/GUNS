@@ -10,13 +10,12 @@ public class BuildingRouter : IRouter
     
     public void Init()
     {
-        CreateBuildings();
+        WaveController.Instance.Cleared += OnClear;
+        WaveController.Instance.StartedNewWave += CreateBuildings;
 
         Building.GeneratedPoints += GeneratePoints;
-        
-        UpdateController.Instance.Add(OnUpdate);
 
-        WaveController.Instance.Cleared += OnClear;
+        UpdateController.Instance.Add(OnUpdate);
     }
 
     private void CreateBuildings()
@@ -43,9 +42,10 @@ public class BuildingRouter : IRouter
                 case BuildingType.NextLevel:
                     type = PressurePlateType.Gold;
                     price = 10;
+                    Debug.Log("tjfhna  " + price);
                     break;
                 default:
-                    type = PressurePlateType.Gold;
+                    type = PressurePlateType.Silver;
                     break;
             }
             

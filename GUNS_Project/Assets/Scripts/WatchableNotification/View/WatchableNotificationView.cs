@@ -7,6 +7,7 @@ public class WatchableNotificationView : MonoBehaviour
 {
   [SerializeField] private TextMeshProUGUI _text;
   [SerializeField] private Button _button;
+  [SerializeField] private Image _bar;
 
   public event Action<WatchableNotificationView> Clicked;
   
@@ -18,5 +19,10 @@ public class WatchableNotificationView : MonoBehaviour
   public void UpdateInfo(WatchableReward watchableReward)
   {
     _text.text = watchableReward.Amount.ToString();
+  }
+
+  public void UpdateBar(float fillAmount)
+  {
+    _bar.fillAmount = fillAmount;
   }
 }

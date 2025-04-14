@@ -6,10 +6,12 @@ public class PlayerWindow : EntityWindow
 {
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private float _speed;
+    [SerializeField] private float _bulletSpeed = 3; 
     [SerializeField] private float _rotationSpeed = 4;
     public float Speed => _speed;
 
     public float RotationSpeed => _rotationSpeed;
+    public float BulletSpeed => _bulletSpeed;
 
     public override void Init()
     {
@@ -18,7 +20,7 @@ public class PlayerWindow : EntityWindow
 
     public PlayerView CreatePlayer(PlayerView view, Action<PlayerView> playerView, PlayerModel model)
     {
-        PlayerView created = Instantiate(view, _spawnPoint.position, quaternion.identity);
+        PlayerView created = CreatePrefab(view, _spawnPoint.position);
 
         playerView(created);
         

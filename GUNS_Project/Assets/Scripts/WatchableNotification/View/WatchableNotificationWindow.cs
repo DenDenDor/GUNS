@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WatchableNotificationWindow : AbstractWindowUi
+public class WatchableNotificationWindow : AbstractFactoryWindow
 {
     [SerializeField] private Transform _point;
 
@@ -16,7 +16,7 @@ public class WatchableNotificationWindow : AbstractWindowUi
 
     public WatchableNotificationView Create(WatchableNotificationView prefab, WatchableReward model)
     {
-        WatchableNotificationView view = Instantiate(prefab, _point);
+        WatchableNotificationView view = CreatePrefab(prefab, _point);
         
         _viewsByModels.Add(view, model);
 

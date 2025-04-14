@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class CameraRouter : IRouter
 {
+    private GameObject _go;
+    
     private CameraWindow CameraWindow => UiController.Instance.GetWindow<CameraWindow>();
 
     public void Init()
     {
+        _go = new GameObject("LookForPlayer");
         
         CameraController.Instance.Init(CameraWindow, new CameraMovement(CameraWindow.CurrentCamera.transform, GeneratePlayer, 
             () => CameraWindow.Speed, 
             () => CameraWindow.Offset,
             () => CameraWindow.SmoothTime));
 
-
-        StartInitCamera();
-
+        
         WaveController.Instance.StartedNewWave += StartInitCamera;
         
         UpdateController.Instance.Add(OnUpdate);
@@ -23,7 +24,7 @@ public class CameraRouter : IRouter
 
     private void StartInitCamera()
     {
-        CameraWindow.UpdateLookAt(EntityController.Instance.Player.LookAtTransform);
+        CameraWindow.UpdateLookAt(_go.transform);
     }
 
     private Transform GeneratePlayer()
@@ -40,6 +41,12 @@ public class CameraRouter : IRouter
 
     private void OnUpdate()
     {
+        PlayerView player = EntityController.Instance.Player;
+        
+        if (player != null)
+        {
+            _go.transform.position = player.LookAtTransform.position;
+        }
     }
 
     public void Exit()

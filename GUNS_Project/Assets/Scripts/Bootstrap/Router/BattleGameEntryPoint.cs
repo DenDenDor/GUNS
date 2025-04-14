@@ -5,11 +5,15 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
 {
     protected override List<IRouter> Routers => new List<IRouter>()
     {
+        new FactoryRouter(),
+        new AnimationRouter(),
+        new TextMeshProRaycastRouter(),
         new UpdateRouter(),
         new WaveRouter(),
         new AttackRouter(),
         new HealthRouter(),
         new PressurePlateRouter(),
+        new HealHealthRouter(),
         new BuildingRouter(),
         new BattleRouter(),
         new LevelRouter(),
@@ -20,11 +24,13 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new GoldRouter(),
         new PlayerRouter(),
         new RotateRouter(),
+        new UpgradeRouter(),
         new CameraRouter(),
         new InventoryRouter(),
         new MovementRouter(),
         new EnemyRouter(),
         new ProgressBarRouter(),
         new SoldierRouter(),
+        new TankRouter(),
     };
 }

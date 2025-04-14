@@ -10,15 +10,21 @@ public class ProgressBarRouter : IRouter
     
     public void Init()
     {
-        ProgressBarView prefab = Resources.Load<ProgressBarView>("Prefabs/ProgressBarView");
+        ProgressBarView prefab = FactoryController.Instance.FindPrefab<ProgressBarView>();
         
         _view = Window.Create(prefab);
+        
+        EntityController.Instance.Removed += OnRemoved;
+        
+        WaveController.Instance.StartedNewWave += OnStartedNewWave;
+    }
 
+    private void OnStartedNewWave()
+    {
         _maxEnemies = EntityController.Instance.Enemies.Count;
         
         _view.UpdateBar(GenerateValue());
-        
-        EntityController.Instance.Removed += OnRemoved;
+        _view.UpdateLevel(WaveController.Instance.GenerateWaveInfo().IdLevel);
     }
 
     private void OnRemoved()
@@ -28,7 +34,9 @@ public class ProgressBarRouter : IRouter
 
     private float GenerateValue()
     {
-        return ((float) _maxEnemies - EntityController.Instance.Enemies.Count) / _maxEnemies;
+        int leftEnemies = _maxEnemies - EntityController.Instance.Enemies.Count;
+        
+        return (float) leftEnemies / _maxEnemies;
     }
     public void Exit()
     {

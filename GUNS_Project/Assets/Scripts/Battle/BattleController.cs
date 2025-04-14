@@ -3,6 +3,10 @@ using System;
 
 public class BattleController : MonoBehaviour
 {
+    private bool _isMoving;
+
+    public bool IsMoving => _isMoving;
+
     private static BattleController _instance;
 
     public static BattleController Instance
@@ -39,5 +43,15 @@ public class BattleController : MonoBehaviour
     public void Restart()
     {
         Restarted?.Invoke();
+    }
+
+    public void StartMoving()
+    {
+        _isMoving = true;
+    }
+
+    public void StopMoving()
+    {
+        _isMoving = false;
     }
 }
