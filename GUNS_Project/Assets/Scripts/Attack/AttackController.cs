@@ -15,7 +15,7 @@ public class AttackController : MonoBehaviour
     private readonly Dictionary<AbstractEntity, AttackState> _entitiesInCooldown = new();
 
     public List<AbstractEntity> Entities =>
-        _entitiesInCooldown.Where(x => x.Value == AttackState.InProcess).Select(x => x.Key).ToList();
+        _entitiesInCooldown.Where(x => x.Key != null && x.Value == AttackState.InProcess).Select(x => x.Key).ToList();
     
     private static AttackController _instance;
 
@@ -48,6 +48,8 @@ public class AttackController : MonoBehaviour
         _instance = this;
     }
     
+    public event Action<AbstractEntity> Attacked;
+    
     public void UpdateAttack(AbstractEntity entity, IAttack attack)
     {
         if (_entitiesInCooldown.ContainsKey(entity) && (_entitiesInCooldown[entity] == AttackState.InProcess ||
@@ -67,6 +69,8 @@ public class AttackController : MonoBehaviour
             return;
 
         _entitiesInCooldown[entity] = AttackState.Activate;
+        
+        Attacked?.Invoke(entity);
         
         CoroutineController.Instance.RunCoroutine(Cooldown(entity));
     }

@@ -1,15 +1,18 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 public class WatchableNotificationRouter : IRouter
 {
     private WatchableNotificationView _prefab;
     private WatchableNotificationWindow Window => UiController.Instance.GetWindow<WatchableNotificationWindow>();
-        
+    
     public void Init()
     {
-        _prefab = FactoryController.Instance.FindPrefab<WatchableNotificationView>(); // Resources.Load<WatchableNotificationView>("Prefabs/WatchableNotification");
+        _prefab = FactoryController.Instance.FindPrefab<WatchableNotificationView>();
 
         WatchableReward watchableReward = new WatchableReward(10, RewardType.Gold);
 
@@ -18,6 +21,37 @@ public class WatchableNotificationRouter : IRouter
         view.UpdateInfo(watchableReward);
         
         view.Clicked += OnClicked;
+        
+        UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void OnUpdate()
+    {
+        for (int i = 0; i < Window.ViewsByModels.Count; i++)
+        {
+            KeyValuePair<WatchableNotificationView, WatchableReward> pair = Window.ViewsByModels.ToArray()[i];
+            
+            WatchableReward reward = pair.Value;
+            WatchableNotificationView view = pair.Key;
+
+            if (view != null)
+            {
+                reward.DecreaseTime();
+
+                float fillAmount = (float) reward.CurrentTime / reward.MaxTime;
+            
+                if (reward.CurrentTime < 0)
+                {
+                    view.Clicked -= OnClicked;
+
+                    Window.Remove(view);
+                }
+                else
+                {
+                    view.UpdateBar(fillAmount);
+                }
+            }
+        }
     }
 
     private void OnClicked(WatchableNotificationView view)

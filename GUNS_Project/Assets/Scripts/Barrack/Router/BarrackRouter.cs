@@ -11,11 +11,17 @@ public class BarrackRouter : IRouter
     {
         _prefab = Resources.Load<BarrackView>("Prefabs/Barrack");
 
-        OnSubscribePoins(Building.BuildingPoints);
+        WaveController.Instance.StartedNewWave += StartNewWave;
+
         
         BuildingController.Instance.GeneratedPoints += OnSubscribePoins; 
         
         UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void StartNewWave()
+    {
+        OnSubscribePoins(Building.BuildingPoints);
     }
 
     private void OnSubscribePoins(IEnumerable<BuildingPoint> buildingPoints)

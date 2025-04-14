@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPressurePlateView>
 {
-    protected override string PathToPrefab => "Prefabs/Gold";
     protected override bool IsAbleToBuy => Inventory.GoldCount > 0;
     
     private InventoryController Inventory => InventoryController.Instance;
@@ -17,10 +16,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     
     public override void Init()
     {
-        for (int i = 0; i < 20; i++)
-        {
-            CreateTo(Inventory.ResourcePoint.position);
-        }    
+        WaveController.Instance.StartedNewWave += OnStartedNewWave;
         
         Currency.CreatedGold += OnCreatedGold;
         Currency.InitGold += CreateTo;
@@ -30,11 +26,20 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
             OnCreatedGold(silver);
         }
         
-        SubscribePlates();
         
         BuildingController.Instance.GeneratedPoints += OnGeneratedPoints; 
     }
-    
+
+    private void OnStartedNewWave()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            CreateTo(Inventory.ResourcePoint.position);
+        }
+        
+        SubscribePlates();
+    }
+
     private void CreateTo(Vector3 position)
     {
         Window.CreateCurrency(Prefab, position);

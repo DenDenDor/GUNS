@@ -1,9 +1,11 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class ProgressBarView : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
+    [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private float _maxLeft = 230.44f;
     [SerializeField] private float _animationSpeed = 1f;
 
@@ -15,6 +17,11 @@ public class ProgressBarView : MonoBehaviour
             StopCoroutine(_currentCoroutine);
 
         _currentCoroutine = StartCoroutine(AnimateBar(targetX));
+    }
+
+    public void UpdateLevel(int level)
+    {
+        _text.text = $"Level {level}";
     }
 
     private IEnumerator AnimateBar(float targetX)

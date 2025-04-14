@@ -29,9 +29,20 @@ public class BulletRouter : IRouter
         {
             return;
         }
-        
-        BulletView view = Window.Create(_prefab, thisEntity.transform);
-        IMovement movement = new ToMoveTowardsMovement(speed, view.transform, toAttackEntity.transform);
+
+        BulletView view = null;
+        IMovement movement = null;
+
+        if (thisEntity is PlayerView)
+        {
+            view = Window.Create(_prefab, thisEntity.ArmWithGun.ShotPoint);
+            movement = new ToMoveTowardsMovement(speed, view.transform, toAttackEntity.transform);
+        }
+        else
+        {
+            view = Window.Create(_prefab, thisEntity.transform);
+            movement = new ToMoveTowardsMovement(speed, view.transform, toAttackEntity.transform);
+        }
 
         BulletModel model = new BulletModel();
 

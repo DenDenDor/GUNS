@@ -26,6 +26,9 @@ public class UpdateController : MonoBehaviour
         }
     }
 
+    public event Action StoppedTime;
+    public event Action ContinueMovingTime;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -50,4 +53,13 @@ public class UpdateController : MonoBehaviour
         _actions.Add(action);
     }
 
+    public void StopTime()
+    {
+        StoppedTime?.Invoke();
+    }    
+    
+    public void ContinueTime()
+    {
+        ContinueMovingTime?.Invoke();
+    }
 }

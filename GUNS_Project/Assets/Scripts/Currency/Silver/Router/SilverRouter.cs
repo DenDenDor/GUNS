@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, SilverPressurePlateView>
 {
-    protected override string PathToPrefab => "Prefabs/Silver";
-
     protected override bool IsAbleToBuy => Inventory.SilverCount > 0;
 
     private InventoryController Inventory => InventoryController.Instance;
@@ -17,10 +15,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
 
     public override void Init()
     {
-        for (int i = 0; i < 6; i++)
-        {
-            CreateTo(Inventory.ResourcePoint.position);
-        }
+        WaveController.Instance.StartedNewWave += OnStartedNewWave;
         
         Currency.CreatedSilver += OnCreatedSilver;
         Currency.InitSilver += CreateTo;
@@ -30,9 +25,18 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
             OnCreatedSilver(silver);
         }
         
-        SubscribePlates();
         
         BuildingController.Instance.GeneratedPoints += OnGeneratedPoints; 
+    }
+
+    private void OnStartedNewWave()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            CreateTo(Inventory.ResourcePoint.position);
+        }
+        
+        SubscribePlates();
     }
 
     private void CreateTo(Vector3 position)
