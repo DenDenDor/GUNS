@@ -31,7 +31,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
 
     private void OnStartedNewWave()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 32; i++)
         {
             CreateTo(Inventory.ResourcePoint.position);
         }

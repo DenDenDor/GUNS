@@ -1,0 +1,13 @@
+using UnityEngine;
+using UnityEngine.AI;
+
+public class TankView : AbstractEntity
+{
+    [SerializeField] private NavMeshAgent _navMeshAgent;
+
+    public override void MoveTo(Vector3 getPosition)
+    {
+        _navMeshAgent.SetDestination(getPosition);
+    }
+
+}

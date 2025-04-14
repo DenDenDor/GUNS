@@ -14,7 +14,7 @@ public class WatchableNotificationRouter : IRouter
     {
         _prefab = FactoryController.Instance.FindPrefab<WatchableNotificationView>();
 
-        WatchableReward watchableReward = new WatchableReward(10, RewardType.Gold);
+        WatchableReward watchableReward = new WatchableReward(10, RewardType.Silver);
 
         WatchableNotificationView view = Window.Create(_prefab, watchableReward);
 
