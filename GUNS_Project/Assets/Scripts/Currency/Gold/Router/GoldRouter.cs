@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPressurePlateView>
 {
-    protected override string PathToPrefab => "Prefabs/Gold";
     protected override bool IsAbleToBuy => Inventory.GoldCount > 0;
     
     private InventoryController Inventory => InventoryController.Instance;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, SilverPressurePlateView>
 {
-    protected override string PathToPrefab => "Prefabs/Silver";
-
     protected override bool IsAbleToBuy => Inventory.SilverCount > 0;
 
     private InventoryController Inventory => InventoryController.Instance;
