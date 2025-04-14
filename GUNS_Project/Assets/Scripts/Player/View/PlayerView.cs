@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerView : AbstractEntity, IRotatableView
@@ -17,5 +18,19 @@ public class PlayerView : AbstractEntity, IRotatableView
     public void Rotate(Quaternion toRotate)
     {
         _child.transform.rotation = toRotate;
+    }
+
+    public void UpdateTriggerView()
+    {
+        Collider myCollider = GetComponentInChildren<PlayerTriggerView>().GetComponent<Collider>();
+        
+        StartCoroutine(Wait(myCollider));
+    }
+
+    private IEnumerator Wait(Collider myCollider)
+    {
+        myCollider.enabled = false;
+        yield return new WaitForEndOfFrame();
+        myCollider.enabled = true;
     }
 }
