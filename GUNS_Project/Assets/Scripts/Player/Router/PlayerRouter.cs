@@ -17,6 +17,44 @@ public class PlayerRouter : IRouter
         _prefab = Resources.Load<PlayerView>("Prefabs/Player");
         
         WaveController.Instance.StartedNewWave += OnStartNewWave;
+        
+        UpdateController.Instance.Add(OnUpdate);
+    }
+
+    private void OnUpdate()
+    {
+        var enemies = EntityController.Instance.Enemies;
+
+        if (_view == null)
+        {
+            return;
+        }
+        
+        Vector3 currentPosition = _view.transform.position;
+                
+        AbstractEntity nearestAlly = null;
+        float minDistanceSqr = 1000;
+
+        foreach (var enemy in enemies)
+        {
+            if (enemy == null) continue;
+
+            float distanceSqr = (currentPosition - enemy.transform.position).sqrMagnitude;
+            if (distanceSqr < minDistanceSqr)
+            {
+                minDistanceSqr = distanceSqr;
+                nearestAlly = enemy;
+            }
+        }
+
+        if (nearestAlly != null)
+        {
+            if (minDistanceSqr < 25)
+            {
+                Debug.Log("SHOOT!!!");
+                AttackController.Instance.UpdateAttack(_view, new ShootAttack(() => Window.Damage, () => Window.BulletSpeed, _view, nearestAlly));
+            }
+        }
     }
 
     private void OnStartNewWave()
