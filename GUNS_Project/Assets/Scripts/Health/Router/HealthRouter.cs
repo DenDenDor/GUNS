@@ -46,6 +46,10 @@ public class HealthRouter : IRouter
             Object.Destroy(entity.gameObject);
             EntityController.Instance.RemoveEntity(entity);
         }
+        else
+        {
+            HealthController.Instance.DeathPlayer();
+        }
 
         Vector3 position = entity.transform.position;
 
@@ -64,6 +68,11 @@ public class HealthRouter : IRouter
 
     private void OnTakenDamage(HealthModel healthModel)
     {
+        if (HealthController.Instance.GetByHealth(healthModel) is PlayerView && healthModel.Health < 25)
+        {
+            HealthController.Instance.ShowLowPlayerHealth();
+        }
+        
         HealthController.Instance.GetByHealth(healthModel).Health =  (int) healthModel.Health;
     }
 

@@ -9,9 +9,7 @@ public class WatchableNotificationRouter : IRouter
 {
     private WatchableNotificationView _prefab;
     private WatchableNotificationWindow Window => UiController.Instance.GetWindow<WatchableNotificationWindow>();
-
-    private Dictionary<WatchableNotificationView, WatchableReward> _viewsByModels = new();
-        
+    
     public void Init()
     {
         _prefab = FactoryController.Instance.FindPrefab<WatchableNotificationView>();
@@ -24,35 +22,34 @@ public class WatchableNotificationRouter : IRouter
         
         view.Clicked += OnClicked;
         
-        _viewsByModels.Add(view, watchableReward);
-
         UpdateController.Instance.Add(OnUpdate);
     }
 
     private void OnUpdate()
     {
-        for (int i = 0; i < _viewsByModels.Count; i++)
+        for (int i = 0; i < Window.ViewsByModels.Count; i++)
         {
-            KeyValuePair<WatchableNotificationView, WatchableReward> pair = _viewsByModels.ToArray()[i];
+            KeyValuePair<WatchableNotificationView, WatchableReward> pair = Window.ViewsByModels.ToArray()[i];
             
             WatchableReward reward = pair.Value;
             WatchableNotificationView view = pair.Key;
 
-            reward.DecreaseTime();
+            if (view != null)
+            {
+                reward.DecreaseTime();
 
-            float fillAmount = (float) reward.CurrentTime / reward.MaxTime;
+                float fillAmount = (float) reward.CurrentTime / reward.MaxTime;
             
-            if (reward.CurrentTime < 0)
-            {
-                view.Clicked -= OnClicked;
+                if (reward.CurrentTime < 0)
+                {
+                    view.Clicked -= OnClicked;
 
-                _viewsByModels.Remove(view);
-
-                Object.Destroy(view.gameObject);
-            }
-            else
-            {
-                view.UpdateBar(fillAmount);
+                    Window.Remove(view);
+                }
+                else
+                {
+                    view.UpdateBar(fillAmount);
+                }
             }
         }
     }

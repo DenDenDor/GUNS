@@ -7,6 +7,7 @@ public class HealthModel
    public float MaxHealth;
 
    public event Action<HealthModel> TakenDamage;
+   public event Action<HealthModel> Healed;
    public event Action<HealthModel> Death;
 
    public HealthModel(float health)
@@ -24,5 +25,11 @@ public class HealthModel
       {
          Death?.Invoke(this);
       }
+   }
+
+   public void ResetHealth()
+   {
+      Health = MaxHealth;
+      Healed?.Invoke(this);
    }
 }

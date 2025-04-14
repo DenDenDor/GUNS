@@ -5,6 +5,8 @@ using System.Linq;
 
 public class HealthController : MonoBehaviour
 {
+    private bool _isShownToPlayer;
+    
     private Dictionary<AbstractEntity, HealthModel> _entitiesByHealth = new();
 
     private static HealthController _instance;
@@ -27,6 +29,8 @@ public class HealthController : MonoBehaviour
         }
     }
 
+    public event Action LowHealthPlayer;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -36,6 +40,20 @@ public class HealthController : MonoBehaviour
         }
         
         _instance = this;
+    }
+
+    public void ShowLowPlayerHealth()
+    {
+        if (_isShownToPlayer == false)
+        {
+            _isShownToPlayer = true;
+            LowHealthPlayer?.Invoke();
+        }
+    }
+
+    public void DeathPlayer()
+    {
+        _isShownToPlayer = false;
     }
 
     public AbstractEntity GetByHealth(HealthModel obj)
@@ -53,5 +71,10 @@ public class HealthController : MonoBehaviour
     public void Add(AbstractEntity abstractEntity, HealthModel model)
     {
         _entitiesByHealth.Add(abstractEntity, model);
+    }
+
+    public void Heal(PlayerView player)
+    {
+        GetByEntity(player).ResetHealth();
     }
 }
