@@ -5,18 +5,13 @@ using UnityEngine;
 public class SoldierRouter : IRouter
 {
     private readonly Dictionary<SoldierView, IMovement> _soldiers = new();
-    private Coroutine _coroutine;
-    private bool _isMoving;
     private int _freePointIndex;
     private SoldierView _prefab;
 
     private SoldierWindow Window => UiController.Instance.GetWindow<SoldierWindow>();
 
     private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
-
-    private AbstractPressurePlateView Plate =>
-        PressurePlateController.Instance.PressurePlateViewsByPoints[AllyPoint.AttackButton];
-
+    
     public void Init()
     {
         _prefab = Resources.Load<SoldierView>("Prefabs/Soldier");
@@ -26,36 +21,18 @@ public class SoldierRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
         
-        WaveController.Instance.StartedNewWave += OnStartNewWave;
     }
-
-    private void SubscribePlate()
-    {
-        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
-        
-        Plate.UpdateBar(0);
-
-        Plate.Entered += OnEntered;
-        Plate.Exited += OnExited;
-    }
-
-    private void OnStartNewWave()
-    {
-        SubscribePlate();
-    }
-
+    
     private void OnRestarted()
     {
-        _isMoving = false;
         _freePointIndex = 0;
-        Plate.UpdateBar(0);
     }
 
     private void OnCreated(Transform point)
     {
         List<Transform> points = AllyPoint.MoveToPoints;
         
-        if (_freePointIndex >= points.Count || _isMoving)
+        if (_freePointIndex >= points.Count || BattleController.Instance.IsMoving)
         {
             return;
         }
@@ -71,55 +48,13 @@ public class SoldierRouter : IRouter
         model.Movement = movement;
 
         _freePointIndex++;
-
-    }
-
-    private void OnExited()
-    {
-        if (_isMoving == false)
-        {
-            CoroutineController.Instance.StopCoroutine(_coroutine);
-        
-            Plate.UpdateBar(0);
-        }
-    }
-
-    private IEnumerator Cooldown()
-    {
-        float fillness = 0;
-        float time = 0;
-        
-        while (time < 1)
-        {
-            time += Time.deltaTime;
-            
-            Plate.UpdateBar(time);
-
-            yield return null;
-        }
-        
-        _isMoving = true;
-    }
-
-    private void OnEntered(AbstractPressurePlateView view)
-    {
-        if (_isMoving == false)
-        {
-            _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown());
-        }
     }
 
     private void OnUpdate()
     {
-        if (_isMoving)
+        if (BattleController.Instance.IsMoving)
         {
             var enemies = EntityController.Instance.Enemies;
-
-            if (enemies.Count == 0)
-            {
-                _isMoving = false;
-                return;
-            }
 
             foreach (var view in EntityController.Instance.Soldiers)
             {
@@ -176,6 +111,6 @@ public class SoldierRouter : IRouter
 
     public void Exit()
     {
-        Plate.Entered -= OnEntered;
+        
     }
 }

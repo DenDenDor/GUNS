@@ -31,5 +31,6 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new EnemyRouter(),
         new ProgressBarRouter(),
         new SoldierRouter(),
+        new TankRouter(),
     };
 }
