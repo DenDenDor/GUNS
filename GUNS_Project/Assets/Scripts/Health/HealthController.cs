@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -76,5 +77,14 @@ public class HealthController : MonoBehaviour
     public void Heal(PlayerView player)
     {
         GetByEntity(player).ResetHealth();
+
+        StartCoroutine(Cooldown());
+    }
+
+    private IEnumerator Cooldown()
+    {
+        yield return new WaitForEndOfFrame();
+        
+        _isShownToPlayer = false;
     }
 }
