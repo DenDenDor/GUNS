@@ -1779,7 +1779,7 @@ MonoBehaviour:
   _damage: 25
   _spawnPoint: {fileID: 1585628609}
   _speed: 6
-  _bulletSpeed: 3
+  _bulletSpeed: 30
   _rotationSpeed: 4
 --- !u!4 &622892878
 Transform:
