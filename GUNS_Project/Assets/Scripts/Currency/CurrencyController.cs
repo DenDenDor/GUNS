@@ -5,6 +5,9 @@ using System.Linq;
 
 public class CurrencyController : MonoBehaviour
 {
+    [SerializeField] private Sprite _goldSprite;
+    [SerializeField] private Sprite _silverSprite;
+    
     private List<AbstractCurrencyPickUp> _pickUps = new();
 
     public event Action<SilverPickUp> CreatedSilver;
@@ -18,7 +21,11 @@ public class CurrencyController : MonoBehaviour
     public List<SilverPickUp> Silvers => Get<SilverPickUp>();
     
     public List<GoldPickUp> Golds => Get<GoldPickUp>();
-    
+
+    public Sprite GoldSprite => _goldSprite;
+
+    public Sprite SilverSprite => _silverSprite;
+
     private static CurrencyController _instance;
 
     public static CurrencyController Instance

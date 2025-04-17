@@ -33,7 +33,7 @@ public class PressurePlateController : MonoBehaviour
         }
     }
 
-    public event Action<Transform, PressurePlateType> Created;
+    public event Action<Transform, PressurePlateType, BuildingType> Created;
     
     private void Awake()
     {
@@ -52,9 +52,9 @@ public class PressurePlateController : MonoBehaviour
         max = _startMaxPrice[plate];
     }
     
-    public void AddPressurePlate(Transform point, PressurePlateType type)
+    public void AddPressurePlate(Transform point, PressurePlateType type, BuildingType building)
     {
-        Created?.Invoke(point, type);
+        Created?.Invoke(point, type, building);
     }
 
     public void UpdateAllPrice(Transform point, int price)

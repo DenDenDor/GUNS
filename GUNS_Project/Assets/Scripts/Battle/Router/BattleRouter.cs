@@ -25,7 +25,7 @@ public class BattleRouter : IRouter
     }
     private void SubscribePlate()
     {
-        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
+        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp, BuildingType.Empty);
         
         Plate.UpdateBar(0);
 

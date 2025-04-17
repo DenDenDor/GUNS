@@ -17,30 +17,52 @@ public class PressurePlateRouter : IRouter
         PressurePlateController.Instance.ClearAll();
     }
 
-    private void OnCreated(Transform transform, PressurePlateType type)
+    private void OnCreated(Transform transform, PressurePlateType type, BuildingType buildingType)
     {
         AbstractPressurePlateView prefab = null;
+        AbstractPlateByBuilding buildingPlate = null;
+
+        switch (buildingType)
+        {
+            case BuildingType.Barrack:
+                buildingPlate = FactoryController.Instance.FindPrefab<BarrackPlate>();
+                break;
+            case BuildingType.NextLevel:
+                buildingPlate = FactoryController.Instance.FindPrefab<NextLevelPlate>();
+                break;
+            default:
+                buildingPlate = FactoryController.Instance.FindPrefab<EmptyPlate>();
+                break;
+        }
+
+        AbstractPlateByBuilding createdBuildingPlate = Object.Instantiate(buildingPlate, transform);
+        
+        createdBuildingPlate.transform.localRotation = Quaternion.Euler(90,0,0);
 
         switch (type)
         {
             case PressurePlateType.FillingUp:
-                prefab = Resources.Load<FillingUpPressurePlateView>("Prefabs/FillingUpPressurePlateView");
+                prefab = createdBuildingPlate.gameObject.AddComponent<FillingUpPressurePlateView>();
                 break;
             case PressurePlateType.Gold:
-                prefab = Resources.Load<GoldPressurePlateView>("Prefabs/GoldPressurePlateView");
+                prefab = createdBuildingPlate.gameObject.AddComponent<GoldPressurePlateView>();
                 break;
             case PressurePlateType.Silver:
-                prefab = Resources.Load<SilverPressurePlateView>("Prefabs/SilverPressurePlateView");
+                prefab = createdBuildingPlate.gameObject.AddComponent<SilverPressurePlateView>();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
+
+        BoxCollider boxCollider = createdBuildingPlate.gameObject.AddComponent<BoxCollider>();
+        boxCollider.isTrigger = true;
+        boxCollider.size = new Vector3(67, 95, 1);
+
+        // AbstractPressurePlateView plateView = null;
         
-        AbstractPressurePlateView plateView = Object.Instantiate(prefab, transform);
+        PressurePlateController.Instance.Register(transform, prefab);
         
-        PressurePlateController.Instance.Register(transform, plateView);
-        
-        plateView.FilledIn += OnFilledIn;
+        prefab.FilledIn += OnFilledIn;
     }
 
     private void OnFilledIn(AbstractPressurePlateView obj)
@@ -70,14 +92,6 @@ public class PressurePlateRouter : IRouter
             if (unblockingBuilding.Current.Point == plateTransform)
             {
                 BuildingController.Instance.GenerateNewBuilding(unblockingBuilding.BlockedPoints.Select(x=>x.Current));
-            
-                foreach (var blockedPoint in unblockingBuilding.BlockedPoints)
-                {
-                   // Debug.Log($"Unblocking building point at position: {blockedPoint.Current.Point.position}");
-                
-                    // For example:
-                    // blockedPoint.Current.Activate();
-                }
             
                 break;
             }

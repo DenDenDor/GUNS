@@ -13,7 +13,9 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     {
         Inventory.TakeGold();
     }
-    
+
+    protected override Sprite GetCurrencySprite => Currency.GoldSprite;
+
     public override void Init()
     {
         WaveController.Instance.StartedNewWave += OnStartedNewWave;

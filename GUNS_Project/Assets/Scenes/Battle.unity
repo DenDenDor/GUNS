@@ -5351,6 +5351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce213d713b23b6447bd3cc10059be2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goldSprite: {fileID: 21300000, guid: 42ffe7515a0d6bd49997a0d07f49c8a9, type: 3}
+  _silverSprite: {fileID: 21300000, guid: fb22caceac980db459430e19e73dc2cb, type: 3}
 --- !u!4 &1752666924
 Transform:
   m_ObjectHideFlags: 0

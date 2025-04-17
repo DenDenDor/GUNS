@@ -30,8 +30,10 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
 
     protected T Prefab => FactoryController.Instance.FindPrefab<T>();
 
+    protected abstract Sprite GetCurrencySprite { get; }
     public abstract void Init();
-    
+
+
     protected void OnPickedUp(AbstractCurrencyPickUp obj)
     {
         InventoryController.Instance.AddPickUp(obj);
@@ -51,10 +53,15 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         plate.Entered += OnEntered;
         plate.Exited += OnExited;
         plate.Reseted += () => OnReset(plate);
+
+        if (plate.TryGetComponent(out ICurrencyDisplay currencyDisplay))
+        {
+            currencyDisplay.DisplaySprite(GetCurrencySprite);
+        }
             
         OnReset(plate);
     }
-    
+
     protected void OnGeneratedPoints(IEnumerable<BuildingPoint> list)
     {
         foreach (var point in list)
