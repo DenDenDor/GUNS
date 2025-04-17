@@ -132,5 +132,19 @@ public class SDKMediator : MonoBehaviour
         defaultSaveData.Levels = value;
         _sdkAdapter.Save(defaultSaveData);
     }
+
+    public void SaveIsMusicTurnOn(bool value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.IsMusicTurnOn = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void SaveIsSoundTurnOn(bool value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.IsSoundTurnOn = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
 
 }
