@@ -7,4 +7,6 @@ public class SaveData
     [AutoGenerateSaveMethod] public float SoundValue = 0.5f;
     [AutoGenerateSaveMethod] public int Coins = 0;
     [AutoGenerateSaveMethod] public int Levels = 0;
+    [AutoGenerateSaveMethod] public bool IsMusicTurnOn = true;
+    [AutoGenerateSaveMethod] public bool IsSoundTurnOn = true;
 }

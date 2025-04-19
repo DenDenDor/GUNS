@@ -38,12 +38,15 @@ public class AttackRouter : IRouter
         
         foreach (var view in entities)
         {
-            EntityModel model = EntityController.Instance.FullEntities[view];
-
-            if (model.Attack != null && model.Attack.IsCooldown)
+            if (view != null)
             {
-                model.Attack.Attack();
-                AttackController.Instance.Attack(view);
+                EntityModel model = EntityController.Instance.FullEntities[view];
+
+                if (model.Attack != null && model.Attack.IsCooldown)
+                {
+                    model.Attack.Attack();
+                    AttackController.Instance.Attack(view);
+                }
             }
         }
     }

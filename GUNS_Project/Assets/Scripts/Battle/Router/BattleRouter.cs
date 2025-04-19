@@ -25,7 +25,7 @@ public class BattleRouter : IRouter
     }
     private void SubscribePlate()
     {
-        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp);
+        PressurePlateController.Instance.AddPressurePlate(AllyPoint.AttackButton, PressurePlateType.FillingUp, BuildingType.Empty);
         
         Plate.UpdateBar(0);
 
@@ -35,7 +35,7 @@ public class BattleRouter : IRouter
 
     private void OnRemoved()
     {
-        if (EntityController.Instance.FullEntities.Keys.Count(x=>x is SoldierView) == 0)
+        if (EntityController.Instance.FullEntities.Keys.Count(x=>x is SoldierView) == 0 || EntityController.Instance.Enemies.Count == 0)
         {
             BattleController.Instance.Restart();
             OnRestarted();

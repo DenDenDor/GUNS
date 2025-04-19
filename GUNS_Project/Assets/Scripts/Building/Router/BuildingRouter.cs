@@ -42,14 +42,13 @@ public class BuildingRouter : IRouter
                 case BuildingType.NextLevel:
                     type = PressurePlateType.Gold;
                     price = 10;
-                    Debug.Log("tjfhna  " + price);
                     break;
                 default:
                     type = PressurePlateType.Silver;
                     break;
             }
             
-            PressurePlateController.Instance.AddPressurePlate(point, type);
+            PressurePlateController.Instance.AddPressurePlate(point, type, item.Type);
             PressurePlateController.Instance.UpdateAllPrice(point, price);
         }
     }
@@ -73,5 +72,6 @@ public enum BuildingType
     Barrack,
     NextLevel,
     Armor,
-    Tank
+    Tank,
+    Empty
 }

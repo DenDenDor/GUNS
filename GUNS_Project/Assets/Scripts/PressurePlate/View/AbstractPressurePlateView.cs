@@ -15,7 +15,10 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     
     public void UpdateBar(float fillness)
     {
-        _bar.fillAmount = fillness;
+        if (_bar != null)
+        {
+            _bar.fillAmount = fillness;
+        }
 
         if (fillness == 1 && _isFilled == false)
         {

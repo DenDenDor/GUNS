@@ -5,6 +5,7 @@ using UnityEngine;
 public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, SilverPressurePlateView>
 {
     protected override bool IsAbleToBuy => Inventory.SilverCount > 0;
+    protected override Sprite GetCurrencySprite => Currency.SilverSprite;
 
     private InventoryController Inventory => InventoryController.Instance;
 

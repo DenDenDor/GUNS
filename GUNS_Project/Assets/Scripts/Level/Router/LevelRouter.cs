@@ -25,16 +25,29 @@ public class LevelRouter : IRouter
     {
         foreach (var model in Building.BuildingPoints.Where(x=>x.Type == BuildingType.NextLevel))
         {
-            PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point].FilledIn += OnFilledIn;
+            var plate = PressurePlateController.Instance.PressurePlateViewsByPoints[model.Point];
+
+            if (plate.TryGetComponent(out IValueDisplay valueDisplay))
+            {
+                valueDisplay.DisplayValue(_level);
+            }
+            
+            plate.FilledIn += OnFilledIn;
         }
     }
 
-    private void OnFilledIn(AbstractPressurePlateView obj)
+    private void OnFilledIn(AbstractPressurePlateView plate)
     {
         _level++;
+        
+        if (plate.TryGetComponent(out IValueDisplay valueDisplay))
+        {
+            valueDisplay.DisplayValue(_level);
+        }
+        
         _rankUpView = Window.Create(_prefabUi);
 
-        _rankUpView.Closed += () => OnClosed(obj);
+        _rankUpView.Closed += () => OnClosed(plate);
         _rankUpView.UpdateView(_level);
         
     }

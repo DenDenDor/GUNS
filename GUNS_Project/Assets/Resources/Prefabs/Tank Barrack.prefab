@@ -135,24 +135,12 @@ PrefabInstance:
       value: Factory_Tank
       objectReference: {fileID: 0}
     - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5940942700683805882, guid: 7c8838af81e9f6c47a2bb20973850321, type: 3}
       propertyPath: m_LocalPosition.z
