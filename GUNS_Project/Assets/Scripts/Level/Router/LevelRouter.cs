@@ -14,8 +14,6 @@ public class LevelRouter : IRouter
 
     public void Init()
     {
-       // _prefab = Resources.Load<NextLevelBuildingView>("Prefabs/NextLevel");
-       
        WaveController.Instance.StartedNewWave += StartNewWave;
 
        _prefabUi = FactoryController.Instance.FindPrefab<RankUpView>();

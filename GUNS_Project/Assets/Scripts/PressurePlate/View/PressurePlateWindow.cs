@@ -13,5 +13,6 @@ public enum PressurePlateType
 {
     FillingUp,
     Gold,
-    Silver
+    Silver,
+    Timer
 }

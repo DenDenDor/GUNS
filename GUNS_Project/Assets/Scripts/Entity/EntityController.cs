@@ -50,6 +50,7 @@ public class EntityController : MonoBehaviour
 
     public List<SoldierView> Soldiers => Get<SoldierView>();
 
+    public List<TankView> Tanks => Get<TankView>();
     public PlayerView Player => Get<PlayerView>().FirstOrDefault();
 
     public event Action<AbstractEntity> Added;

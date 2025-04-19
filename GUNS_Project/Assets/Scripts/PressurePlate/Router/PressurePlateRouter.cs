@@ -53,6 +53,9 @@ public class PressurePlateRouter : IRouter
             case PressurePlateType.Silver:
                 prefab = createdBuildingPlate.gameObject.AddComponent<SilverPressurePlateView>();
                 break;
+            case PressurePlateType.Timer:
+                prefab = createdBuildingPlate.gameObject.AddComponent<TimerPressurePlateView>();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }

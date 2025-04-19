@@ -84,7 +84,10 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
 
     private void OnExited()
     {
-        CoroutineController.Instance.StopCoroutine(_coroutine);
+        if (_coroutine != null)
+        {
+            CoroutineController.Instance.StopCoroutine(_coroutine);
+        }
     }
 
     private void OnEntered(AbstractPressurePlateView view)

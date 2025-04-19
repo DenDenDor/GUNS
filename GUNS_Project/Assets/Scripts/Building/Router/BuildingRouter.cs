@@ -73,5 +73,7 @@ public enum BuildingType
     NextLevel,
     Armor,
     Tank,
-    Empty
+    Empty,
+    Bomb,
+    Plane
 }

@@ -37,20 +37,60 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
         _isFilled = false;
         Reseted?.Invoke();
     }
+
+    private bool _isEnter;
+    private PlayerTriggerView _playerTriggerView;
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<PlayerTriggerView>())
+        if (other.TryGetComponent<PlayerTriggerView>(out PlayerTriggerView playerTriggerView))
         {
-            Entered?.Invoke(this);
+            _playerTriggerView = playerTriggerView;
+            _isEnter = true;
         }
     }
+
+    private Vector3 _lastPosition;
+    private float _positionCheckInterval = 0.1f;
+    private float _nextPositionCheckTime;
+    private double _lastMovementTime;
+
+    private void Update()
+    {
+        if (_isEnter && _playerTriggerView != null)
+        {
+            if (Time.time >= _nextPositionCheckTime)
+            {
+                _nextPositionCheckTime = Time.time + _positionCheckInterval;
+            
+                Vector3 currentPosition = _playerTriggerView.transform.position;
+                bool isMoving = Vector3.Distance(currentPosition, _lastPosition) > 0.01f;
+                _lastPosition = currentPosition;
+            
+                if (!isMoving)
+                {
+                    if (Time.time - _lastMovementTime >= RequiredIdleTime)
+                    {
+                        Entered?.Invoke(this);
+                    }
+                }
+                else
+                {
+                    _lastMovementTime = Time.time;
+                }
+            }
+        }
+    }
+
+    public double RequiredIdleTime { get; set; } = 0.2;
 
     private void OnTriggerExit(Collider other)
     {
         if (other.GetComponent<PlayerTriggerView>())
         {
             Exited?.Invoke();
+            
+            _isEnter = false;
         }
     }
 }

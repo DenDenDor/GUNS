@@ -32,7 +32,7 @@ public class SoldierRouter : IRouter
     {
         List<Transform> points = AllyPoint.MoveToPoints;
         
-        if (_freePointIndex >= points.Count || BattleController.Instance.IsMoving)
+        if (_freePointIndex >= points.Count || BattleController.Instance.IsMoving || points.Count == EntityController.Instance.Soldiers.Count)
         {
             return;
         }

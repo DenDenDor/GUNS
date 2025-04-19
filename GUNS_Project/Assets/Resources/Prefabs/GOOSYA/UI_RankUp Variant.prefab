@@ -183,9 +183,9 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &3687723929878685433 stripped
+--- !u!114 &2614025885200686796 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4952588150676752651, guid: ec4c32d69dff4ee4caf8a932cc312852, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6039520062595264830, guid: ec4c32d69dff4ee4caf8a932cc312852, type: 3}
   m_PrefabInstance: {fileID: 8617160488100687858}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _button: {fileID: 5176233523972544167}
-  _text: {fileID: 3687723929878685433}
+  _text: {fileID: 2614025885200686796}
 --- !u!114 &-8235053987484569099
 MonoBehaviour:
   m_ObjectHideFlags: 0
