@@ -33,10 +33,19 @@ public class BulletRouter : IRouter
         BulletView view = null;
         IMovement movement = null;
 
-        if (thisEntity is PlayerView)
+        if (thisEntity is PlayerView playerView)
         {
             view = Window.Create(_prefab, thisEntity.ArmWithGun.ShotPoint);
+
+            Vector3 direction = playerView.Direction;
+           // direction.y = 0;
+            
+            //movement = new ForwardMovement(speed, view.transform, direction );
+            
             movement = new ToMoveTowardsMovement(speed, view.transform, toAttackEntity.transform);
+
+            playerView.UpdateParticle();
+            view.name = "PLAYER BULLET!";
         }
         else
         {

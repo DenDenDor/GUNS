@@ -11,7 +11,9 @@ public class BulletWindow : AbstractFactoryWindow
 
     public BulletView Create(BulletView prefab, Transform point)
     {
-        BulletView bulletView = CreatePrefab(prefab, point.position);
+        BulletView bulletView = CreatePrefabByRotation(prefab, point);
+
+        bulletView.transform.rotation = Quaternion.Euler(0, -bulletView.transform.eulerAngles.y, 0);
         
         return bulletView;
     }

@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5d45a41ae0b8c8429ee0e6f49628273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _child: {fileID: 0}
+  _child: {fileID: 8203484106512826499}
   _armWithGun: {fileID: 0}
   Health: 0
   _navMeshAgent: {fileID: 8272472441215720886}
@@ -130,3 +130,8 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2579463, y: 2.1531608, z: 2.662628}
   m_Center: {x: 0.05239308, y: 0.5765804, z: -0.1856941}
+--- !u!4 &8203484106512826499 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1542631575691721752, guid: 4ea79593ba7803f429940dd3d7826196, type: 3}
+  m_PrefabInstance: {fileID: 7255341236555709595}
+  m_PrefabAsset: {fileID: 0}

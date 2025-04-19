@@ -10,6 +10,13 @@ public abstract class AbstractFactoryWindow : AbstractWindowUi
         T created =  Instantiate(prefab, point);
 
         return created;
+    }     
+    
+    protected T CreatePrefabByRotation<T>(T prefab, Transform point, bool isUi = false) where T : MonoBehaviour
+    {
+        T created =  Instantiate(prefab, point.position, point.rotation);
+
+        return created;
     }  
     
     protected T CreatePrefab<T>(T prefab, Vector3 position, bool isUi = false) where T : MonoBehaviour

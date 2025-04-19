@@ -52,7 +52,7 @@ public class AnimationRouter : IRouter
 
         // Первая анимация - перемещение и вращение к начальной точке отдачи
         yield return DOTween.Sequence()
-            .Join(armWithGun.DOLocalRotate(new Vector3(291f, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.2f))
+            .Join(armWithGun.DOLocalRotate(new Vector3(260, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.2f))
             .Join(armWithGun.DOLocalMove(new Vector3(-0.0006f, 0.0073f, 0.0076f), 0.2f)).WaitForCompletion();
     }    
     
@@ -86,10 +86,10 @@ public class AnimationRouter : IRouter
         // Запоминаем исходные позицию и вращение
     
         // Вторая анимация - поднятие руки (увеличение вращения по X)
-        yield return armWithGun.DOLocalRotate(new Vector3(270.2993f, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.2f)
+        yield return armWithGun.DOLocalRotate(new Vector3(255, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.2f)
             .WaitForCompletion();
     
-        yield return armWithGun.DOLocalRotate(new Vector3(291f, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.15f)
+        yield return armWithGun.DOLocalRotate(new Vector3(250, data.OriginalRotation.eulerAngles.y, data.OriginalRotation.eulerAngles.z), 0.15f)
             .WaitForCompletion();
 
         // Возврат к исходному положению

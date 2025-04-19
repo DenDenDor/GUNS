@@ -11,6 +11,8 @@ public class PlayerRouter : IRouter
 
     private PlayerModel _model;
     private PlayerView _prefab;
+
+    private IRotation _previousModel;
     
     public void Init()
     {
@@ -47,13 +49,25 @@ public class PlayerRouter : IRouter
             }
         }
 
+        bool isFound = false;
+
         if (nearestAlly != null)
         {
             if (minDistanceSqr < 25)
             {
                 Debug.Log("SHOOT!!!");
                 AttackController.Instance.UpdateAttack(_view, new ShootAttack(() => Window.Damage, () => Window.BulletSpeed, _view, nearestAlly));
+                UpdateRotation(_view, new LookAtModel(() => _view.Child, nearestAlly.transform));
+                isFound = true;
             }
+            
+            Debug.Log("NEAREST ALLY FOUND!");
+        }
+
+        if (isFound == false && _previousModel is not RotateForwardModel)
+        {
+            UpdateRotation(_view, new RotateForwardModel(() => Window.RotationSpeed, () => _view.Child));
+            Debug.Log("RotateForwardModel!");
         }
     }
 
@@ -72,7 +86,15 @@ public class PlayerRouter : IRouter
     private void GeneratePlayerModel(PlayerView player)
     {
         _model.Movement = new ToCursorMovement(() => Window.Speed, player.transform);
-        _model.Rotation = new RotateForwardModel(() => Window.RotationSpeed, () => player.Child);
+      //  _model.Rotation = new RotateForwardModel(() => Window.RotationSpeed, () => _view.Child);
+
+        //UpdateRotation(player, new RotateForwardModel(() => Window.RotationSpeed, () => _view.Child));
+    }
+
+    private void UpdateRotation(AbstractEntity entity, IRotation rotation)
+    {
+        _previousModel = rotation;
+        EntityController.Instance.FullEntities[entity].Rotation = rotation;
     }
 
     public void Exit()

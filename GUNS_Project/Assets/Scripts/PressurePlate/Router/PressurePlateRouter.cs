@@ -30,6 +30,9 @@ public class PressurePlateRouter : IRouter
             case BuildingType.NextLevel:
                 buildingPlate = FactoryController.Instance.FindPrefab<NextLevelPlate>();
                 break;
+            case BuildingType.Tank:
+                buildingPlate = FactoryController.Instance.FindPrefab<TankPlate>();
+                break;
             default:
                 buildingPlate = FactoryController.Instance.FindPrefab<EmptyPlate>();
                 break;

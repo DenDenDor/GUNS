@@ -73,6 +73,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 541754157249520971}
     m_Modifications:
     - target: {fileID: 6916558359567907900, guid: 228b1df8996730c409bd7bfef41539bf, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916558359567907900, guid: 228b1df8996730c409bd7bfef41539bf, type: 3}
       propertyPath: 'CollisionModule.m_Planes.Array.data[0]'
       value: 
       objectReference: {fileID: 7667351387463225577}
