@@ -21,6 +21,19 @@ public class PlayerRouter : IRouter
         WaveController.Instance.StartedNewWave += OnStartNewWave;
         
         UpdateController.Instance.Add(OnUpdate);
+        
+        MovementController.Instance.StartedMoving += OnStartedMoving; 
+        MovementController.Instance.StoppedMoving += OnStopMoving; 
+    }
+
+    private void OnStopMoving()
+    {
+        MovementController.Instance.UpdateMovement(_view, null);
+    }
+
+    private void OnStartedMoving()
+    {
+        MovementController.Instance.UpdateMovement(_view, new ToCursorMovement(() => Window.Speed, _view.transform));
     }
 
     private void OnUpdate()

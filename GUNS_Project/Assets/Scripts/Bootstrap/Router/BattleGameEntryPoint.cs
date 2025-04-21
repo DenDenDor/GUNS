@@ -28,6 +28,7 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new RotateRouter(),
         new UpgradeRouter(),
         new CameraRouter(),
+        new PlaneRouter(),
         new InventoryRouter(),
         new MovementRouter(),
         new EnemyRouter(),

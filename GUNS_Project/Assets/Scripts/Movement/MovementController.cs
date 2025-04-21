@@ -23,6 +23,9 @@ public class MovementController : MonoBehaviour
         }
     }
 
+    public event Action StartedMoving;
+    public event Action StoppedMoving;
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -38,4 +41,15 @@ public class MovementController : MonoBehaviour
     {
         EntityController.Instance.FullEntities[entity].Movement = movement;
     }
+
+    public void StopMoving()
+    {
+        StoppedMoving?.Invoke();
+    }
+       
+    public void StartMoving()
+    {
+        StartedMoving?.Invoke();
+    }
+    
 }

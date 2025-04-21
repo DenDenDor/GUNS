@@ -9,6 +9,7 @@ public class BombRouter : IRouter
      private BombView _prefab;
      private bool _isWorking = true;
 
+     private float _time = 0;
      private BombWindow Window => UiController.Instance.GetWindow<BombWindow>();
 
      private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
@@ -25,8 +26,6 @@ public class BombRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
     }
-
-    private float _time = 0;
 
     private void OnUpdate()
     {
@@ -90,16 +89,20 @@ public class BombRouter : IRouter
 
             bomb.Fallen += OnFallen;
             _isWorking = false;
-            
+            MovementController.Instance.StopMoving();
+
             yield return null;
         }
     }
 
     private void OnFallen(BombView obj)
     {
+        MovementController.Instance.StartMoving();
+
         foreach (var enemy in EntityController.Instance.Enemies.Where(x =>
                      Vector3.Distance(x.transform.position, obj.transform.position) < 6))
         {
+            Window.RemoveBomb();
             HealthController.Instance.GetByEntity(enemy).TakeDamage(150);
         }
     }
