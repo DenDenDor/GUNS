@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BombView : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem _particleSystem;
+    
     private Transform _target;
 
     public void UpdateTarget(Transform target)
@@ -32,6 +34,9 @@ public class BombView : MonoBehaviour
     {
         if (_progress > 1)
         {
+            ParticleSystem particleSystem = Instantiate(_particleSystem, transform.position, Quaternion.identity);
+            Destroy(particleSystem.gameObject, 5);
+            
             Fallen?.Invoke(this);
             Destroy(gameObject);
         }

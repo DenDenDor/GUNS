@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlaneBombView : MonoBehaviour
 {
   [SerializeField] private Rigidbody _rigidbody;
+  [SerializeField] private ParticleSystem _particleSystem;
   
   public event Action<PlaneBombView> Entered;
 
@@ -15,6 +16,9 @@ public class PlaneBombView : MonoBehaviour
     
     if (_time > 0.5f && _rigidbody.linearVelocity.y == 0)
     {
+      ParticleSystem particleSystem = Instantiate(_particleSystem, transform.position, Quaternion.identity);
+      Destroy(particleSystem.gameObject, 5);
+
       Entered?.Invoke(this);
       
       Destroy(gameObject);

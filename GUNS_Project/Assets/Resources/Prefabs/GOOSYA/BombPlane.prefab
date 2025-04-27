@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 4971840017140116129}
+  _particleSystem: {fileID: 198948030977561794, guid: 0997de51c3e02bd498ddccf577fbe997, type: 3}
 --- !u!54 &4971840017140116129
 Rigidbody:
   m_ObjectHideFlags: 0

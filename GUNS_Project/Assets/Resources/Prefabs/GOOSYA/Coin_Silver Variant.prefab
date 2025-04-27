@@ -80,6 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e31f76e3697bb40b0717e20d2069e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _coinExplosionCopper: {fileID: 198593499539110564, guid: 2fba95bddfa051a42a439494aaf34aa1, type: 3}
+  <CurrencyColor>k__BackingField: {r: 0.0711062, g: 0.5849056, b: 0, a: 1}
 --- !u!65 &-3633193138135414077
 BoxCollider:
   m_ObjectHideFlags: 0

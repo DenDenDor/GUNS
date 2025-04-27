@@ -89,6 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d44649c2dcdbd4d85549188663b486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 198791993131253496, guid: d9a1324d4ee511f4ca952df55bf3ab2e, type: 3}
   height: 6
-  gravity: 9.81
   speed: 0.5
