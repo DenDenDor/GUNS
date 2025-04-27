@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5465272190308955479
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1497658659768097757, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4747159720486330361, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_Name
+      value: UI_UpgradeRank Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5404697805682560160, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515612715325892143, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5589031786901468174, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 53d3688323cba644c8b741e7ac15e09d, type: 3}
