@@ -75,5 +75,6 @@ public enum BuildingType
     Tank,
     Empty,
     Bomb,
-    Plane
+    Plane,
+    Attack
 }
