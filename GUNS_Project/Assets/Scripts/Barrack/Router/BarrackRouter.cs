@@ -51,7 +51,20 @@ public class BarrackRouter : IRouter
 
     private void OnFilledIn(AbstractPressurePlateView obj, BuildingType type)
     {
-        AbstractBarrackView barrack = UiController.Instance.GetWindow<BarrackWindow>().CreateBarrack(_barrackByViews[type], obj.transform.position);
+        Vector3 positionNew = obj.transform.position;
+
+        Transform go = obj.GetComponentsInChildren<Transform>().FirstOrDefault(x=>x.name == "Model");
+        
+        if (go != null)
+        {
+            Vector3 oldPos = go.transform.position;
+
+            positionNew = new Vector3(oldPos.x, positionNew.y, oldPos.z);
+        }
+        
+        AbstractBarrackView barrack = UiController.Instance.GetWindow<BarrackWindow>().CreateBarrack(_barrackByViews[type], positionNew);
+
+        barrack.transform.localRotation = Quaternion.Euler(0, 90, 0);
         
         Building.AddBuilding(barrack, new BuildingModel(4, type));
     }

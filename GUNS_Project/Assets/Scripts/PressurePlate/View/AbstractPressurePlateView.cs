@@ -45,6 +45,8 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     {
         if (other.TryGetComponent<PlayerTriggerView>(out PlayerTriggerView playerTriggerView))
         {
+            Debug.LogError("TRIGGER ");
+
             _playerTriggerView = playerTriggerView;
             _isEnter = true;
         }
@@ -59,6 +61,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     {
         if (_isEnter && _playerTriggerView != null)
         {
+            Debug.LogError("FOUND . . . ");
             if (Time.time >= _nextPositionCheckTime)
             {
                 _nextPositionCheckTime = Time.time + _positionCheckInterval;
@@ -71,6 +74,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
                 {
                     if (Time.time - _lastMovementTime >= RequiredIdleTime)
                     {
+                        Debug.LogError("ENTERED!!!");
                         Entered?.Invoke(this);
                     }
                 }

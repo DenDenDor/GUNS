@@ -88,11 +88,14 @@ public class InventoryController : MonoBehaviour
     public void TakeGold()
     {
         TakeCurrency<GoldPickUp>();
+        Debug.LogError("TAKEN GOLD...");
     }  
     
     public void TakeSilver()
     {
         TakeCurrency<SilverPickUp>();
+        Debug.LogError("TAKEN TakeSilver...");
+
     }
 
     private void TakeCurrency<T>() where T : AbstractCurrencyPickUp

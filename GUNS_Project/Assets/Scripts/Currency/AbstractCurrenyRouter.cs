@@ -87,16 +87,21 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         if (_coroutine != null)
         {
             CoroutineController.Instance.StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
 
     private void OnEntered(AbstractPressurePlateView view)
     {
-        _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown(view));
+        if (_coroutine == null)
+        {
+            _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown(view));
+        }
     }
 
     private IEnumerator Cooldown(AbstractPressurePlateView view)
     {
+        Debug.LogError("AbstractPressurePlateView . . . ");
         float time = 0;
 
         float maxTime = 0.4f;
@@ -109,11 +114,15 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
         }
         
         PressurePlateController.Instance.GetPriceBy(view, out int current, out int max);
+
+        int maxCurrent = max;
         
-        while (IsAbleToBuy && current > 0)
+        while (IsAbleToBuy && current > 0 && maxCurrent > 0)
         {
             Buy();
             current--;
+            maxCurrent--;
+            Debug.LogError("MAX CURRENT " + maxCurrent);
 
             PressurePlateController.Instance.UpdateCurrentPrice(view, current);
 
