@@ -53,6 +53,8 @@ public class BuildingController : MonoBehaviour
 
     public event Action<IEnumerable<BuildingPoint>> GeneratedPoints;
 
+    public event Action<BuildingType> CreatedBuilding; 
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -67,6 +69,8 @@ public class BuildingController : MonoBehaviour
     public void AddBuilding(AbstractBuildingView view, BuildingModel model)
     {
         _buildings.Add(view, model);
+        
+        CreatedBuilding?.Invoke(model.BuildingType);
     }
 
     public void GenerateNewBuilding(IEnumerable<BuildingPoint> points)

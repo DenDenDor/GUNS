@@ -9,6 +9,7 @@ public class BattleGameEntryPoint : AbstractGameEntryPoint
         new AnimationRouter(),
         new TextMeshProRaycastRouter(),
         new UpdateRouter(),
+        new EducationRouter(),
         new WaveRouter(),
         new AttackRouter(),
         new HealthRouter(),

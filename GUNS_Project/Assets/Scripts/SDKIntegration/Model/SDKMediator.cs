@@ -147,4 +147,32 @@ public class SDKMediator : MonoBehaviour
         _sdkAdapter.Save(defaultSaveData);
     }
 
+    public void SaveEducationStep(int value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.EducationStep = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void SaveIsEducationFinished(bool value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.IsEducationFinished = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void SaveGoldCount(int value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.GoldCount = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void SaveSilverCount(int value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.SilverCount = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
 }

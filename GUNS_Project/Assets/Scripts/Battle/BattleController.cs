@@ -28,6 +28,9 @@ public class BattleController : MonoBehaviour
     }
 
     public event Action Restarted;
+
+    public event Action StartedBattle;
+    public event Action EndedBattle;
     
     private void Awake()
     {
@@ -48,10 +51,12 @@ public class BattleController : MonoBehaviour
     public void StartMoving()
     {
         _isMoving = true;
+        StartedBattle?.Invoke();
     }
 
     public void StopMoving()
     {
         _isMoving = false;
+        EndedBattle?.Invoke();
     }
 }

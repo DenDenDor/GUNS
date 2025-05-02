@@ -9,4 +9,8 @@ public class SaveData
     [AutoGenerateSaveMethod] public int Levels = 0;
     [AutoGenerateSaveMethod] public bool IsMusicTurnOn = true;
     [AutoGenerateSaveMethod] public bool IsSoundTurnOn = true;
+    [AutoGenerateSaveMethod] public int EducationStep;
+    [AutoGenerateSaveMethod] public bool IsEducationFinished;
+    [AutoGenerateSaveMethod] public int GoldCount;
+    [AutoGenerateSaveMethod] public int SilverCount;
 }
