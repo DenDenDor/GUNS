@@ -126,7 +126,7 @@ public class SDKMediator : MonoBehaviour
          
             _sdkAdapter.Save(defaultSaveData);
 
-            //SaveLanguage(languageType);
+            SaveLanguage(languageType);
         }
         else
         {
@@ -221,6 +221,14 @@ public class SDKMediator : MonoBehaviour
         _sdkAdapter.Save(defaultSaveData);
     }
 
+    public void SaveLanguage(LanguageType currentType)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+
+        defaultSaveData.Language = currentType.ToString();
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
     public void SaveLanguage(string value)
     {
         SaveData defaultSaveData = GenerateSaveData();

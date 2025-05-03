@@ -40,8 +40,7 @@ namespace Localization
 
         private void Start()
         { 
-            //LOAD 
-            //_currentType = SDKMediator.Instance.GetLanguage();
+            _currentType = SDKMediator.Instance.GetLanguage();
         }
 
         private void UpdateLocalization(DisplayView view)
@@ -86,8 +85,7 @@ namespace Localization
             else
                 _currentType = _languageTypes[index + 1];
 
-            //SAVE
-            //SDKMediator.Instance.SaveLanguage(_currentType);
+            SDKMediator.Instance.SaveLanguage(_currentType);
 
             foreach (var view in _views)
             {

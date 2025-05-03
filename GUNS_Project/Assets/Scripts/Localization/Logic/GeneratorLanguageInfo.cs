@@ -59,10 +59,11 @@ namespace Localization
 
     public enum LanguageType
     {
-        Ru,
         En,
+        Ru,
         Tr,
         Es,
+        Id,
         De,
         Fr,
         It,
@@ -84,7 +85,6 @@ namespace Localization
         Tg,
         Tk,
         Uz,
-        Id,
         Hi
     }
 }
