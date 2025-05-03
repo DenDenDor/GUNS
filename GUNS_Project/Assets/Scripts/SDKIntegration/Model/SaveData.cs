@@ -13,4 +13,6 @@ public class SaveData
     [AutoGenerateSaveMethod] public bool IsEducationFinished;
     [AutoGenerateSaveMethod] public int GoldCount;
     [AutoGenerateSaveMethod] public int SilverCount;
+    [AutoGenerateSaveMethod] public bool IsLanguageSelected;
+    [AutoGenerateSaveMethod] public string Language;
 }

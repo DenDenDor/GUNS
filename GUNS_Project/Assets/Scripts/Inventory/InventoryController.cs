@@ -34,7 +34,7 @@ public class InventoryController : MonoBehaviour
 
 
     public Transform ResourcePoint => WaveController.Instance.GenerateWaveInfo().ResourcePoint;
-
+    public List<AbstractCurrencyPickUp> PickUps => _pickUps;
     public event Action UpdatedCount;
 
     private void Awake()

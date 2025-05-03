@@ -8,10 +8,13 @@ public class PlayerWindow : EntityWindow
     [SerializeField] private float _speed;
     [SerializeField] private float _bulletSpeed = 3; 
     [SerializeField] private float _rotationSpeed = 4;
+    [SerializeField] private LookAtObject _lookAtObject;
+
     public float Speed => _speed;
 
     public float RotationSpeed => _rotationSpeed;
     public float BulletSpeed => _bulletSpeed;
+    public LookAtObject LookAtObject => _lookAtObject;
 
     public override void Init()
     {

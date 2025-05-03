@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using Localization;
 using UnityEngine;
+
 
 public class SDKMediator : MonoBehaviour
 {
@@ -99,6 +102,40 @@ public class SDKMediator : MonoBehaviour
 
         return defaultSaveData;
     }
+    
+    public LanguageType GetLanguage()
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        LanguageType languageType = LanguageType.En;
+
+        if (defaultSaveData.IsLanguageSelected == false)
+        {
+            defaultSaveData.IsLanguageSelected = true;
+         
+            IEnumerable<LanguageInfo> languages = GeneratorLanguageInfo.Generate();
+            string systemLanguage = _sdkAdapter.Language;
+
+            Debug.Log(systemLanguage + " System language");
+
+            Func<LanguageInfo, bool> result = null;
+
+            LanguageInfo info = languages.FirstOrDefault(lang => _sdkAdapter.GetLanguage(lang.Type.ToString())); //language => language.Type.ToString().ToLower() == systemLanguage);
+         
+            if (info != null)
+                languageType = info.Type;
+         
+            _sdkAdapter.Save(defaultSaveData);
+
+            //SaveLanguage(languageType);
+        }
+        else
+        {
+            if (Enum.TryParse(defaultSaveData.Language, out LanguageType type)) 
+                languageType = type;
+        }
+      
+        return languageType;
+    }
 
     public void SaveMusicValue(float value)
     {
@@ -132,7 +169,8 @@ public class SDKMediator : MonoBehaviour
         defaultSaveData.Levels = value;
         _sdkAdapter.Save(defaultSaveData);
     }
-
+
+
     public void SaveIsMusicTurnOn(bool value)
     {
         SaveData defaultSaveData = GenerateSaveData();
@@ -172,6 +210,21 @@ public class SDKMediator : MonoBehaviour
     {
         SaveData defaultSaveData = GenerateSaveData();
         defaultSaveData.SilverCount = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+
+    public void SaveIsLanguageSelected(bool value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.IsLanguageSelected = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
+    public void SaveLanguage(string value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.Language = value;
         _sdkAdapter.Save(defaultSaveData);
     }
 

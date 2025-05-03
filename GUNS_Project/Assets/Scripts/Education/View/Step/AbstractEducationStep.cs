@@ -1,10 +1,12 @@
 using System;
+using Localization;
 using UnityEngine;
 
 public abstract class AbstractEducationStep : MonoBehaviour
 {
-    [field: SerializeField] public string Key { get; private set; }
+    [field: SerializeField] public DisplayLocalizedString Key { get; private set; }
 
+    protected LookAtObject LookAtObject => UiController.Instance.GetWindow<PlayerWindow>().LookAtObject;
     protected bool IsWorking { get; private set; }
 
     public event Action<AbstractEducationStep> Finished;
@@ -40,5 +42,10 @@ public abstract class AbstractEducationStep : MonoBehaviour
     protected virtual void OnUpdate()
     {
         
+    }
+
+    public void Init()
+    {
+        Key = GetComponent<DisplayLocalizedString>();
     }
 }

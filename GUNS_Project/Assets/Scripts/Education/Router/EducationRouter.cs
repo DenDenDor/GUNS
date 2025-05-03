@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EducationRouter : IRouter
@@ -9,6 +10,8 @@ public class EducationRouter : IRouter
         if (SDKMediator.Instance.GenerateSaveData().IsEducationFinished == false)
         {
             Window.StartStep(SDKMediator.Instance.GenerateSaveData().EducationStep);
+            
+            Window.Open();
         
             Window.Finished += OnFinished;
         }
@@ -16,6 +19,17 @@ public class EducationRouter : IRouter
 
     private void OnFinished()
     {
+        CoroutineController.Instance.RunCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        Window.Close();
+        
+        yield return new WaitForSeconds(2);
+        
+        Window.Open();
+
         int step = SDKMediator.Instance.GenerateSaveData().EducationStep + 1;
         
         SDKMediator.Instance.SaveEducationStep(step);

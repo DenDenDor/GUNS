@@ -21,6 +21,7 @@ public class CurrencyController : MonoBehaviour
     public List<SilverPickUp> Silvers => Get<SilverPickUp>();
     
     public List<GoldPickUp> Golds => Get<GoldPickUp>();
+    public List<AbstractCurrencyPickUp> PickUps => Get<AbstractCurrencyPickUp>();
 
     public Sprite GoldSprite => _goldSprite;
 

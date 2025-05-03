@@ -159,6 +159,7 @@ MonoBehaviour:
   _armWithGun: {fileID: 7237758087789375711}
   Health: 0
   _currencyPoint: {fileID: 1861621227048405062}
+  _lookAtObject: {fileID: 5405317646442285278}
   _lookAtTransform: {fileID: 2025209458716689970}
   _particle: {fileID: 5754739621640645394, guid: 1137be5c75f430b45ad5e4fd536dbeee, type: 3}
   _gunPoint: {fileID: 8280958516262550255}
@@ -480,6 +481,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Characrter
       objectReference: {fileID: 0}
+    - target: {fileID: 3270614414671870673, guid: 2021cc85f9d30f04d8e96275e7a4b23f, type: 3}
+      propertyPath: _disasterMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: e4f4e7632da920443bb855777d17a1f8, type: 2}
     - target: {fileID: 4543109244167955799, guid: 2021cc85f9d30f04d8e96275e7a4b23f, type: 3}
       propertyPath: EmissionModule.m_BurstCount
       value: 0
@@ -676,6 +681,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4842929405986703785, guid: 2021cc85f9d30f04d8e96275e7a4b23f, type: 3}
   m_PrefabInstance: {fileID: 7376902484068807183}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5405317646442285278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3270614414671870673, guid: 2021cc85f9d30f04d8e96275e7a4b23f, type: 3}
+  m_PrefabInstance: {fileID: 7376902484068807183}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b47ad24a47fe784b9e84b83487d0f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6163390347455731304 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3740458723810059367, guid: 2021cc85f9d30f04d8e96275e7a4b23f, type: 3}

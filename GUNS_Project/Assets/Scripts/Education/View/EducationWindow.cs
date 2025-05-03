@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EducationWindow : AbstractWindowUi
 {
-    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private EducationTextView _educationTextView;
     
     private AbstractEducationStep[] _steps; 
     
@@ -15,6 +15,11 @@ public class EducationWindow : AbstractWindowUi
     public override void Init()
     {
         _steps = GetComponentsInChildren<AbstractEducationStep>();
+
+        foreach (var step in _steps)
+        {
+            step.Init();
+        }
     }
 
     public void StartStep(int educationStep)
@@ -23,7 +28,7 @@ public class EducationWindow : AbstractWindowUi
             
         step.Open();
 
-        UpdateText(step.Key);
+        UpdateText(() => step.Key.LocalizedText);
         
         step.Finished += OnFinished;
     }
@@ -35,8 +40,18 @@ public class EducationWindow : AbstractWindowUi
         step.Finished -= OnFinished;
     }
 
-    private void UpdateText(string text)
+    private void UpdateText(Func<string> getText)
     {
-        _text.text = text;
+        _educationTextView.UpdateText(getText);
+    }
+
+    public void Open()
+    {
+        _educationTextView.Open();
+    }
+
+    public void Close()
+    {
+        _educationTextView.Close();
     }
 }

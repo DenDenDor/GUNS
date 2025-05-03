@@ -1,0 +1,63 @@
+Language,,RUSSIAN,ENGLISH,TURKISH,SPANISH,GERMAN
+Key,,ru,en,tr,es,de
+Button_MainMenu_Start,,Играть,Play,Oynamak,Jugar,Spielen
+Button_MainMenu_Language,,Язык,Language,Dil,Idioma,Sprache
+Button_MainMenu_Settings,,НАСТРОЙКИ,SETTINGS,AYARLAR,AJUSTES,EINSTELLUNGEN
+,,,,,,
+AudioSettings_Music,,МУЗЫКА,MUSIC,MÜZİK,MÚSICA,MUSIK
+AudioSettings_SFX,,ЗВУКИ,SFX,SESLER,SONIDOS,KLÄNGE
+,,,,,,
+Player_Nickname,,ВЫ,YOU,SEN,TÚ,DU
+Exit,,Выход,Exit,Çıkış,Salida,Ausfahrt
+Loader,,Загрузка данных,Loading data,Veri yükleniyor,Cargando datos,Daten werden geladen
+Settings_Channel,,Канал разработчиков,Developer Channel,Geliştirici Kanalı,Canal de desarrollador,Entwicklerkanal
+Settings_Sensitivity,,Чувствительность,Sensitivity,Hassasiyet,Sensibilidad,Empfindlichkeit
+,,,,,,
+MainMenu_Shop,,Магазин,Shop,Mağaza,Comercio,Geschäft
+MainMenu_Inventory,,Инвентарь,Inventory,Envanter,Inventario,Inventar
+,,,,,,
+Dialogue_First,,Хей! Это разработчик! Как тебе моя игра?,Hey! This is the developer! How do you like my game?,Hey! Bu geliştirici! Oyunumu nasıl buldun?,¡Ey! ¡Este es el desarrollador! ¿Te gusta mi juego?,Hey! Das ist der Entwickler! Wie gefällt dir mein Spiel?
+Dialogue_Second,,"Я очень хочу выпустить обновление, но пока не знаю что именно улучшить...","I really want to release an update, but I don’t know what exactly to improve...","Gerçekten bir güncelleme yayınlamak istiyorum, ancak tam olarak neyi geliştireceğimi bilmiyorum...","Tengo muchas ganas de lanzar una actualización, pero no sé qué mejorar exactamente...","Ich möchte unbedingt ein Update veröffentlichen, weiß aber nicht genau, was ich verbessern soll ..."
+Dialogue_Third,,"Можешь, пожалуйста, в отзыве написать что тебе понравилось, а чего не хватает? Так мы сделаем игру еще круче!",Can you please write in your review what you liked and what you missed? This way we will make the game even cooler!,Lütfen yorumunuza neyi beğendiğinizi ve neyi kaçırdığınızı yazar mısınız? Bu şekilde oyunu daha da havalı hale getireceğiz!,¿Puedes escribir en tu reseña lo que te gustó y lo que te perdiste? ¡De esta manera haremos que el juego sea aún más genial!,"Können Sie bitte in Ihrer Rezension schreiben, was Ihnen gefallen hat und was Sie vermisst haben? Auf diese Weise machen wir das Spiel noch cooler!"
+,,,,,,
+Hub_BoxingGloves__Button_Try,,ПОПРОБОВАТЬ,TRY,DENEMEK,INTENTAR,VERSUCHEN
+Hub_BoxingGloves__Button_Free,,БЕСПЛАТНО,FOR FREE,ÜCRETSİZ,GRATIS,KOSTENLOS
+Hub_BoxingGloves_Button_Payment,,ПОБЕДИТЬ,WIN,KAZANÇ,GANAR,GEWINNEN
+Hub_Review,,Оставить отзыв,Leave feedback,Geri bildirim bırakın,Deja un comentario,Hinterlasse Kommentar
+Hub_Education,,Зайдите в портал,Go to the portal,Portala git,ir al portal,Gehen Sie zum Portal
+Hub_Build,,СТРОИТЬ,BUILD,İNŞA ETMEK,CONSTRUIR,BAUEN
+Hub_ToLand,,На землю,To the ground,Yere,al suelo,Zu Boden
+Hub_Fly,,ЛЕТАТЬ???,FLY???,UÇMAK???,¿¿¿VOLAR???,FLIEGEN???
+Hub_Afk,,AFK Зона,AFK Zone,AFK Bölgesi,Zona AFK,AFK-Zone
+Hub_Shop_Name,,ТОРГОВЕЦ,DEALER,SATICI,DISTRIBUIDOR,HÄNDLER
+Hub_DISASTERS,,КАТАСТРОФЫ,DISASTER,FELAKET,DESASTRE,KATASTROPHE
+AfkZone_Title,,Получи НАВСЕГДА за нахождение в AFK Зоне,Get FOREVER for being in the AFK Zone,AFK Bölgesinde olduğunuz için sonsuza kadar kazanın,Obtén PARA SIEMPRE por estar en la Zona AFK,"Erhalten Sie für immer, wenn Sie in der AFK-Zone sind"
+BoxingGloves_Title,,БОКСЕРСКИЕ ПЕРЧАТКИ,BOXING GLOVES,BOKS ELDİVENLERİ,GUANTES DE BOXEO,BOXHANDSCHUHE
+BoxingGloves_Win,,ПОБЕДИТЬ,WIN,KAZANÇ,GANAR,GEWINNEN
+,,,,,,
+Disaster_Dessert,,Пустыня,Desert,Çöl,Desierto,Wüste
+Disaster_FireExport,,Пожар,Fire,Ateş,Fuego,Feuer
+Disaster_Flood,,Потоп,Flood,Sel basmak,Inundación,Flut
+Disaster_Tornado,,Торнадо,Tornado,Kasırga,Tornado,Tornado
+Disaster_Sandstorm,,Песчаная буря,Sandstorm,Kum fırtınası,Tempestad de arena,Sandsturm
+Disaster_MeteorShower,,Метеоритный дождь,Meteor shower,Meteor yağmuru,Lluvia de meteoritos,Meteorschauer
+Disaster_SnowAvalanche,,Снежная лавина,Snow avalanche,Kar çığı,Avalancha de nieve,Schneelawine
+Disaster_AcidRain,,Ядовитый дождь,Poison Rain,Zehir Yağmuru,lluvia venenosa,Giftregen
+Disaster_Earthquake,,Землетрясение ,Earthquake ,Deprem ,Terremoto ,Erdbeben 
+Disaster_Thunderstorm,,Гроза ,Thunderstorm,Fırtına ,Tormenta ,Sturm 
+Disaster_VolcanicEruption,,Вулканическое извержение,Volcanic eruption,Volkanik patlama,erupción volcánica,Vulkanausbruch
+,,,,,,
+Disaster_SnowAvalanche_Title,,"Грейся у костров, чтобы не замерзнуть",Warm yourself by the fires to stay warm,Sıcak kalmak için ateşlerin yanında kendinizi ısıtın,Caliéntate junto al fuego para mantenerte caliente,"Wärmen Sie sich am Feuer, um warm zu bleiben"
+Disaster_Finish,,Добеги до финиша,Run to the finish line,Bitiş çizgisine koşun,Corre hasta la meta,Laufen Sie bis zur Ziellinie
+Disaster_Survive,,Выживи,Survive,Hayatta kalmak,Sobrevivir,Überleben
+Disaster_Hub_Title,,ХАБ,HUB,MERKEZ,CENTRO,NABE
+,,,,,,
+Lose_Rerun,,ЗАНОВО,AGAIN,TEKRAR,DE NUEVO,WIEDER
+Lose_Skip_Button,,ПРОПУСТИТЬ,SKIP,ATLAMAK,SALTAR,ÜBERSPRINGEN
+Lose_Title,,Поражение,Defeat,Yenmek,Fracaso,Verlust
+Winner_Title,,Победа!!!,Victory!!!,Zafer!!!,¡¡¡Victoria!!!,Sieg!!!
+Winner_ToHub,,НАЗАД В ХАБ,BACK TO THE HUB,MERKEZE GERİ DÖN,VOLVER AL CENTRO,ZURÜCK ZUM HUB
+Winner_CONTINUE,,ПРОДОЛЖИТЬ,CONTINUE,DEVAM ETMEK,CONTINUAR,WEITERMACHEN
+,,,,,,
+Disaster_AcidRain_Title,,Прячься под крышами!,Hide under the roofs!,Çatıların altına saklanın!,¡Escóndete bajo los tejados!,Versteck dich unter den Dächern!
+Disaster_Thunderstorm_Title,,"Меняй стороны, чтобы молния тебя не достала",Switch sides so the lightning doesn't get you,Şimşek sizi yakalamasın diye taraf değiştirin,Cambia de lado para que el rayo no te atrape,"Wechsle die Seiten, damit dich der Blitz nicht erwischt"
