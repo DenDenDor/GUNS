@@ -731,7 +731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 429140873}
-  _displayLocalizedText: {fileID: 0}
+  _amount: {fileID: 596681035}
 --- !u!114 &142935314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6794,7 +6794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factoryLocalizedObject: {fileID: 11400000, guid: 8bd2da6f37da193409af913a817ef9d6, type: 2}
-  _languageTypes: 
+  _languageTypes: 0000000001000000020000000300000004000000
 --- !u!4 &1552492648
 Transform:
   m_ObjectHideFlags: 0

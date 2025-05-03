@@ -45,6 +45,11 @@ public class EducationWindow : AbstractWindowUi
         _educationTextView.UpdateText(getText);
     }
 
+    public void UpdateAmountText(string text)
+    {
+        _educationTextView.UpdateAmountText(text);
+    }
+    
     public void Open()
     {
         _educationTextView.Open();

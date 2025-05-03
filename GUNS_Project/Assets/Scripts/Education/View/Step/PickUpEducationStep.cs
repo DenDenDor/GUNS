@@ -1,39 +1,55 @@
+using System;
 using System.Collections;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PickUpEducationStep : AbstractEducationStep
 {
-    private Coroutine _coroutine;
+    [SerializeField] private int _silverCount = 5;
+    [SerializeField] private int _goldCount = 5;
+
+    private int _allCurrency;
     
     protected override void OnOpen()
     {
         InventoryController.Instance.UpdatedCount += OnUpdatedCount;
-        _coroutine = StartCoroutine(Wait());
+        
+        UpdateAmount();
+
+        EnterArrow(GetArrow);
     }
 
-    private IEnumerator Wait()
+    private Transform GetArrow()
     {
-        while (true)
+        return CurrencyController.Instance.PickUps.Where(x => x != null)
+            .Select(x => x.transform)
+            .Except(InventoryController.Instance.PickUps.Where(x => x != null).Select(x => x.transform))
+            .Select(x => x.transform)
+            .OrderBy(obj =>
+                Vector3.Distance(obj.transform.position, EntityController.Instance.Player.transform.position))
+            .FirstOrDefault();
+    }
+
+    private void UpdateAmount()
+    {
+        int all = _goldCount + _silverCount;
+
+        if (_allCurrency > all)
         {
-            yield return new WaitForSeconds(1);
-            
-            Transform nearest = CurrencyController.Instance.PickUps.Where(x=>x != null).
-                Select(x=>x.transform).Except(InventoryController.Instance.PickUps.Where(x=>x != null).Select(x=>x.transform)).
-                Select(x => x.transform)
-                .OrderBy(obj =>
-                    Vector3.Distance(obj.transform.position, EntityController.Instance.Player.transform.position))
-                .FirstOrDefault();
-
-            Debug.Log("A" + EntityController.Instance.Player);
-            LookAtObject.Appear(nearest);
-
+            _allCurrency = all;
         }
+        
+        UiController.Instance.GetWindow<EducationWindow>().UpdateAmountText($"{_allCurrency} / {all}");
     }
 
     private void OnUpdatedCount()
     {
-        if (InventoryController.Instance.SilverCount > 5 && InventoryController.Instance.GoldCount > 5)
+        _allCurrency++;
+        
+        UpdateAmount();
+
+        if (InventoryController.Instance.SilverCount >= _silverCount && InventoryController.Instance.GoldCount >= _goldCount)
         {
             Close();
         }
@@ -41,17 +57,13 @@ public class PickUpEducationStep : AbstractEducationStep
 
     protected override void OnClose()
     {
-         StopCoroutine(_coroutine);
-         
-         LookAtObject.Disappear();
-
+         ExitArrow();
+        
         InventoryController.Instance.UpdatedCount -= OnUpdatedCount;
     }
 
     protected override void OnUpdate()
     {
-//var saveData = SDKMediator.Instance.GenerateSaveData();
-        
         
     }
 }
