@@ -12,6 +12,8 @@ public class EducationRouter : IRouter
             Window.StartStep(SDKMediator.Instance.GenerateSaveData().EducationStep);
             
             Window.Open();
+            
+            SendMetrica.Send((EventMetricaKeys) SDKMediator.Instance.GenerateSaveData().EducationStep);
         
             Window.Finished += OnFinished;
         }
@@ -25,13 +27,15 @@ public class EducationRouter : IRouter
     private IEnumerator Wait()
     {
         Window.Close();
-        
-        yield return new WaitForSeconds(2);
-        
-        Window.Open();
 
         int step = SDKMediator.Instance.GenerateSaveData().EducationStep + 1;
         
+        SendMetrica.Send((EventMetricaKeys) step);
+        
+        yield return new WaitForSeconds(2);
+
+        Window.Open();
+
         SDKMediator.Instance.SaveEducationStep(step);
 
         if (step >= Window.StepsCount)

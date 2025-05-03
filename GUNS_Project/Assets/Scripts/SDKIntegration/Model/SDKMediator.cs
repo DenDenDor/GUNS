@@ -236,4 +236,11 @@ public class SDKMediator : MonoBehaviour
         _sdkAdapter.Save(defaultSaveData);
     }
 
+    public void SavePlayerDeaths(int value)
+    {
+        SaveData defaultSaveData = GenerateSaveData();
+        defaultSaveData.PlayerDeaths = value;
+        _sdkAdapter.Save(defaultSaveData);
+    }
+
 }

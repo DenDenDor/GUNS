@@ -24,7 +24,11 @@ public class ProgressBarRouter : IRouter
         _maxEnemies = EntityController.Instance.Enemies.Count;
         
         _view.UpdateBar(GenerateValue());
-        _view.UpdateLevel(WaveController.Instance.GenerateWaveInfo().IdLevel);
+        int level = WaveController.Instance.GenerateWaveInfo().IdLevel;
+        
+        SendMetrica.Send(DictionaryMetricaKeys.Level, level);
+        
+        _view.UpdateLevel(level);
     }
 
     private void OnRemoved()

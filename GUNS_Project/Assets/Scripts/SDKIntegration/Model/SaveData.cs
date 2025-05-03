@@ -15,4 +15,5 @@ public class SaveData
     [AutoGenerateSaveMethod] public int SilverCount;
     [AutoGenerateSaveMethod] public bool IsLanguageSelected;
     [AutoGenerateSaveMethod] public string Language;
+    [AutoGenerateSaveMethod] public int PlayerDeaths;
 }

@@ -106,7 +106,29 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 823045346112385986, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7753455787650338562}
+    - targetCorrespondingSourceObject: {fileID: 3487546225150768738, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7954282375363548311}
   m_SourcePrefab: {fileID: 100100000, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
+--- !u!1 &2156765200340017664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3487546225150768738, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
+  m_PrefabInstance: {fileID: 3280905681408709730}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7954282375363548311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156765200340017664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486a9f981ff3ab3418bd28216a7d8ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key: Free
+  _text: {fileID: 8045241634240178352}
 --- !u!1 &2802388181767186336 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 823045346112385986, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
@@ -182,6 +204,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3280905681408709730}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8045241634240178352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4768871039431933138, guid: 1b9426538777a3b4082b0a39b752f92f, type: 3}
+  m_PrefabInstance: {fileID: 3280905681408709730}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2156765200340017664}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}

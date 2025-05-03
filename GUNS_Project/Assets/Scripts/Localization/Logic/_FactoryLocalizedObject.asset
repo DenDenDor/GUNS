@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dcc7d2dcd6ef44a9a154ac9b600d95, type: 3}
   m_Name: _FactoryLocalizedObject
   m_EditorClassIdentifier: 
-  _textAsset: {fileID: 4900000, guid: 35a74c2cc2abbbe449a32e15596ea94d, type: 3}
+  _textAsset: {fileID: 4900000, guid: d8d08d1e607efc943a48c753c93567fc, type: 3}
   _collectionSpritesByLanguages:
   - {fileID: 11400000, guid: b44403b575d35754ea80832458bde89c, type: 2}

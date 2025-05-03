@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Localization;
 using TMPro;
 using UnityEngine;
 
@@ -6,10 +8,12 @@ public class ProgressBarView : MonoBehaviour
 {
     [SerializeField] private RectTransform _rectTransform;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private DisplayLocalizedString _displayLocalizedString;
     [SerializeField] private float _maxLeft = 230.44f;
     [SerializeField] private float _animationSpeed = 1f;
 
     private Coroutine _currentCoroutine;
+    private Func<string> _levelGet;
 
     public void UpdateBar(float targetX)
     {
@@ -21,7 +25,15 @@ public class ProgressBarView : MonoBehaviour
 
     public void UpdateLevel(int level)
     {
-        _text.text = $"Level {level}";
+        _levelGet = () => $"{_displayLocalizedString.LocalizedText} {level}";
+    }
+
+    private void Update()
+    {
+        if (_levelGet != null)
+        {
+            _text.text = _levelGet();
+        }
     }
 
     private IEnumerator AnimateBar(float targetX)
