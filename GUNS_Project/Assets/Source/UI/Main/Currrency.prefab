@@ -786,9 +786,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0554fec85b364543953c815d766e6d7, type: 3}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.g
+      value: 0.07426838
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.r
+      value: 0.10943389
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4705379058504355014, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 8229299114253313421, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199120368855596932, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -888,14 +920,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c0554fec85b364543953c815d766e6d7, type: 3}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.b
+      value: 0.036923073
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.g
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4534975713983532493, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 4705379058504355014, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
-    - target: {fileID: 9142994900500956810, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: c9575dec656f85a4492faa5ac9a81227, type: 2}
+    - target: {fileID: 4705379058504355014, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416392904742721843, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_LocalScale.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9199120368855596932, guid: 438c362a7a0c2e44dbeb6e384aa8d8df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
