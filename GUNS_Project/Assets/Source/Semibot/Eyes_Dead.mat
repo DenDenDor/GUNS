@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Eyes
+  m_Name: Eyes_Dead
   m_Shader: {fileID: 4800000, guid: 89885b798d6c8e64ba863d4a9d374c93, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -101,24 +101,24 @@ Material:
     - _CubemapOffset: {r: -0.19, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Eye_L_Iris_Color: {r: 0, g: 0.52156866, b: 1, a: 1}
-    - _Eye_L_Iris_Scale: {r: 0.23, g: 0.23, b: 0, a: 0}
+    - _Eye_L_Iris_Scale: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_L_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_L_PupilColor: {r: 0, g: 0, b: 0, a: 1}
     - _Eye_L_Pupil_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Eye_L_Pupil_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
+    - _Eye_L_Pupil_Scale: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_L_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Eye_L_ScleraColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Eye_L_Sclera_Color: {r: 0.85, g: 0.85, b: 0.85, a: 1}
+    - _Eye_L_Sclera_Color: {r: 0, g: 0, b: 0, a: 1}
     - _Eye_R_Iris_Color: {r: 0, g: 0.5223813, b: 1, a: 1}
     - _Eye_R_Iris_Color1: {r: 0, g: 0.54989666, b: 1, a: 1}
-    - _Eye_R_Iris_Scale: {r: 0.18, g: 0.18, b: 0, a: 0}
+    - _Eye_R_Iris_Scale: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_R_Iris_Scale1: {r: 0.4, g: 0.4, b: 0, a: 0}
     - _Eye_R_Offset: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_R_PupilColor: {r: 0, g: 0, b: 0, a: 1}
     - _Eye_R_Pupil_Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Eye_R_Pupil_Scale: {r: 0.15, g: 0.15, b: 0, a: 0}
+    - _Eye_R_Pupil_Scale: {r: 0, g: 0, b: 0, a: 0}
     - _Eye_R_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Eye_R_ScleraColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Eye_R_Sclera_Color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
+    - _Eye_R_Sclera_Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
