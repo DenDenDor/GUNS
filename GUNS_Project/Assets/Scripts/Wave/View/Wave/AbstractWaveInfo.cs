@@ -4,11 +4,11 @@ using UnityEngine.Serialization;
 
 public abstract class AbstractWaveInfo : MonoBehaviour
 {
-    [SerializeField] private Transform _resourcePoint;
+    [SerializeField] private ResourcePoint _resourcePoint;
     [SerializeField] private List<UnblockingBuildingPoint> _points;
     [SerializeField] private EnemyWave _enemyWave;
     [SerializeField] private AllyPoint _allyPoint;
-    public Transform ResourcePoint => _resourcePoint;
+    public ResourcePoint ResourcePoint => _resourcePoint;
 
     public EnemyWave EnemyWave => _enemyWave;
 

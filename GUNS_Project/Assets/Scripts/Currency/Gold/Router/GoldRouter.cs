@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     {
         Inventory.TakeGold();
     }
-
+    
     protected override Sprite GetCurrencySprite => Currency.GoldSprite;
 
     public override void Init()
@@ -34,17 +35,21 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
 
     private void OnStartedNewWave()
     {
+        StartSetPosition();
+
         for (int i = 0; i < 20; i++)
         {
-            CreateTo(Inventory.ResourcePoint.position);
+            CreateTo(Inventory.ResourcePoint.Gold.position);
         }
+        
+        StopSetPosition();
         
         SubscribePlates();
     }
 
     private void CreateTo(Vector3 position)
     {
-        Window.CreateCurrency(Prefab, position);
+        Window.CreateCurrency(Prefab, position, _getPoint);
     }
     
   

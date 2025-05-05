@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,6 +9,7 @@ public class NextLevelPlate : AbstractPlateByBuilding, IPriceDisplayed, IValueDi
     [SerializeField] private TextMeshProUGUI _price;
     [SerializeField] private TextMeshProUGUI _value;
     [SerializeField] private Image _currencyIcon;
+
 
     public void DisplayPrice(int amount)
     {

@@ -33,7 +33,7 @@ public class InventoryController : MonoBehaviour
     public int SilverCount => Count<SilverPickUp>();
 
 
-    public Transform ResourcePoint => WaveController.Instance.GenerateWaveInfo().ResourcePoint;
+    public ResourcePoint ResourcePoint => WaveController.Instance.GenerateWaveInfo().ResourcePoint;
     public List<AbstractCurrencyPickUp> PickUps => _pickUps;
     public event Action UpdatedCount;
 

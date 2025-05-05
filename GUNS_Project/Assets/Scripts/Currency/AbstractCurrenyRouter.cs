@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,6 +6,10 @@ using UnityEngine;
 
 public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : AbstractCurrencyPickUp where U : AbstractCurrencyWindow  where W : AbstractCurrencyPressurePlateView
 {
+    protected Action<Transform> _getPoint;
+
+    private float _height;
+
     private Coroutine _coroutine;
 
 
@@ -33,6 +38,23 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
     protected abstract Sprite GetCurrencySprite { get; }
     public abstract void Init();
 
+    private void UpdatePoint(Transform obj)
+    {
+        obj.localPosition += new Vector3(0, _height, 0);
+
+        _height += 0.15f;
+    }
+
+    protected void StartSetPosition()
+    {
+        _getPoint = UpdatePoint;
+    }   
+    
+    protected void StopSetPosition()
+    {
+        _getPoint = null;
+        _height = 0;
+    }
 
     protected void OnPickedUp(AbstractCurrencyPickUp obj)
     {

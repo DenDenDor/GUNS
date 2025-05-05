@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -9,11 +10,11 @@ public class GoldWindow : AbstractCurrencyWindow
         
     }
     
-    public void CreateCurrency(GoldPickUp prefab, Vector3 position)
+    public void CreateCurrency(GoldPickUp prefab, Vector3 position, Action<Transform> getPoint)
     {
         GoldPickUp pickUp = CreatePrefab(prefab, position);
 
-        pickUp.transform.localPosition += new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2));
+        getPoint?.Invoke(pickUp.transform);
 
         CurrencyController.Instance.AddPickUp(pickUp);
     }

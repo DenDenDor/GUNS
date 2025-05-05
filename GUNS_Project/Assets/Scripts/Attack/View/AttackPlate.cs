@@ -9,6 +9,10 @@ public class AttackPlate : AbstractPlateByBuilding
     
     private IEnumerator Start()
     {
+
+        // yield return null;
+        // rectTransform.transform.localRotation = Quaternion.identity;
+        
         yield return new WaitForSeconds(0.1f);
         
         BoxCollider boxCollider = GetComponent<BoxCollider>();

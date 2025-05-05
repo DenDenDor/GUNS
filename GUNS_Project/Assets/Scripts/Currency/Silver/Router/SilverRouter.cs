@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,7 +9,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
     protected override Sprite GetCurrencySprite => Currency.SilverSprite;
 
     private InventoryController Inventory => InventoryController.Instance;
-
+    
     protected override void Buy()
     {
         Inventory.TakeSilver();
@@ -32,17 +33,21 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
 
     private void OnStartedNewWave()
     {
+        StartSetPosition();
+        
         for (int i = 0; i < 32; i++)
         {
-            CreateTo(Inventory.ResourcePoint.position);
+            CreateTo(Inventory.ResourcePoint.Silver.position);
         }
+        
+        StopSetPosition();
         
         SubscribePlates();
     }
-
+    
     private void CreateTo(Vector3 position)
     {
-        Window.CreateCurrency(Prefab, position);
+        Window.CreateCurrency(Prefab, position, _getPoint);
     }
 
     public override void Exit()

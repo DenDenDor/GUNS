@@ -85,7 +85,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1948811495318195428, guid: 67f58ed5f55a3a648a23f81c67540560, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3865577055347634170, guid: 67f58ed5f55a3a648a23f81c67540560, type: 3}
       propertyPath: m_Pivot.x
@@ -224,4 +224,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223b613109ed4c4ebb9a56f02331e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isWorking: 1
   _fillness: {fileID: 3677805853383263666}

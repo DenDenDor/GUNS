@@ -202,6 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e7ad4467e6d3c4c8f164979500e7a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isWorking: 1
   _price: {fileID: 84932763870939046}
   _value: {fileID: 1487617533352199459}
   _currencyIcon: {fileID: 1814532996468004221}
