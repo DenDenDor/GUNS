@@ -13,7 +13,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 0
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -89,7 +89,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Smoothness: 1
+    - _Smoothness: 0.85
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -108,7 +108,7 @@ Material:
     - _Eye_L_Pupil_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Eye_L_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Eye_L_ScleraColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Eye_L_Sclera_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Eye_L_Sclera_Color: {r: 0.85, g: 0.85, b: 0.85, a: 1}
     - _Eye_R_Iris_Color: {r: 0, g: 0.5223813, b: 1, a: 1}
     - _Eye_R_Iris_Color1: {r: 0, g: 0.54989666, b: 1, a: 1}
     - _Eye_R_Iris_Scale: {r: 0.18, g: 0.18, b: 0, a: 0}
@@ -119,6 +119,6 @@ Material:
     - _Eye_R_Pupil_Scale: {r: 0.15, g: 0.15, b: 0, a: 0}
     - _Eye_R_Scale: {r: 0.2, g: 0.2, b: 0, a: 0}
     - _Eye_R_ScleraColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Eye_R_Sclera_Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Eye_R_Sclera_Color: {r: 0.85098046, g: 0.85098046, b: 0.85098046, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
