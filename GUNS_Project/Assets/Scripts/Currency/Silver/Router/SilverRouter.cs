@@ -35,7 +35,7 @@ public class SilverRouter : AbstractCurrenyRouter<SilverPickUp, SilverWindow, Si
     {
         StartSetPosition();
         
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 10; i++)
         {
             CreateTo(Inventory.ResourcePoint.Silver.position);
         }

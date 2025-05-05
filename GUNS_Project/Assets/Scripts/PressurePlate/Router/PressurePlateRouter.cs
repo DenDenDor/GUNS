@@ -36,6 +36,12 @@ public class PressurePlateRouter : IRouter
             case BuildingType.Attack:
                 buildingPlate = FactoryController.Instance.FindPrefab<AttackPlate>();
                 break;
+            case BuildingType.Bomb:
+                buildingPlate = FactoryController.Instance.FindPrefab<BombPlate>();
+                break;
+            case BuildingType.Plane:
+                buildingPlate = FactoryController.Instance.FindPrefab<JetPlate>();
+                break;
             default:
                 buildingPlate = FactoryController.Instance.FindPrefab<EmptyPlate>();
                 break;

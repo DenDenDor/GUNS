@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 528441a31c80d404c8b25006714e493c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buildingType: 3
   _text: {fileID: 5422902228665951666}
   _currencyIcon: {fileID: 5999143365691340649}
 --- !u!1001 &3993765228646437653

@@ -37,7 +37,7 @@ public class GoldRouter : AbstractCurrenyRouter<GoldPickUp, GoldWindow, GoldPres
     {
         StartSetPosition();
 
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 5; i++)
         {
             CreateTo(Inventory.ResourcePoint.Gold.position);
         }
