@@ -38,7 +38,7 @@ public class AttackRouter : IRouter
         
         foreach (var view in entities)
         {
-            if (view != null)
+            if (view != null && EntityController.Instance.FullEntities.ContainsKey(view))
             {
                 EntityModel model = EntityController.Instance.FullEntities[view];
 
