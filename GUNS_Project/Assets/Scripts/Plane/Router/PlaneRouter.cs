@@ -10,6 +10,8 @@ public class PlaneRouter : IRouter
      private PlaneBombView _prefabBomb;
      private PlaneView _createdPlane;
      private bool _isWorking = true;
+     private float _currentFillness = 0f;
+     private const float FILL_TIME = 2f; // Время полного заполнения в секундах
 
      private float _time = 0;
      private Dictionary<PlaneBombView, IEnumerable<EnemyView>> _pointByEnemies = new();
@@ -19,6 +21,7 @@ public class PlaneRouter : IRouter
 
      private AllyPoint AllyPoint => WaveController.Instance.GenerateWaveInfo().AllyPoint;
 
+     private JetPlate _jetPlate;
 
      private AbstractPressurePlateView Plate =>
         PressurePlateController.Instance.PressurePlateViewsByPoints[AllyPoint.JetPoint];
@@ -35,19 +38,33 @@ public class PlaneRouter : IRouter
 
     private int _droppedBombs;
 
+    private float _seconds = 1;
+    private int _waitTime = 10;
+
     private void OnUpdate()
     {
         if (_isWorking == false)
         {
             _time += Time.deltaTime;
+            _seconds += Time.deltaTime;
 
-            if (_time > 150)
+            if (_seconds > 1)
+            {
+                _jetPlate.UpdateText(GenerateTime);
+                _seconds = 0;
+            }
+
+            if (_time > _waitTime)
             {
                 _isWorking = true;
                 _time = 0;
+                _seconds = 1;
+                
+                _jetPlate.UpdateText(null);
+                
+                _coroutine = CoroutineController.Instance.StartCoroutine(EmptyBar());
             }
         }
-
         if (_createdPlane != null && _isCooldown)
         {
             IEnumerable<EnemyView> enemies = EntityController.Instance.Enemies.Where(x =>
@@ -101,6 +118,17 @@ public class PlaneRouter : IRouter
         _pointByEnemies.Remove(point);
     }
 
+    private string GenerateTime()
+    {
+        int totalSeconds = _waitTime - (int) _time;
+        
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        string timeString = $"{minutes}:{seconds:D2}";
+
+        return timeString;
+    }
+
     private void OnStartNewWave()
     {
         _droppedBombs = 0;
@@ -113,6 +141,8 @@ public class PlaneRouter : IRouter
         
         Plate.UpdateBar(0);
 
+        _jetPlate = Plate.GetComponent<JetPlate>();
+
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
     }
@@ -122,38 +152,67 @@ public class PlaneRouter : IRouter
     {
         if (_coroutine != null)
         {
-            CoroutineController.Instance.StopCoroutine(_coroutine);
-
-            _coroutine = null;
-        
-            Plate.UpdateBar(0);
-
+            if (_coroutine != null)
+            {
+                CoroutineController.Instance.StopCoroutine(_coroutine);
+                _coroutine = null;
+            }
+            
+            // Плавно убираем заполнение при выходе
+            _coroutine = CoroutineController.Instance.StartCoroutine(EmptyBar());
         }
+    }
+
+    private IEnumerator EmptyBar()
+    {
+        while (_currentFillness > 0f)
+        {
+            _currentFillness -= Time.deltaTime / (FILL_TIME * 0.5f); // Убираем заполнение в 2 раза быстрее
+            UpdateBar(_currentFillness);
+            yield return null;
+        }
+        
+        _currentFillness = 0f;
+        UpdateBar(0f);
+        _coroutine = null;
     }
 
     private IEnumerator Cooldown(AbstractPressurePlateView view)
     {
-        float fillness = 0;
-        float time = 0;
-        
-        while (time < 1 && _isWorking)
+        if (_isWorking == false)
         {
-            time += Time.deltaTime;
-            
-            Plate.UpdateBar(time);
-            _createdPlane = Window.Create(_prefabPlane, view.transform.position);
-            _createdPlane.StartMoving();
-
-            _isWorking = false;
-            
-            MovementController.Instance.StopMoving();
-            
+            yield break;
+        }
+        
+        while (_currentFillness < 1f)
+        {
+            _currentFillness += Time.deltaTime / FILL_TIME;
+            UpdateBar(_currentFillness);
             yield return null;
         }
+
+        _isWorking = false;
+        
+        _createdPlane = Window.Create(_prefabPlane, view.transform.position);
+        _createdPlane.StartMoving();
+
+        MovementController.Instance.StopMoving();
+
+    }
+    
+    private void UpdateBar(float currentFillness)
+    {
+        Plate.UpdateBar(currentFillness);
+        _jetPlate.UpdateBar(currentFillness);
     }
 
     private void OnEntered(AbstractPressurePlateView view)
     {
+        if (_coroutine != null)
+        {
+            CoroutineController.Instance.StopCoroutine(_coroutine);
+        }
+
         _coroutine = CoroutineController.Instance.StartCoroutine(Cooldown(view));
     }
 
