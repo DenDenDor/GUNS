@@ -33,6 +33,7 @@ public class PlaneRouter : IRouter
         UpdateController.Instance.Add(OnUpdate);
     }
 
+    private int _droppedBombs;
 
     private void OnUpdate()
     {
@@ -70,8 +71,19 @@ public class PlaneRouter : IRouter
         _pointByEnemies.Add(created, enemies);
         
         created.Entered +=  CreatedOnEntered;
+        _droppedBombs++;
         yield return new WaitForSeconds(2);
-        _isCooldown = true;
+
+        if (_droppedBombs > 3)
+        {
+            _createdPlane.StopMoving();
+            MovementController.Instance.StartMoving();
+            Window.RemovePlane();
+        }
+        else
+        {
+            _isCooldown = true;
+        }
     }
 
     private void CreatedOnEntered(PlaneBombView point)
@@ -91,6 +103,7 @@ public class PlaneRouter : IRouter
 
     private void OnStartNewWave()
     {
+        _droppedBombs = 0;
         SubscribePlate();
     }
 
@@ -129,6 +142,7 @@ public class PlaneRouter : IRouter
             
             Plate.UpdateBar(time);
             _createdPlane = Window.Create(_prefabPlane, view.transform.position);
+            _createdPlane.StartMoving();
 
             _isWorking = false;
             
