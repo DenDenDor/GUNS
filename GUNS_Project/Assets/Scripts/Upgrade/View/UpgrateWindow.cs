@@ -7,6 +7,7 @@ public class UpgrateWindow : AbstractFactoryWindow
 
     private Dictionary<UpgradedStatView, UpgradeType> _viewsByModels = new();
 
+    private UpgradedStatPanel _upgradedStatPanel;
     public Dictionary<UpgradedStatView, UpgradeType> ViewsByModels => _viewsByModels;
 
     public override void Init()
@@ -22,6 +23,18 @@ public class UpgrateWindow : AbstractFactoryWindow
         return view;
     }
 
+    public void InitStat(UpgradedStatView view, UpgradeType type)
+    {
+        _viewsByModels.Add(view, type);
+    }
+    
+    public UpgradedStatPanel CreateUi(UpgradedStatPanel prefab)
+    {
+        UpgradedStatPanel view = CreatePrefab(prefab, _spawnPoint, true);
+        _upgradedStatPanel = view;
+        return view;
+    }
+
     public void Open()
     {
         
@@ -29,7 +42,10 @@ public class UpgrateWindow : AbstractFactoryWindow
 
     public void ClearAll()
     {
-        _viewsByModels.DestroyAllMonoBehaviours();
+        if (_upgradedStatPanel != null)
+        {
+            Destroy(_upgradedStatPanel.gameObject);
+        }
         
         _viewsByModels.Clear();
     }

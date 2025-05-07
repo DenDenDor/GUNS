@@ -4,7 +4,7 @@ using UnityEngine;
 public class UpgradeRouter : IRouter
 {
     private UpgradeStatSO _data;
-    private UpgradedStatView _prefab;
+    private UpgradedStatPanel _prefab;
     private Dictionary<UpgradeType, int> _levelsByTypes = new();
 
     private UpgrateWindow Window => UiController.Instance.GetWindow<UpgrateWindow>();
@@ -12,7 +12,7 @@ public class UpgradeRouter : IRouter
     public void Init()
     {
         _data = Resources.Load<UpgradeStatSO>("Prefabs/UpgradeStatSO");
-        _prefab = Resources.Load<UpgradedStatView>("Prefabs/StatView");
+        _prefab = FactoryController.Instance.FindPrefab<UpgradedStatPanel>();//Resources.Load<UpgradedStatView>("Prefabs/StatView");
         
         _levelsByTypes.Add(UpgradeType.Health, 0);
         _levelsByTypes.Add(UpgradeType.Speed, 0);
@@ -40,15 +40,24 @@ public class UpgradeRouter : IRouter
 
     private void OpenWindow()
     {
-        Window.Open();
-
-        foreach (var item in _levelsByTypes)
+        if (WaveController.Instance.GenerateWaveInfo().IdLevel > 1)
         {
-            UpgradedStatView view = Window.CreateUi(_prefab, item.Key);
-            view.UpdateSprite(_data.GetUpgradeSprite(item.Key));
-            view.Bought += OnBought;
+            Window.Open();
+        
+            UpgradedStatPanel panel = Window.CreateUi(_prefab);
+            int i = 0;
+        
+            foreach (var item in _levelsByTypes)
+            {
+                UpgradedStatView view = panel.Views[i];//Window.CreateUi(_prefab, item.Key);
+                view.UpdateSprite(_data.GetUpgradeSprite(item.Key));
+                view.Bought += OnBought;
 
-            UpdateView(view, item.Key, item.Value, UpgradeController.Instance.Stat.Health);
+                UpdateView(view, item.Key, item.Value, UpgradeController.Instance.Stat.Health);
+            
+                Window.InitStat(view, item.Key);
+                i++;
+            }
         }
     }
 
