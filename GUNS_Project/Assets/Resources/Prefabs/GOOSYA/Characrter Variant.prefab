@@ -2159,6 +2159,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4956526468940221152, guid: 1137be5c75f430b45ad5e4fd536dbeee, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956526468940221152, guid: 1137be5c75f430b45ad5e4fd536dbeee, type: 3}
       propertyPath: CollisionModule.enabled
       value: 1
       objectReference: {fileID: 0}

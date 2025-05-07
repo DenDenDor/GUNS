@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -5,12 +6,14 @@ using UnityEngine;
 public class HealthRouter : IRouter
 {
     private EntityHead _prefab;
-
+    private EntityParticle _entityParticle;
+    
     private HealthWindow Window => UiController.Instance.GetWindow<HealthWindow>();
     
     public void Init()
     {
         _prefab = FactoryController.Instance.FindPrefab<EntityHead>();
+        _entityParticle = FactoryController.Instance.FindPrefab<EntityParticle>();
         
         EntityController.Instance.Added += OnAdd;
         
@@ -55,6 +58,8 @@ public class HealthRouter : IRouter
         {
             EntityHead entityHead = Window.CreateEntityHead(_prefab, entity.transform);
             
+            CoroutineController.Instance.RunCoroutine(DeathEntity(entity.transform.position));
+            
             Object.Destroy(entity.gameObject);
             EntityController.Instance.RemoveEntity(entity);
         }
@@ -76,6 +81,15 @@ public class HealthRouter : IRouter
         }
         
         health.Death -= OnDeathTaken;
+    }
+
+    private IEnumerator DeathEntity(Vector3 pos)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        EntityParticle particleSystem = Object.Instantiate(_entityParticle, pos, Quaternion.identity);
+        
+        Object.Destroy(particleSystem.gameObject, 3);
     }
 
     private void OnTakenDamage(HealthModel healthModel)

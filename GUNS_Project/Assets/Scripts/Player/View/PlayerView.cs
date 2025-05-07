@@ -5,7 +5,7 @@ public class PlayerView : AbstractEntity, IRotatableView
 {
     [SerializeField] private Transform _currencyPoint;
     [SerializeField] private Transform _lookAtTransform;
-    [SerializeField] private GameObject _particle;
+    [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Transform _gunPoint;
     [SerializeField] private Transform _firstFirePoint;
     [SerializeField] private Transform _secondFirePoint;
@@ -42,8 +42,9 @@ public class PlayerView : AbstractEntity, IRotatableView
 
     public void UpdateParticle()
     {
-        GameObject go = Instantiate(_particle, _gunPoint.position, Quaternion.identity);
-        
-        go.GetComponentInChildren<ParticleSystem>().Emit(1);
+        _particle.Emit(1);
+        // GameObject go = Instantiate(_particle, _gunPoint.position, Quaternion.identity);
+        //
+        // go.GetComponentInChildren<ParticleSystem>().Emit(1);
     }
 }
