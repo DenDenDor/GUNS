@@ -86,6 +86,7 @@ public class PlayerRouter : IRouter
 
     private void OnStartNewWave()
     {
+        _previousModel = null;
         CreatePlayer();
     }
 

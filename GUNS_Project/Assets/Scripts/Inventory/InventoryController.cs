@@ -30,6 +30,7 @@ public class InventoryController : MonoBehaviour
     }
 
     public int GoldCount => Count<GoldPickUp>();
+    public int LastGoldCount { get; set; }
     public int SilverCount => Count<SilverPickUp>();
 
 
@@ -67,6 +68,8 @@ public class InventoryController : MonoBehaviour
         currencyPickUp.transform.localScale = Vector3.one;
 
         UpdatePosition();
+
+        LastGoldCount = GoldCount;
     }
 
     private void UpdatePosition()
@@ -88,6 +91,9 @@ public class InventoryController : MonoBehaviour
     public void TakeGold()
     {
         TakeCurrency<GoldPickUp>();
+        
+        LastGoldCount = GoldCount;
+        
         Debug.LogError("TAKEN GOLD...");
     }  
     

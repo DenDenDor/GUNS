@@ -43,6 +43,10 @@ public class BuildingRouter : IRouter
                     type = PressurePlateType.Gold;
                     price = 10;
                     break;
+                case BuildingType.Tank:
+                    type = PressurePlateType.Silver;
+                    price = 15;
+                    break;
                 default:
                     type = PressurePlateType.Silver;
                     break;

@@ -5,10 +5,12 @@ public class UpgradeRouter : IRouter
 {
     private UpgradeStatSO _data;
     private UpgradedStatPanel _prefab;
+    private int _price = 1;
     private Dictionary<UpgradeType, int> _levelsByTypes = new();
 
     private UpgrateWindow Window => UiController.Instance.GetWindow<UpgrateWindow>();
-    
+
+
     public void Init()
     {
         _data = Resources.Load<UpgradeStatSO>("Prefabs/UpgradeStatSO");
@@ -29,21 +31,23 @@ public class UpgradeRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
 
-        WaveController.Instance.StartedNewWave += OpenWindow;
+        WaveController.Instance.FinishedOldWave += OpenWindow;
+        
+        Window.Closed += OnClear;
     }
 
     private void OnClear()
     {
+        Debug.LogError("On clear! ! !");
         UpgradeController.Instance.StopUpgraded();
         Window.ClearAll();
     }
 
     private void OpenWindow()
     {
-        if (WaveController.Instance.GenerateWaveInfo().IdLevel > 1)
+        if (WaveController.Instance.GenerateWaveInfo().IdLevel >= 1)
         {
             Window.Open();
-            Window.Closed += OnClear;
         
             UpgradedStatPanel panel = Window.CreateUi(_prefab);
             int i = 0;
@@ -56,6 +60,8 @@ public class UpgradeRouter : IRouter
                 view.WatchedAd += OnWatchAd;
 
                 UpdateView(view, item.Key, item.Value, UpgradeController.Instance.Stat.Health);
+                
+                view.UpdatePrice(_price);
             
                 Window.InitStat(view, item.Key);
                 i++;
@@ -65,10 +71,20 @@ public class UpgradeRouter : IRouter
 
     private void OnWatchAd(UpgradedStatView obj)
     {
-        
+        SDKMediator.Instance.SDKAdapter.Watch(() =>         UpdateStat(obj), RewardType.Upgrade);
     }
 
     private void OnBought(UpgradedStatView view)
+    {
+        if (InventoryController.Instance.GoldCount >= _price)
+        {
+            UpdateStat(view);
+            InventoryController.Instance.TakeGold();
+        }
+    }
+
+
+    private void UpdateStat(UpgradedStatView view)
     {
         UpgradeType type = Window.ViewsByModels[view];
 
@@ -77,6 +93,8 @@ public class UpgradeRouter : IRouter
         _levelsByTypes[type] = newLevel;
         UpgradeController.Instance.SetUpgradeLevel(type, newLevel);
 
+        view.UpdatePrice(_price);
+        
         UpgradeStatModel currentStats = UpgradeController.Instance.Stat;
 
         Debug.Log("AD " + currentLevel);

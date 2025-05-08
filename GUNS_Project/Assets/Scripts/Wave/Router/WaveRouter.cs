@@ -12,6 +12,8 @@ public class WaveRouter : IRouter
         _prefab = FactoryController.Instance.FindPrefab<FlagView>();
         
         WaveController.Instance.UpdateWave(Window.Waves.FirstOrDefault());
+
+
         
         EntityController.Instance.Removed += OnRemoved;
     }
@@ -28,7 +30,9 @@ public class WaveRouter : IRouter
         if (count == 0)
         {
             Debug.Log("YOU WIN!");
-
+            
+            UpgradeController.Instance.StoppedUpgraded += Upgraded;
+            
             FlagView flagView = Window.Create(_prefab, _enemyPosition);
 
             flagView.Entered += OnEnter;
@@ -38,7 +42,14 @@ public class WaveRouter : IRouter
 
     private void OnEnter()
     {
+        WaveController.Instance.WinWave();
+    }
+
+    private void Upgraded()
+    {
         WaveController.Instance.UpdateWave(Window.Waves.LastOrDefault());
+        
+        UpgradeController.Instance.StoppedUpgraded -= Upgraded;
     }
 
     public void Exit()

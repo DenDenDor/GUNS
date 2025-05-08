@@ -10,6 +10,7 @@ public class UpgradedStatView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _title;
     [SerializeField] private TextMeshProUGUI _level;
     [SerializeField] private TextMeshProUGUI _progressAmount;
+    [SerializeField] private TextMeshProUGUI _price;
 
     [Header("Icons")] 
     [SerializeField] private Image _icon;
@@ -107,5 +108,10 @@ public class UpgradedStatView : MonoBehaviour
     {
         _maxLevelContainer.SetActive(true);
         _progressContainer.SetActive(false);
+    }
+
+    public void UpdatePrice(int i)
+    {
+        _price.text = i.ToString();
     }
 }

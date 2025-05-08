@@ -8,6 +8,7 @@ public class WaveController : MonoBehaviour
     public event Action Cleared;
     
     public event Action StartedNewWave;
+    public event Action FinishedOldWave;
     
     private AbstractWaveInfo _abstractWaveInfo;
     
@@ -63,7 +64,12 @@ public class WaveController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            UpdateWave(UiController.Instance.GetWindow<WaveWindow>().Waves.LastOrDefault());
+            //UpdateWave(UiController.Instance.GetWindow<WaveWindow>().Waves.LastOrDefault());
         }
+    }
+
+    public void WinWave()
+    {
+        FinishedOldWave?.Invoke();
     }
 }

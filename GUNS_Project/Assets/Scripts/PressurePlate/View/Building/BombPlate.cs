@@ -13,6 +13,7 @@ public class BombPlate : AbstractPlateByBuilding
 
     private float _targetFill;
     
+    
     private void Update()
     {
         _fill.fillAmount = _targetFill;
@@ -55,14 +56,37 @@ public class BombPlate : AbstractPlateByBuilding
             _updatedText = () => "Ready!";
         }
     }
+    
+    private RectTransform FindUpgrade()
+    {
+        return GetComponentsInChildren<RectTransform>().FirstOrDefault(x => x.name == "Upgrade");
+    }
 
     private IEnumerator Start()
     {
+        IsWorking = false;
+
         yield return new WaitForSeconds(0.5f);
 
         BoxCollider boxCollider = GetComponent<BoxCollider>();
 
         boxCollider.center = new Vector3(0, -112.82f, 0);
         boxCollider.size = new Vector3(67, 95f, 70.61f);
+        
+        LevelController.Instance.Updated += OnUpdated;
+        
+        OnUpdated();
+    }
+    
+    private void OnUpdated()
+    {
+        if (LevelController.Instance.Level >= 1 && WaveController.Instance.GenerateWaveInfo().IdLevel >= 2)
+        {
+            IsWorking = true;
+        }
+        else
+        {
+            IsWorking = false;
+        }
     }
 }

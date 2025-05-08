@@ -33,17 +33,17 @@ public class EducationRouter : IRouter
         SendMetrica.Send((EventMetricaKeys) step);
         
         yield return new WaitForSeconds(2);
-
-        Window.Open();
-
+        
         SDKMediator.Instance.SaveEducationStep(step);
 
         if (step >= Window.StepsCount)
         {
             SDKMediator.Instance.SaveIsEducationFinished(true);
+            Window.Close();
         }
         else
         {
+            Window.Open();
             Window.StartStep(step);
         }
     }
