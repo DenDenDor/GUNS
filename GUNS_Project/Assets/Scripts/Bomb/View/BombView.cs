@@ -1,5 +1,5 @@
 using System;
-using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 
 public class BombView : MonoBehaviour
@@ -37,7 +37,26 @@ public class BombView : MonoBehaviour
 
         transform.localScale = Vector3.zero;
 
-        transform.DOScale(new Vector3(2, 2, 2), 2).SetEase(Ease.OutBack);
+        StartCoroutine(ScaleUp());
+    }
+
+    private IEnumerator ScaleUp()
+    {
+        float duration = 2f;
+        float elapsed = 0f;
+        Vector3 targetScale = new Vector3(2, 2, 2);
+
+        while (elapsed < duration)
+        {
+            float t = elapsed / duration;
+            // Эффект OutBack можно имитировать с помощью AnimationCurve или упрощенной формулы
+            t = Mathf.Sin(t * Mathf.PI * 0.5f); // Упрощенный вариант для эффекта "отскока"
+            transform.localScale = Vector3.Lerp(Vector3.zero, targetScale, t);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localScale = targetScale;
     }
 
     public void StartMoving()

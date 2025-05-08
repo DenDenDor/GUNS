@@ -12,8 +12,8 @@ public class UseBombEducationStep : AbstractEducationStep
     protected override void OnOpen()
     {
         EnterArrow(GetTarget);
-
-        Plate.FilledIn += Entered;
+        
+        UiController.Instance.GetWindow<BombWindow>().Created += Entered;
     }
    
     private Transform GetTarget()
@@ -21,7 +21,7 @@ public class UseBombEducationStep : AbstractEducationStep
         return Plate.transform;
     }
     
-    private void Entered(AbstractPressurePlateView a)
+    private void Entered(Transform a)
     {
         Close();
 
@@ -29,7 +29,7 @@ public class UseBombEducationStep : AbstractEducationStep
 
     protected override void OnClose()
     {
-        Plate.FilledIn -= Entered;
+        UiController.Instance.GetWindow<BombWindow>().Created -= Entered;
         
         ExitArrow();
     }

@@ -46,10 +46,8 @@ public class FactoryController : MonoBehaviour
 
         foreach (var prefab in allPrefabs)
         {
-            if (PrefabUtility.IsPartOfAnyPrefab(prefab))
-            {
-                _prefabs.Add(prefab);
-            }
+            _prefabs.Add(prefab);
+
         }
     }
     

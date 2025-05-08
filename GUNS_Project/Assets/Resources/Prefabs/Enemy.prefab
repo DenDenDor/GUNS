@@ -161,17 +161,41 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2455d14c6eef98d4b9e52c73c7f46373, type: 2}
+    - target: {fileID: 599439416961684833, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 727406971778551019, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: m_Name
       value: Characrter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400872443900322545, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1457520234190027500, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3830311788166756463, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5546868297550835065, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: _editor_hideEyes
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6287354718709635898, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384706671110216279, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7384706671110216279, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
+      propertyPath: _Editor_OnValidateTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7801109305582404185, guid: 1fbaabcb5e28f8b47bab9fc0fd37eadd, type: 3}
       propertyPath: m_LocalPosition.x

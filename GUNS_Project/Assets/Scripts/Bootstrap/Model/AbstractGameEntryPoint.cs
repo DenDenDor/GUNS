@@ -31,6 +31,8 @@ public abstract class AbstractGameEntryPoint : MonoBehaviour
             GameObject uiControllerObj = new GameObject("SDKMediator");
 
             SDKMediator controller = uiControllerObj.AddComponent<SDKMediator>();
+
+            controller.Init();
         }
     }
 

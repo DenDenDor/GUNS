@@ -21,6 +21,7 @@ namespace Localization
 
 
         public static LocalizedInstaller Instance { get; private set; }
+        public event Action UpdatedLanguage;
 
         private void Awake()
         {
@@ -91,6 +92,8 @@ namespace Localization
             {
                 UpdateLocalization(view);
             }
+            
+            UpdatedLanguage?.Invoke();
         }
     }
 }

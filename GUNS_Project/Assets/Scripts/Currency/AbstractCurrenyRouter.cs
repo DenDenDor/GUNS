@@ -144,7 +144,6 @@ public abstract class AbstractCurrenyRouter<T, U, W> : IRouter where T : Abstrac
             Buy();
             current--;
             maxCurrent--;
-            Debug.LogError("MAX CURRENT " + maxCurrent);
 
             PressurePlateController.Instance.UpdateCurrentPrice(view, current);
 

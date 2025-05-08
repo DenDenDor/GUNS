@@ -9,7 +9,12 @@ public class BulletView : MonoBehaviour, IMoveTo
     private bool _isTriggered;
     
     public event Action<BulletView, AbstractEntity> Triggered;
-    
+
+    private void Start()
+    {
+        Destroy(gameObject, 8);
+    }
+
     public void MoveTo(Vector3 getPosition)
     {
         transform.position = getPosition;

@@ -33,6 +33,14 @@ public class EducationWindow : AbstractWindowUi
         step.Finished += OnFinished;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            //Finished?.Invoke();
+        }
+    }
+
     private void OnFinished(AbstractEducationStep step)
     {
         Finished?.Invoke();

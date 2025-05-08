@@ -8,9 +8,11 @@ using UnityEngine;
 public class SDKMediator : MonoBehaviour
 {
     private const string ConfigFilePath = "Resources/SDKConfig.txt";
+
     private static SDKMediator _instance;
 
     private TypeSDK _currentSDKType;
+
     private AbstractSDKAdapter _sdkAdapter;
 
     public static SDKMediator Instance
@@ -33,6 +35,14 @@ public class SDKMediator : MonoBehaviour
 
     public AbstractSDKAdapter SDKAdapter => _sdkAdapter;
 
+    public void Init()
+    {
+        LoadSDKSelection();
+        InitializeAdapter();
+
+        _sdkAdapter.OnStart();
+    }
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -43,10 +53,6 @@ public class SDKMediator : MonoBehaviour
         
         _instance = this;
         
-        LoadSDKSelection();
-        InitializeAdapter();
-
-         _sdkAdapter.OnStart();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -102,7 +108,7 @@ public class SDKMediator : MonoBehaviour
 
         return defaultSaveData;
     }
-    
+
     public LanguageType GetLanguage()
     {
         SaveData defaultSaveData = GenerateSaveData();
@@ -228,7 +234,8 @@ public class SDKMediator : MonoBehaviour
         defaultSaveData.Language = currentType.ToString();
         _sdkAdapter.Save(defaultSaveData);
     }
-
+
+
     public void SaveLanguage(string value)
     {
         SaveData defaultSaveData = GenerateSaveData();
@@ -242,5 +249,4 @@ public class SDKMediator : MonoBehaviour
         defaultSaveData.PlayerDeaths = value;
         _sdkAdapter.Save(defaultSaveData);
     }
-
 }
