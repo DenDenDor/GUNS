@@ -30,6 +30,9 @@ public class UpgradeController : MonoBehaviour
 
     public UpgradeStatModel Stat => _upgradeStat;
 
+    public event Action Upgraded;
+    public event Action StoppedUpgraded;
+    
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -49,5 +52,11 @@ public class UpgradeController : MonoBehaviour
     public void UpdateStat(UpgradeStatModel model)
     {
         _upgradeStat = model;
+        Upgraded?.Invoke();
+    }
+    
+    public void StopUpgraded()
+    {
+        StoppedUpgraded?.Invoke();
     }
 }

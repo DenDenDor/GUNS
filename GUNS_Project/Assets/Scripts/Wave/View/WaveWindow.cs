@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class WaveWindow : AbstractFactoryWindow
     private IEnumerable<AbstractWaveInfo> _waves;
 
     public IEnumerable<AbstractWaveInfo> Waves => _waves;
+    public FlagView Flag { get; private set; }
+
+    public event Action CreatedFlag;
 
     public override void Init()
     {
@@ -21,7 +25,11 @@ public class WaveWindow : AbstractFactoryWindow
 
     public FlagView Create(FlagView prefab, Vector3 enemyPosition)
     {
-        return CreatePrefab(prefab, enemyPosition);
+        FlagView created = CreatePrefab(prefab, enemyPosition);
+        Flag = created;
+        CreatedFlag?.Invoke();
+
+        return created;
     }
 }
 

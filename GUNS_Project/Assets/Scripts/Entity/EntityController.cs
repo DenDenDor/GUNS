@@ -39,6 +39,7 @@ public class EntityController : MonoBehaviour
             
             entities.AddRange(Soldiers);
             entities.Add(Player);
+            entities.AddRange(Tanks);
 
             return entities;
         }

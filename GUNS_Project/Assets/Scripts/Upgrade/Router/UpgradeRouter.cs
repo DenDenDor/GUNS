@@ -29,12 +29,12 @@ public class UpgradeRouter : IRouter
         
         UpdateController.Instance.Add(OnUpdate);
 
-        WaveController.Instance.Cleared += OnClear;
         WaveController.Instance.StartedNewWave += OpenWindow;
     }
 
     private void OnClear()
     {
+        UpgradeController.Instance.StopUpgraded();
         Window.ClearAll();
     }
 
@@ -43,6 +43,7 @@ public class UpgradeRouter : IRouter
         if (WaveController.Instance.GenerateWaveInfo().IdLevel > 1)
         {
             Window.Open();
+            Window.Closed += OnClear;
         
             UpgradedStatPanel panel = Window.CreateUi(_prefab);
             int i = 0;
@@ -52,6 +53,7 @@ public class UpgradeRouter : IRouter
                 UpgradedStatView view = panel.Views[i];//Window.CreateUi(_prefab, item.Key);
                 view.UpdateSprite(_data.GetUpgradeSprite(item.Key));
                 view.Bought += OnBought;
+                view.WatchedAd += OnWatchAd;
 
                 UpdateView(view, item.Key, item.Value, UpgradeController.Instance.Stat.Health);
             
@@ -59,6 +61,11 @@ public class UpgradeRouter : IRouter
                 i++;
             }
         }
+    }
+
+    private void OnWatchAd(UpgradedStatView obj)
+    {
+        
     }
 
     private void OnBought(UpgradedStatView view)
@@ -73,8 +80,6 @@ public class UpgradeRouter : IRouter
         UpgradeStatModel currentStats = UpgradeController.Instance.Stat;
 
         Debug.Log("AD " + currentLevel);
-        
-
         
         if (_data.TryGetValueForLevel(type, newLevel, out float value))
         {
@@ -95,7 +100,6 @@ public class UpgradeRouter : IRouter
 
             UpgradeController.Instance.UpdateStat(currentStats);
         }
-        
     }
 
     private void UpdateView(UpgradedStatView view, UpgradeType type, int newLevel, float value)
