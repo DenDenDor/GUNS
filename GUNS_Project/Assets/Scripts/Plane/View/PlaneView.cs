@@ -18,6 +18,7 @@ public class PlaneView : MonoBehaviour
 
     private void Start()
     {
+        transform.position += new Vector3(0, 0, 2);
         _startPosition = transform.position;
         _targetHeight = transform.position.y + _ascendHeight;
         

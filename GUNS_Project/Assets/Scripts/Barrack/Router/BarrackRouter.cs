@@ -5,6 +5,7 @@ using UnityEngine;
 public class BarrackRouter : IRouter
 {
     private readonly Dictionary<BuildingType, AbstractBarrackView> _barrackByViews = new();
+    private bool _isWorking;
     private BuildingController Building => BuildingController.Instance;
 
     public void Init()
@@ -44,8 +45,20 @@ public class BarrackRouter : IRouter
 
     private void OnTimeReset(BuildingModel model)
     {
+        Debug.Log("STEP IS " + SDKMediator.Instance.GenerateSaveData().EducationStep);
         AbstractBuildingView view = Building.Barracks.FirstOrDefault(x=>x.Value == model).Key;
         
+        if (SDKMediator.Instance.GenerateSaveData().EducationStep == 1 && _isWorking == false)
+        {
+            for (int i = 0; i < 24; i++)
+            {
+                BarrackController.Instance.Create(view.transform, model.BuildingType);
+            }
+            
+            _isWorking = true;
+            return;
+        }
+
         BarrackController.Instance.Create(view.transform, model.BuildingType);
     }
 

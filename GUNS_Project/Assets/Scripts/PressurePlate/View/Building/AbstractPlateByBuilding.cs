@@ -4,6 +4,8 @@ using UnityEngine;
 public abstract class AbstractPlateByBuilding : MonoBehaviour
 {
     [SerializeField] private BuildingType _buildingType;
+
+    public bool IsWorking { get; protected set; } = true;
     
     private void Awake()
     {

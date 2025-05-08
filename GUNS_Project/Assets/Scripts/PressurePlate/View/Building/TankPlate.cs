@@ -16,9 +16,31 @@ public class TankPlate : AbstractPlateByBuilding, IPriceDisplayed, ICurrencyDisp
 
     private float _threshold = 0.001f;
 
+    private RectTransform _upgrade;
+    
     private void Start()
     {
         _fill = FindFill();
+        _upgrade = FindUpgrade();
+        IsWorking = false;
+        
+        LevelController.Instance.Updated += OnUpdated;
+        
+        OnUpdated();
+    }
+
+    private void OnUpdated()
+    {
+        if (LevelController.Instance.Level >= 1)
+        {
+            _upgrade.gameObject.SetActive(true);
+            IsWorking = true;
+        }
+        else
+        {
+            _upgrade.gameObject.SetActive(false);
+            IsWorking = false;
+        }
     }
 
     private void Update()
@@ -67,5 +89,10 @@ public class TankPlate : AbstractPlateByBuilding, IPriceDisplayed, ICurrencyDisp
     private Image FindObject()
     {
         return GetComponentsInChildren<Image>().FirstOrDefault(x => x.name == "Outline");
+    }    
+    
+    private RectTransform FindUpgrade()
+    {
+        return GetComponentsInChildren<RectTransform>().FirstOrDefault(x => x.name == "Upgrade");
     }
 }

@@ -9,12 +9,16 @@ public class BombWindow : AbstractFactoryWindow
     {
         
     }
+    
+    public void SetForCamera(BombView bombView)
+    {
+        Created?.Invoke(bombView.transform);
+    }
+
 
     public BombView Create(BombView prefab, Vector3 transformPosition)
     {
         BombView bombView = CreatePrefab(prefab, transformPosition);
-        
-        Created?.Invoke(bombView.transform);
         
         return bombView;
     }

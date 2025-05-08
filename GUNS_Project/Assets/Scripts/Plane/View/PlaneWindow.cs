@@ -14,8 +14,12 @@ public class PlaneWindow : AbstractFactoryWindow
     public PlaneView Create(PlaneView prefab, Vector3 transformPosition)
     {
         PlaneView planeView =  CreatePrefab(prefab, transformPosition);
-        Created?.Invoke(planeView.transform);
         return planeView;
+    }
+
+    public void SetForCamera(PlaneView planeView)
+    {
+        Created?.Invoke(planeView.transform);
     }
     
     public void RemovePlane()

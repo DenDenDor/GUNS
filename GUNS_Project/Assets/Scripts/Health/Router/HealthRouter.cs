@@ -32,11 +32,20 @@ public class HealthRouter : IRouter
 
         if (obj is SoldierView)
         {
-            value = 50;
+            value = (int) UiController.Instance.GetWindow<SoldierWindow>().Health;
         }
         else if(obj is PlayerView)
         {
-            value = 100;
+            value = (int) UiController.Instance.GetWindow<PlayerWindow>().Health;
+        }    
+        else if(obj is TankView)
+        {
+            value = (int) UiController.Instance.GetWindow<TankWindow>().Health;
+        }
+             
+        else if(obj is EnemyView)
+        {
+            value = (int) UiController.Instance.GetWindow<EnemyWindow>().Health;
         }
         
         HealthModel health = new HealthModel(value);

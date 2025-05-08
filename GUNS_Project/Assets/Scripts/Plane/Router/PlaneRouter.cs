@@ -145,6 +145,8 @@ public class PlaneRouter : IRouter
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
+        
+        _createdPlane = Window.Create(_prefabPlane, Plate.transform.position);
     }
 
 
@@ -190,10 +192,11 @@ public class PlaneRouter : IRouter
             UpdateBar(_currentFillness);
             yield return null;
         }
+        
+        Window.SetForCamera(_createdPlane);
 
         _isWorking = false;
         
-        _createdPlane = Window.Create(_prefabPlane, view.transform.position);
         _createdPlane.StartMoving();
 
         MovementController.Instance.StopMoving();

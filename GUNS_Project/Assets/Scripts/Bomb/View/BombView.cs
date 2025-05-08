@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 public class BombView : MonoBehaviour
@@ -22,16 +23,35 @@ public class BombView : MonoBehaviour
     private Vector3 _targetPos;
     private float _progress = 0f;
     private Vector3 _lastPosition;
+    private bool _isWorking;
 
     public event Action<BombView> Fallen;
 
     void Start()
     {
+        transform.position = new Vector3(transform.position.x, 1.693f, transform.position.z);
+        
         _lastPosition = transform.position;
+
+        transform.rotation = Quaternion.Euler(-90, 0, 0);
+
+        transform.localScale = Vector3.zero;
+
+        transform.DOScale(new Vector3(2, 2, 2), 2).SetEase(Ease.OutBack);
+    }
+
+    public void StartMoving()
+    {
+        _isWorking = true;
     }
 
     void Update()
     {
+        if (_isWorking == false)
+        {
+            return;
+        }
+        
         if (_progress > 1)
         {
             ParticleSystem particleSystem = Instantiate(_particleSystem, transform.position, Quaternion.identity);

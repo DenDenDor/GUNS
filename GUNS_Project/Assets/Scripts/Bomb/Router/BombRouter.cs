@@ -87,6 +87,9 @@ public class BombRouter : IRouter
 
         Plate.Entered += OnEntered;
         Plate.Exited += OnExited;
+        
+        _createdBomb  = Window.Create(_prefab, Plate.transform.position);
+        _createdBomb.transform.localScale = Vector3.zero;
     }
 
 
@@ -119,6 +122,8 @@ public class BombRouter : IRouter
         _coroutine = null;
     }
 
+    private BombView _createdBomb;
+
     private IEnumerator Cooldown(AbstractPressurePlateView view)
     {
         if (_isWorking == false)
@@ -133,13 +138,14 @@ public class BombRouter : IRouter
             yield return null;
         }
  
-        BombView bomb = Window.Create(_prefab, view.transform.position);
 
+        Window.SetForCamera(_createdBomb);
+        _createdBomb.StartMoving();
         Transform[] points = EntityController.Instance.Enemies.Select(x => x.transform).ToArray();
             
-        bomb.UpdateTarget(GetNearestEnemy(bomb.transform, points));
+        _createdBomb.UpdateTarget(GetNearestEnemy(_createdBomb.transform, points));
 
-        bomb.Fallen += OnFallen;
+        _createdBomb.Fallen += OnFallen;
         _isWorking = false;
         MovementController.Instance.StopMoving();
         
@@ -173,6 +179,15 @@ public class BombRouter : IRouter
             Window.RemoveBomb();
             HealthController.Instance.GetByEntity(enemy).TakeDamage(150);
         }
+
+        CoroutineController.Instance.RunCoroutine(Wait());
+    }
+
+    private IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1);
+        
+        _createdBomb  = Window.Create(_prefab, Plate.transform.position);
     }
 
     Transform GetNearestEnemy(Transform transform, Transform[] enemies)

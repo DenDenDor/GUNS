@@ -8,6 +8,7 @@ public class PickUpEducationStep : AbstractEducationStep
 {
     [SerializeField] private int _silverCount = 5;
     [SerializeField] private int _goldCount = 5;
+    [SerializeField] private bool _isShowCurrency = true;
 
     private int _allCurrency;
     
@@ -39,8 +40,11 @@ public class PickUpEducationStep : AbstractEducationStep
         {
             _allCurrency = all;
         }
-        
-        UiController.Instance.GetWindow<EducationWindow>().UpdateAmountText($"{_allCurrency} / {all}");
+
+        if (_isShowCurrency)
+        {
+            UiController.Instance.GetWindow<EducationWindow>().UpdateAmountText($"{_allCurrency} / {all}");
+        }
     }
 
     private void OnUpdatedCount()

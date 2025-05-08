@@ -38,6 +38,8 @@ public class LevelRouter : IRouter
     {
         _level++;
         
+        LevelController.Instance.UpdateLevel(_level);
+        
         if (plate.TryGetComponent(out IValueDisplay valueDisplay))
         {
             valueDisplay.DisplayValue(_level);

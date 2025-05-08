@@ -7,7 +7,14 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     [SerializeField] private Image _bar;
 
     private bool _isFilled;
+
+    private AbstractPlateByBuilding _abstractPlateByBuilding;
     
+    private void Start()
+    {
+        _abstractPlateByBuilding = GetComponent<AbstractPlateByBuilding>();
+    }
+
     public event Action<AbstractPressurePlateView> Entered;
     public event Action<AbstractPressurePlateView> FilledIn;
     public event Action Exited;
@@ -43,7 +50,7 @@ public abstract class AbstractPressurePlateView : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PlayerTriggerView>(out PlayerTriggerView playerTriggerView))
+        if (other.TryGetComponent<PlayerTriggerView>(out PlayerTriggerView playerTriggerView) && _abstractPlateByBuilding.IsWorking)
         {
             Debug.LogError("TRIGGER ");
 
